@@ -362,13 +362,15 @@ details.music picture { display: block; }
 .trbtn { margin-left: auto; font-family: var(--f-ui); font-size: 0.95em; letter-spacing: 0; text-transform: none; font-weight: 600; border: 1px solid var(--line); background: var(--sheet); color: var(--ink-2); border-radius: 999px; padding: 2px 10px; }
 .trbtn[aria-pressed="true"] { border-color: var(--gold); color: var(--ink); }
 .card .lbl .trbtn { margin-left: auto; }
-/* Readings: a heading in the text, as in the Lectionary (label left, reference right, thin rule), not a coloured box (anh Khải 04/11) */
-.card.read { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.1em 1em; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: none; padding: 0 0 0.25em; margin: 1.5em 0 0.35em; }
+/* Readings and Alleluia: a box for emphasis (anh Khải 04/11), on one line: label left, reference right */
+.card.read { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.1em 1em; margin: 1.3em 0 0.4em; }
 .card.read .lbl { font-size: 0.7em; }
-.card.read .main { color: var(--rubric); font-weight: 600; font-size: 0.9em; text-align: right; margin-left: auto; }
+.card.read .main { font-weight: 600; font-size: 0.92em; text-align: right; margin-left: auto; }
 .card.read .meta { flex-basis: 100%; }
 .card.read .meta:empty { display: none; }
 .card.read .refrain { flex-basis: 100%; }
+.lect.alv { margin: 0.4em 0 1em; }
+.lect.alv .vm { color: var(--rubric); font-weight: 600; margin-right: 0.35em; }
 .quote { font-style: italic; text-align: center; margin: 0.4em 1em; }
 .quote cite { display: block; font-style: normal; font-size: 0.75em; color: var(--ink-3); font-family: var(--f-ui); }
 .ps { list-style: none; padding: 0; margin: 0.5em 0; display: grid; gap: 0.2em; }
@@ -686,8 +688,12 @@ function mass(o) {
   out.push(R("There follows the “Alleluia” or another chant laid down by the rubrics, as the liturgical time requires.", ""));
   if (o.blank) { out.push(SONG("Alleluia", "Tung hô Tin Mừng", "Alleluia", "", "")); out.push({ k: "tba" }); }
   else {
-  out.push(SONG("Alleluia", "Tung hô Tin Mừng", o.alleluia.song || "Alleluia", o.alleluia.cite, "", o.alleluia.pdf));
-  out.push(o.alleluia.text ? { k: "quote", text: o.alleluia.text, vi: "", cite: "" } : { k: "tba" });   // the verse; reference on the song card
+  /* Alleluia (anh Khải 04/11): a heading like the readings (label + reference), then the text in full:
+     said → ℟ Alleluia, alleluia. / verse / ℟ Alleluia, alleluia.; sung (Feast and above, Sundays) → the sung Alleluia
+     (e.g. Sing Halleluia, sheet music + practice link) and the verse. */
+  out.push({ k: "alh", cite: o.alleluia.cite });
+  if (o.alleluia.pdf) out.push(MUSIC(Object.assign({ title: "Sung: " + (o.alleluia.song || "Alleluia") }, o.alleluia.pdf)));
+  out.push({ k: "alv", text: o.alleluia.text, sung: !!o.alleluia.pdf });
   }
   out.push(R("Meanwhile, if incense is used, the Priest puts some into the thurible. After this, the Deacon who is to proclaim the Gospel, bowing profoundly before the Priest, asks for the blessing, saying in a low voice:", ""));
   out.push(V(["D", "Your blessing, Father."]));
@@ -933,13 +939,16 @@ function massOf(date) {
     setting: ms ? [ms.name, ms.composer].filter(Boolean).join(" (") + (ms.composer ? ")" : "") : "",
     music: ms ? { kyrie: part("kyrie"), gloria: part("gloria"), sanctus: part("holy"), mystery: part("mystery"), amen: part("amen"), agnus: part("lamb") } : null
   };
-  const al = t.alleluia || {}, alSung = ms && ms.alleluia && ms.alleluia.title ? ms.alleluia : null;
+  // Sung Alleluia: as given in data.js; otherwise, on a Feast or Solemnity or a Sunday, "Sing Halleluia" (anh Khải 04/11)
+  const feastUp = /^(Feast|Solemnity)\b/.test(t.note || "") || new Date(date + "T00:00:00Z").getUTCDay() === 0;
+  const al = t.alleluia || {}, alSung = ms && ms.alleluia && ms.alleluia.title ? ms.alleluia
+    : feastUp ? { title: "Sing Halleluia", sheet: "sheets/sing-halleluia.png", narrow: "sheets/sing-halleluia-narrow.png", noPractice: true } : null;
   const o = Object.assign({}, t, {
     songs: S, bishop: t.bishop || BISHOP_HERE,
     readings: t.readings || [{ kind: "first", tba: true }, { kind: "psalm", tba: true }],
     gospel: Object.assign({ evangelist: "N." }, t.gospel || {}, t.gospel && t.gospel.chunks ? {} : { tba: true }),   // no text yet → "Text to be added"
     alleluia: { song: alSung ? alSung.title : "Alleluia", cite: al.cite || "", text: al.text || "",
-                pdf: alSung ? { sheet: alSung.sheet, narrow: alSung.narrow, practice: practice(date, "alleluia") } : null },
+                pdf: alSung ? { sheet: alSung.sheet, narrow: alSung.narrow, practice: alSung.noPractice ? "" : practice(date, "alleluia") } : null },
     pfBook: t.pf ? null : (t.pfBook || ["Intentions prepared by the community."]),
     universal: t.universal != null ? !!t.universal : new Date(date + "T00:00:00Z").getUTCDay() === 0
   });
@@ -1301,6 +1310,16 @@ function block(b, it, day) {
     case "quote": { const q = el("p", "quote", b.text); if (b.vi && trCard[it.id + "-gospel"]) q.appendChild(el("span", "tr", b.vi)); q.lastChild.style && (q.lastChild.style.display = "block"); if (b.cite) q.appendChild(el("cite", null, b.cite)); return q; }
     case "lect": return lect(b, it);
     case "tba": return el("p", "tba", "Text to be added.");
+    case "alh": { const c = el("div", "card read al"); c.appendChild(el("div", "lbl", "Alleluia")); if (b.cite) c.appendChild(el("div", "main", b.cite)); return c; }
+    case "alv": {   // the Alleluia in full, below its heading
+      if (!b.text) return el("p", "tba", "Text to be added.");
+      const w = el("div", "lect alv");
+      const rf = () => { const p = el("p", "rf"); p.appendChild(el("span", "m", "℟")); p.append("Alleluia, alleluia."); return p; };
+      if (!b.sung) w.appendChild(rf());
+      const v = el("p", "pri lines"); senseLines(v, b.text, b.sung ? el("span", "vm", "℣") : null); w.appendChild(v);
+      if (!b.sung) w.appendChild(rf());
+      return w;
+    }
     case "audio": {   // USCCB Daily Mass Reading Podcast (SoundCloud): the player loads only when asked for
       const d = el("div", "rd-audio");
       const bt = el("button", "prac", "▶ Listen to the readings"); bt.type = "button";

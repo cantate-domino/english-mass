@@ -19,7 +19,7 @@
              They are shown in the order of the Mass between the songs. narrow = optional sheet image for phones.
 */
 window.SITE = {
-  updated: "4 Nov 2026, 10:06 (UTC+7)"
+  updated: "4 Nov 2026, 10:23 (UTC+7)"
 };
 
 window.WEEKS = [
@@ -53,6 +53,10 @@ window.WEEKS = [
       entrance:    { no: 141, title: "Shine, Jesus, Shine", composer: "Graham Kendrick", youtube: "https://youtu.be/AvMeTWAiUz8", start: 34, sheet: "sheets/shine-jesus-shine-ipa.png" },
       offertory:   { no: 192, title: "Seed, Scattered and Sown", composer: "Dan Feiten", youtube: "https://youtu.be/b3wm1ZEXaiM", start: 13, sheet: "sheets/seed-scattered-and-sown-ipa.png" },
       recessional: { no: 230, title: "Pray for the Departed Souls", composer: "", youtube: "https://youtu.be/Cu0sO8VOruc", start: 20, sheet: "sheets/for-the-departed-souls-ipa.png" }
+    },
+    mass: {   // Feast: the Alleluia is sung (anh Khải 04/11)
+      alleluia: { title: "Sing Halleluia", composer: "", sheet: "sheets/sing-halleluia.png", narrow: "sheets/sing-halleluia-narrow.png",
+                  text: "Verse: Happy the poor in spirit; the Kingdom of Heaven is theirs. (Matthew 5:3)" }
     }
   },
   {
