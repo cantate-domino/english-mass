@@ -333,6 +333,8 @@ details.music picture { display: block; }
 /* Eucharistic Prayer II | III switch (anh Khải 21/10): pills like the celebration buttons, chosen = deep red */
 .epsel { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 0.35em 0 0.9em; font-family: var(--f-ui); }
 .epsel .lb { font-size: 0.78rem; color: var(--ink-3); margin-right: 4px; }
+.pasel { flex-wrap: wrap; }
+.pasel button { min-width: 0; font-size: 0.92em; padding: 0 10px; }
 .epsel button { min-width: 3.4em; height: 32px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--sheet); color: var(--ink-2); font-family: var(--f-text); font-size: 1rem; font-weight: 600; letter-spacing: 0.05em; line-height: 1; cursor: pointer; }
 .epsel button:hover { border-color: var(--rubric); color: var(--rubric); }
 .epsel button[aria-pressed="true"] { background: var(--cel-sel); border-color: var(--cel-sel); color: var(--cel-sel-ink); }
@@ -606,25 +608,47 @@ function mass(o) {
     if (o.laudsText) out.push(HTML(o.laudsText.psalmody, "psalmody", true));
     else { out.push(PS(o.lauds)); out.push(BOOK("Antiphons and psalm texts: booklet or iBreviary.", "Tiền xướng và bản văn thánh vịnh: sách hoặc iBreviary.")); }
   } else {
+    /* Penitential Act: the three forms of the Roman Missal (Order of Mass 4–6), chosen like the Eucharistic Prayer (anh Khải 04/11).
+       pa: [forms] = the block belongs only to those forms; with Form 3 (invocations) the Kyrie that follows is omitted. */
+    const PA = (forms, b) => ({ ...b, pa: forms });
     out.push(H("Penitential Act", "Nghi thức Sám hối", "penitential"));
+    out.push({ k: "pasel" });
     out.push(R("Then follows the Penitential Act, to which the Priest invites the faithful, saying:", ""));
     out.push(V(["P", MISSAL.penInv]));
-    out.push(R("A brief pause for silence follows. Then all recite together the formula of general confession:", ""));
-    out.push(V(["A", "I confess to almighty God\nand to you, my brothers and sisters,\nthat I have greatly sinned,\nin my thoughts and in my words,\nin what I have done and in what I have failed to do,"]));
-    out.push(R("And, striking their breast, they say:", ""));
-    out.push(V(["A", "through my fault, through my fault,\nthrough my most grievous fault;"]));
-    out.push(R("Then they continue:", ""));
-    out.push(V(["A", "therefore I ask blessed Mary ever-Virgin,\nall the Angels and Saints,\nand you, my brothers and sisters,\nto pray for me to the Lord our God."]));
+    out.push(R("A brief pause for silence follows.", ""));
+    // Form 1: the Confiteor
+    out.push(PA([1], R("Then all recite together the formula of general confession:", "")));
+    out.push(PA([1], V(["A", "I confess to almighty God\nand to you, my brothers and sisters,\nthat I have greatly sinned,\nin my thoughts and in my words,\nin what I have done and in what I have failed to do,"])));
+    out.push(PA([1], R("And, striking their breast, they say:", "")));
+    out.push(PA([1], V(["A", "through my fault, through my fault,\nthrough my most grievous fault;"])));
+    out.push(PA([1], R("Then they continue:", "")));
+    out.push(PA([1], V(["A", "therefore I ask blessed Mary ever-Virgin,\nall the Angels and Saints,\nand you, my brothers and sisters,\nto pray for me to the Lord our God."])));
+    // Form 2
+    out.push(PA([2], R("The Priest then says:", "")));
+    out.push(PA([2], V(["P", "Have mercy on us, O Lord."])));
+    out.push(PA([2], R("The people reply:", "")));
+    out.push(PA([2], V(["R", "For we have sinned against you."])));
+    out.push(PA([2], R("The Priest:", "")));
+    out.push(PA([2], V(["P", "Show us, O Lord, your mercy."])));
+    out.push(PA([2], R("The people:", "")));
+    out.push(PA([2], V(["R", "And grant us your salvation."])));
+    // Form 3: invocations with Kyrie (Missal, Appendix VI, first set)
+    out.push(PA([3], R("The Priest, or a Deacon or another minister, then says the following or other invocations with Kyrie, eleison (Lord, have mercy):", "")));
+    if (S.setting) out.push(PA([3], R("Sung: " + S.setting + ".", "Hát: " + S.setting + ".")));
+    if (S.music && S.music.kyrie) out.push(PA([3], MUSIC(S.music.kyrie)));
+    out.push(PA([3], V(["P", "You were sent to heal the contrite of heart:\nLord, have mercy."], ["R", "Lord, have mercy."],
+                       ["P", "You came to call sinners:\nChrist, have mercy."], ["R", "Christ, have mercy."],
+                       ["P", "You are seated at the right hand of the Father to intercede for us:\nLord, have mercy."], ["R", "Lord, have mercy."])));
     out.push(R("The absolution by the Priest follows:", ""));
     out.push(V(["P", "May almighty God have mercy on us,\nforgive us our sins,\nand bring us to everlasting life."]));
     out.push(R("The people reply:", ""));
     out.push(V(["R", "Amen."]));
-    out.push(H("Kyrie", "Kinh Thương xót", "kyrie"));
-    out.push(R("The “Kyrie, eleison (Lord, have mercy)” invocations follow, unless they have just occurred in a formula of the Penitential Act.", ""));
-    if (S.setting) out.push(R("Sung: " + S.setting + ".", "Hát: " + S.setting + "."));
-    if (S.music && S.music.kyrie) out.push(MUSIC(S.music.kyrie));   // sheet right under the heading (anh Khải 31/10)
-    out.push(V(["P", "Lord, have mercy."], ["R", "Lord, have mercy."], ["P", "Christ, have mercy."], ["R", "Christ, have mercy."], ["P", "Lord, have mercy."], ["R", "Lord, have mercy."]));
-    out.push(LAT("Kyrie", LA.kyrie));
+    // Kyrie: not after Form 3, where it has just been said
+    out.push(PA([1, 2], H("Kyrie", "Kinh Thương xót", "kyrie")));
+    out.push(PA([1, 2], R("The “Kyrie, eleison (Lord, have mercy)” invocations follow, unless they have just occurred in a formula of the Penitential Act.", "")));
+    if (S.setting) out.push(PA([1, 2], R("Sung: " + S.setting + ".", "Hát: " + S.setting + ".")));
+    if (S.music && S.music.kyrie) out.push(PA([1, 2], MUSIC(S.music.kyrie)));   // sheet right under the heading (anh Khải 31/10)
+    out.push(PA([1, 2], V(["P", "Lord, have mercy."], ["R", "Lord, have mercy."], ["P", "Christ, have mercy."], ["R", "Christ, have mercy."], ["P", "Lord, have mercy."], ["R", "Lord, have mercy."])));
   }
   }   // end of the usual opening (not o.laudsOpen)
   if (o.gloria) {
@@ -989,6 +1013,8 @@ const lang = "en", trOn = false; let fs = 19;
 const trCard = {};
 let allRoles = false; // ministries: presider only unless expanded
 let EPSEL = 2; try { if (localStorage.getItem("lit-ep") === "3") EPSEL = 3; } catch (e) {}   // chosen Eucharistic Prayer (II default)
+let PASEL = 1; try { const v = +localStorage.getItem("lit-pa"); if (v === 2 || v === 3) PASEL = v; } catch (e) {}   // chosen form of the Penitential Act (1 default)
+const paOk = b => !b.pa || b.pa.includes(PASEL);
 let showRub = false; try { showRub = localStorage.getItem("lit-rub") === "1"; } catch (e) {}
 // Mass rubrics kept in the lean view (postures, the homily note); quiet prayers and their answers are hidden
 const RUB_KEEP = /kneel|all bow|rise and|Homily by/i;
@@ -1188,7 +1214,7 @@ function render() {
     s.appendChild(d);
   }
 
-  const heads = it.blocks.filter(b => b.k === "h" && (!b.ep || b.ep === EPSEL));
+  const heads = it.blocks.filter(b => b.k === "h" && (!b.ep || b.ep === EPSEL) && paOk(b));
   if (heads.length > 4) {
     const toc = el("nav", "toc"); toc.setAttribute("aria-label", U().contents);
     heads.forEach(h => { if (it.kind === "mass" && !isMajor(h)) return; const a = el("a", null, shortHead(T(h))); a.href = "#s-" + it.id + "-" + h.id; toc.appendChild(a); });
@@ -1201,6 +1227,7 @@ function render() {
   let lastRub = "", lastShown = true;
   it.blocks.forEach((b, i) => {
     if (b.ep && b.ep !== EPSEL) return;   // only the chosen Eucharistic Prayer
+    if (!paOk(b)) return;   // only the chosen form of the Penitential Act
     const n = text.appendChild(block(b, it, day));
     if (it.kind !== "mass" || !n.classList) return;
     // Entrance / Communion Antiphons are not used (hymns are sung instead): hidden with their headings (anh Khải 15/10);
@@ -1229,6 +1256,23 @@ function block(b, it, day) {
     case "h": { const h = el("h3", MAJOR.includes(b.id) && it.kind === "mass" ? "major" : "", T(b)); h.id = "s-" + it.id + "-" + b.id; return h; }
     case "r": return el("p", "rubric", T(b));
     case "v": { const g = dialog(b.lines); if (b.proper) properize(g); if (b.cont) g.querySelectorAll(".who").forEach(e => e.remove()); if (b.ep) { g.classList.add("ep-t"); epMarks(g); } return g; }
+    case "pasel": {   // Penitential Act 1 | 2 | 3 — remembered like the Eucharistic Prayer
+      const d = el("div", "epsel pasel"); d.setAttribute("role", "group"); d.setAttribute("aria-label", "Penitential Act");
+      d.appendChild(el("span", "lb", "Form"));
+      [[1, "I confess"], [2, "Have mercy"], [3, "Invocations"]].forEach(([n, t]) => {
+        const bt = el("button", null, t); bt.type = "button"; bt.title = "Penitential Act, form " + n;
+        bt.setAttribute("aria-pressed", PASEL === n);
+        bt.onclick = () => {
+          if (PASEL === n) return;
+          const top = d.getBoundingClientRect().top, y = scrollY;
+          PASEL = n; try { localStorage.setItem("lit-pa", String(n)); } catch (e) {}
+          render(); window.scrollTo({ top: y, behavior: "instant" });
+          const nd = document.querySelector(".pasel"); if (nd) window.scrollTo({ top: scrollY + nd.getBoundingClientRect().top - top, behavior: "instant" });
+        };
+        d.appendChild(bt);
+      });
+      return d;
+    }
     case "epsel": {   // Eucharistic Prayer II | III — the choice is remembered and applies to every Mass
       const d = el("div", "epsel"); d.setAttribute("role", "group"); d.setAttribute("aria-label", "Eucharistic Prayer");
       d.appendChild(el("span", "lb", "Eucharistic Prayer"));
@@ -1306,7 +1350,7 @@ function block(b, it, day) {
     case "read": {
       const c = el("div", "card read");
       const l = el("div", "lbl", U().readings[b.kind]);
-      l.appendChild(el("span", "lang", b.lang)); c.appendChild(l);
+      c.appendChild(l);   // no language tag (anh Khải 04/11)
       c.appendChild(el("div", "main", lang === "vi" && b.cite_vi ? b.cite_vi : b.cite));
       if (b.refrain_en) c.appendChild(el("div", "refrain", b.refrain_en));
       const g = T(b, "gist"); if (g) c.appendChild(el("div", "gist", g));
@@ -1560,7 +1604,7 @@ function lect(b, it) {
   const prim = (en, vi) => b.lang === "VN" ? vi : en, sec = (en, vi) => b.lang === "VN" ? en : vi;
   const w = el("div", "lect"); w.id = "lect-" + key;
   const c = el("div", "card read");
-  const l = el("div", "lbl", U().readings[b.kind]); l.appendChild(el("span", "lang", b.lang));
+  const l = el("div", "lbl", U().readings[b.kind]);   // no language tag: the page has no translations (anh Khải 04/11)
   const tb = el("button", "trbtn", on ? U().trHide : U().trShow); tb.type = "button"; tb.id = "trbtn-" + key; tb.setAttribute("aria-pressed", on);
   tb.onclick = () => { trCard[key] = !on; const y = scrollY; render(); window.scrollTo(0, y); };
   if (hasTr) l.appendChild(tb); c.appendChild(l);
