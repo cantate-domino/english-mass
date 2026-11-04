@@ -3,7 +3,9 @@
    so a song changed there changes on both pages.
 
    One entry per date ("YYYY-MM-DD"), the same date as in data.js. Fields (all optional):
-     title     = celebration, if data.js has no feast for that date
+     title     = celebration, if data.js has no feast for that date (names follow the Dominican calendar, "Lich Phung vu OP")
+     note      = rank or options, shown after the title: "Feast", "Memorial", "Optional memorial: …"
+     universal = true / false: Universal Prayer shown or not (default: Sundays only)
      color     = "green" | "white" | "red" | "violet"
      time      = "05:30" (shown beside the date)
      gloria, creed = true when prescribed
@@ -39,25 +41,27 @@ window.TEXTS = {
   },
   /* Sat 7 Nov: All Saints of the Order of Preachers, Feast (Dominican calendar) – Proper of the Order: texts to be entered */
   "2026-11-07": {
-    color: "white", gloria: true,
+    note: "Feast", color: "white", gloria: true,
     readings: [ { kind: "first", tba: true }, { kind: "psalm", tba: true } ],
     gospel: { evangelist: "Mark", cite: "Mark 10:28-30", tba: true }
   },
   /* Sat 14 Nov: Saturday of the 32nd Week in Ordinary Time (Year II). Optional: Bl. John Liccio, Bl. Lucy of Narni (OP), or the BVM on Saturday */
   "2026-11-14": {
     title: "Saturday of the Thirty-second Week in Ordinary Time", color: "green",
+    note: "Optional memorial: Bl. John Liccio, Priest, and Bl. Lucy of Narni, Virgin, of our Order; or the Blessed Virgin Mary",
     readings: [ { kind: "first", cite: "3 John 5-8", tba: true }, { kind: "psalm", cite: "Psalm 112:1-2, 3-4, 5-6", tba: true } ],
     gospel: { evangelist: "Luke", cite: "Luke 18:1-8", tba: true }
   },
   /* Sat 21 Nov: The Presentation of the Blessed Virgin Mary, Memorial */
   "2026-11-21": {
-    title: "The Presentation of the Blessed Virgin Mary", color: "white",
+    title: "The Presentation of the Blessed Virgin Mary", note: "Memorial", color: "white",
     readings: [ { kind: "first", cite: "Zechariah 2:14-17", tba: true }, { kind: "psalm", cite: "Luke 1:46-47, 48-49, 50-51, 52-53, 54-55", tba: true } ],
     gospel: { evangelist: "Matthew", cite: "Matthew 12:46-50", tba: true }
   },
-  /* Sat 28 Nov: Saturday of the 34th Week in Ordinary Time (Year II). Optional: the BVM on Saturday */
+  /* Sat 28 Nov: Saturday of the 34th Week in Ordinary Time (Year II); by the custom of the Order a free Saturday is the
+     Memorial of the BVM (calendar: "Hoặc lễ về Đức Trinh Nữ Maria"; note 4 of the calendar) */
   "2026-11-28": {
-    title: "Saturday of the Thirty-fourth Week in Ordinary Time", color: "green",
+    title: "Saturday Memorial of the Blessed Virgin Mary", note: "Saturday of the 34th Week in Ordinary Time", color: "white",
     readings: [ { kind: "first", cite: "Revelation 22:1-7", tba: true }, { kind: "psalm", cite: "Psalm 95:1-2, 3-5, 6-7ab", tba: true } ],
     gospel: { evangelist: "Luke", cite: "Luke 21:34-36", tba: true }
   }
