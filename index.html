@@ -835,7 +835,7 @@ function mass(o) {
   out.push(V(["R", "Amen."]));
   out.push(R("And receives Holy Communion.", ""));
   out.push(R("While the Priest is receiving the Body of Christ, the Communion Chant begins.", ""));
-  if (!o.recited) out.push(SONG("Communion Chant", "Ca Hiệp lễ", S.communion[0], S.communion[1], S.communion[2], S.communion[3], S.communion[4]));
+  if (!o.recited && S.communion[0]) out.push(SONG("Communion Chant", "Ca Hiệp lễ", S.communion[0], S.communion[1], S.communion[2], S.communion[3], S.communion[4]));
   if (o.ca) { out.push({ k: "sub", en: "Communion Antiphon", vi: "Ca Hiệp lễ" }); const caKeep = !!o.recited && !S.communion[0]; o.ca.forEach((a, i) => { if (i) out.push({ ...R("Or:", ""), keep: caKeep }); out.push({ k: "ant", text: a[0], cite: a[1], proper: true, keep: caKeep }); }); }
   out.push(R("When the distribution of Communion is over, the Priest or a Deacon or an acolyte purifies the paten over the chalice and also the chalice itself.", ""));
   out.push(R("While he carries out the purification, the Priest says quietly:", ""));
@@ -1289,7 +1289,7 @@ function block(b, it, day) {
     case "song": {
       const c = el("div", "card song");
       const l = el("div", "lbl", lang === "vi" ? b.partVi : b.partEn); c.appendChild(l);
-      c.appendChild(el("div", "main", b.title));
+      c.appendChild(b.title ? el("div", "main", b.title) : el("div", "main tba", "To be announced"));   // song not chosen yet
       const meta = [b.by, b.no].filter(Boolean).join(" · "); if (meta) c.appendChild(el("div", "meta", meta));
       // sheet-music button right under the title, then the words (anh Khải 30/10)
       if (b.pdf && b.pdf.verses) c.appendChild(el("div", "vsn", b.pdf.verses));
