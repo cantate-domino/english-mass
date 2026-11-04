@@ -19,7 +19,7 @@
              They are shown in the order of the Mass between the songs. narrow = optional sheet image for phones.
 */
 window.SITE = {
-  updated: "4 Nov 2026, 08:55 (UTC+7)"
+  updated: "4 Nov 2026, 09:10 (UTC+7)"
 };
 
 window.WEEKS = [

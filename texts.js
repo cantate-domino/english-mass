@@ -6,6 +6,8 @@
      title     = celebration, if data.js has no feast for that date (names follow the Dominican calendar, "Lich Phung vu OP")
      note      = rank or options, shown after the title: "Feast", "Memorial", "Optional memorial: …"
      universal = true / false: Universal Prayer shown or not (default: Sundays only)
+     audio     = SoundCloud track id of the USCCB "Daily Mass Reading Podcast" for that date (bible.usccb.org/podcasts/audio/
+                 daily-mass-reading-podcast-<month>-<day>-<year>) – ONLY when it reads the same readings as this page
      color     = "green" | "white" | "red" | "violet"
      time      = "05:30" (shown beside the date)
      gloria, creed = true when prescribed
@@ -47,22 +49,35 @@ window.TEXTS = {
   },
   /* Sat 14 Nov: Saturday of the 32nd Week in Ordinary Time (Year II). Optional: Bl. John Liccio, Bl. Lucy of Narni (OP), or the BVM on Saturday */
   "2026-11-14": {
-    title: "Saturday of the Thirty-second Week in Ordinary Time", color: "green",
+    title: "Saturday of the Thirty-second Week in Ordinary Time", color: "green", audio: "2418300474",
     note: "Optional memorial: Bl. John Liccio, Priest, and Bl. Lucy of Narni, Virgin, of our Order; or the Blessed Virgin Mary",
-    readings: [ { kind: "first", cite: "3 John 5-8", tba: true }, { kind: "psalm", cite: "Psalm 112:1-2, 3-4, 5-6", tba: true } ],
-    gospel: { evangelist: "Luke", cite: "Luke 18:1-8", tba: true }
+    readings: [   // Lectionary 496 (NABRE, USCCB text and line breaks, 04/11)
+      {"kind": "first", "cite": "3 John 5-8", "lang": "EN", "incipit_en": "A reading from the third Letter of Saint John", "chunks": [["", "Beloved, you are faithful in all you do for the brothers and sisters,\nespecially for strangers;\nthey have testified to your love before the Church.\nPlease help them in a way worthy of God to continue their journey.\nFor they have set out for the sake of the Name\nand are accepting nothing from the pagans.\nTherefore, we ought to support such persons,\nso that we may be co-workers in the truth.", ""]]},
+      {"kind": "psalm", "cite": "Psalm 112:1-2, 3-4, 5-6", "lang": "EN", "refrain_en": "Blessed the man who fears the Lord.", "chunks": [["", "Blessed the man who fears the LORD,\nwho greatly delights in his commands.\nHis posterity shall be mighty upon the earth;\nthe upright generation shall be blessed.", ""], ["", "Wealth and riches shall be in his house;\nhis generosity shall endure forever.\nLight shines through the darkness for the upright;\nhe is gracious and merciful and just.", ""], ["", "Well for the man who is gracious and lends,\nwho conducts his affairs with justice;\nHe shall never be moved;\nthe just one shall be in everlasting remembrance.", ""]]}
+    ],
+    alleluia: { cite: "See 2 Thessalonians 2:14", text: "God has called us through the Gospel,\nto possess the glory of our Lord Jesus Christ." },
+    gospel: {"evangelist": "Luke", "kind": "gospel", "cite": "Luke 18:1-8", "lang": "EN", "chunks": [["", "Jesus told his disciples a parable\nabout the necessity for them to pray always without becoming weary.\nHe said, “There was a judge in a certain town\nwho neither feared God nor respected any human being.\nAnd a widow in that town used to come to him and say,\n‘Render a just decision for me against my adversary.’\nFor a long time the judge was unwilling, but eventually he thought,\n‘While it is true that I neither fear God nor respect any human being,\nbecause this widow keeps bothering me\nI shall deliver a just decision for her\nlest she finally come and strike me.’”\nThe Lord said, “Pay attention to what the dishonest judge says.\nWill not God then secure the rights of his chosen ones\nwho call out to him day and night?\nWill he be slow to answer them?\nI tell you, he will see to it that justice is done for them speedily.\nBut when the Son of Man comes, will he find faith on earth?”", ""]]}
   },
   /* Sat 21 Nov: The Presentation of the Blessed Virgin Mary, Memorial */
   "2026-11-21": {
     title: "The Presentation of the Blessed Virgin Mary", note: "Memorial", color: "white",
-    readings: [ { kind: "first", cite: "Zechariah 2:14-17", tba: true }, { kind: "psalm", cite: "Luke 1:46-47, 48-49, 50-51, 52-53, 54-55", tba: true } ],
-    gospel: { evangelist: "Matthew", cite: "Matthew 12:46-50", tba: true }
+    // no audio: the USCCB podcast for 21 Nov (track 2418303708, 4:33) reads the weekday readings (Rev 11, Ps 144, Lk 20), not these
+    readings: [   // Lectionary 680, Proper of Saints (NABRE, USCCB text and line breaks, 04/11). Psalm refrain also: "O Blessed Virgin Mary, you carried the Son of the eternal Father."
+      {"kind": "first", "cite": "Zechariah 2:14-17", "lang": "EN", "incipit_en": "A reading from the Book of the Prophet Zechariah", "chunks": [["", "Sing and rejoice, O daughter Zion!\nSee, I am coming to dwell among you, says the LORD.\nMany nations shall join themselves to the LORD on that day,\nand they shall be his people,\nand he will dwell among you,\nand you shall know that the LORD of hosts has sent me to you.\nThe LORD will possess Judah as his portion in the holy land,\nand he will again choose Jerusalem.\nSilence, all mankind, in the presence of the LORD!\nHe stirs forth from his holy dwelling.", ""]]},
+      {"kind": "psalm", "cite": "Luke 1:46-47, 48-49, 50-51, 52-53, 54-55", "lang": "EN", "refrain_en": "The Almighty has done great things for me, and holy is his Name.", "chunks": [["", "“My soul proclaims the greatness of the Lord,\nmy spirit rejoices in God my Savior.”", ""], ["", "“For he has looked upon his lowly servant.\nFrom this day all generations will call me blessed:\nthe Almighty has done great things for me,\nand holy is his Name.”", ""], ["", "“He has mercy on those who fear him\nin every generation.\nHe has shown the strength of his arm,\nhe has scattered the proud in their conceit.”", ""], ["", "“He has cast down the mighty from their thrones,\nand has lifted up the lowly.\nHe has filled the hungry with good things,\nand the rich he has sent away empty.”", ""], ["", "“He has come to the help of his servant Israel\nfor he has remembered his promise of mercy,\nthe promise he made to our fathers,\nto Abraham and his children forever.”", ""]]}
+    ],
+    alleluia: { cite: "Luke 11:28", text: "Blessed are those who hear the word of God\nand observe it." },
+    gospel: {"evangelist": "Matthew", "kind": "gospel", "cite": "Matthew 12:46-50", "lang": "EN", "chunks": [["", "While Jesus was speaking to the crowds,\nhis mother and his brothers appeared outside,\nwishing to speak with him.\nSomeone told him, “Your mother and your brothers are standing outside,\nasking to speak with you.”\nBut he said in reply to the one who told him,\n“Who is my mother?\nWho are my brothers?”\nAnd stretching out his hand toward his disciples, he said,\n“Here are my mother and my brothers.\nFor whoever does the will of my heavenly Father\nis my brother, and sister, and mother.”", ""]]}
   },
   /* Sat 28 Nov: Saturday of the 34th Week in Ordinary Time (Year II); by the custom of the Order a free Saturday is the
      Memorial of the BVM (calendar: "Hoặc lễ về Đức Trinh Nữ Maria"; note 4 of the calendar) */
   "2026-11-28": {
-    title: "Saturday Memorial of the Blessed Virgin Mary", note: "Saturday of the 34th Week in Ordinary Time", color: "white",
-    readings: [ { kind: "first", cite: "Revelation 22:1-7", tba: true }, { kind: "psalm", cite: "Psalm 95:1-2, 3-5, 6-7ab", tba: true } ],
-    gospel: { evangelist: "Luke", cite: "Luke 21:34-36", tba: true }
+    title: "Saturday Memorial of the Blessed Virgin Mary", note: "Saturday of the 34th Week in Ordinary Time", color: "white", audio: "2418306489",
+    readings: [   // Lectionary 508 (NABRE, USCCB text and line breaks, 04/11)
+      {"kind": "first", "cite": "Revelation 22:1-7", "lang": "EN", "incipit_en": "A reading from the Book of Revelation", "chunks": [["", "John said:\nAn angel showed me the river of life-giving water,\nsparkling like crystal, flowing from the throne of God\nand of the Lamb down the middle of the street,\nOn either side of the river grew the tree of life\nthat produces fruit twelve times a year, once each month;\nthe leaves of the trees serve as medicine for the nations.\nNothing accursed will be found anymore.\nThe throne of God and of the Lamb will be in it,\nand his servants will worship him.\nThey will look upon his face, and his name will be on their foreheads.\nNight will be no more, nor will they need light from lamp or sun,\nfor the Lord God shall give them light,\nand they shall reign forever and ever.", ""], ["", "And he said to me,\n“These words are trustworthy and true,\nand the Lord, the God of prophetic spirits,\nsent his angel to show his servants what must happen soon.”\n“Behold, I am coming soon.”\nBlessed is the one who keeps the prophetic message of this book.", ""]]},
+      {"kind": "psalm", "cite": "Psalm 95:1-2, 3-5, 6-7ab", "lang": "EN", "refrain_en": "Marana tha! Come, Lord Jesus!", "chunks": [["", "Come, let us sing joyfully to the LORD;\nlet us acclaim the Rock of our salvation.\nLet us come into his presence with thanksgiving;\nlet us joyfully sing psalms to him.", ""], ["", "For the LORD is a great God,\nand a great king above all gods;\nIn his hands are the depths of the earth,\nand the tops of the mountains are his.\nHis is the sea, for he has made it,\nand the dry land, which his hands have formed.", ""], ["", "Come, let us bow down in worship;\nlet us kneel before the LORD who made us.\nFor he is our God,\nand we are the people he shepherds, the flock he guides.", ""]]}
+    ],
+    alleluia: { cite: "Luke 21:36", text: "Be vigilant at all times and pray\nthat you may have the strength to stand before the Son of Man." },
+    gospel: {"evangelist": "Luke", "kind": "gospel", "cite": "Luke 21:34-36", "lang": "EN", "chunks": [["", "Jesus said to his disciples:\n“Beware that your hearts do not become drowsy\nfrom carousing and drunkenness\nand the anxieties of daily life,\nand that day catch you by surprise like a trap.\nFor that day will assault everyone\nwho lives on the face of the earth.\nBe vigilant at all times\nand pray that you have the strength\nto escape the tribulations that are imminent\nand to stand before the Son of Man.”", ""]]}
   }
 };

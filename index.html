@@ -422,6 +422,9 @@ html.offline .pdfdl, html.offline .foot a[href$=".pdf"] { display: none; }
 .vsn { display: inline-block; margin: .3em 0 0; font-family: var(--sans, system-ui, sans-serif); font-size: .72em; font-weight: 600; color: var(--red, #8c1a1f); }
 .music-row { display: flex; flex-direction: column; align-items: flex-start; gap: .2em; }
 .tba-card .cite-t { font-weight: 600; }
+.rd-audio { display: flex; flex-wrap: wrap; align-items: center; gap: .3em .8em; margin: .2em 0 1em; }
+.rd-audio iframe { width: 100%; height: 20px; border: 0; display: block; }
+.rd-audio .rd-src { font-family: var(--sans, system-ui, sans-serif); font-size: .7em; color: var(--ink-3); }
 #cels:empty { display: none; }
 </style>
 </head>
@@ -642,6 +645,7 @@ function mass(o) {
   out.push(V(["R", "Amen."]));
 
   out.push(H("The Liturgy of the Word", "Phụng vụ Lời Chúa", "word"));
+  if (o.audio) out.push({ k: "audio", id: o.audio });   // USCCB recording of the day's readings (SoundCloud), anh Khải 04/11
   L.forEach(r => {
     if (r.kind === "first") out.push(R("Then the reader goes to the ambo and reads the First Reading, while all sit and listen.", ""));
     if (r.kind === "psalm") out.push(R("The psalmist or cantor sings or says the Psalm, with the people making the response.", ""));
@@ -902,7 +906,7 @@ function massOf(date) {
   const o = Object.assign({}, t, {
     songs: S, bishop: t.bishop || BISHOP_HERE,
     readings: t.readings || [{ kind: "first", tba: true }, { kind: "psalm", tba: true }],
-    gospel: Object.assign({ evangelist: "N.", tba: true }, t.gospel || {}),
+    gospel: Object.assign({ evangelist: "N." }, t.gospel || {}, t.gospel && t.gospel.chunks ? {} : { tba: true }),   // no text yet → "Text to be added"
     alleluia: { song: alSung ? alSung.title : "Alleluia", cite: al.cite || "", text: al.text || "",
                 pdf: alSung ? { sheet: alSung.sheet, narrow: alSung.narrow, practice: practice(date, "alleluia") } : null },
     pfBook: t.pf ? null : (t.pfBook || ["Intentions prepared by the community."]),
@@ -1246,6 +1250,18 @@ function block(b, it, day) {
     case "quote": { const q = el("p", "quote", b.text); if (b.vi && trCard[it.id + "-gospel"]) q.appendChild(el("span", "tr", b.vi)); q.lastChild.style && (q.lastChild.style.display = "block"); if (b.cite) q.appendChild(el("cite", null, b.cite)); return q; }
     case "lect": return lect(b, it);
     case "tba": return el("p", "tba", "Text to be added.");
+    case "audio": {   // USCCB Daily Mass Reading Podcast (SoundCloud): the player loads only when asked for
+      const d = el("div", "rd-audio");
+      const bt = el("button", "prac", "▶ Listen to the readings"); bt.type = "button";
+      const src = el("span", "rd-src", "Recording: USCCB");
+      bt.onclick = () => {
+        const f = el("iframe"); f.title = "Recording of the readings (USCCB)"; f.allow = "autoplay"; f.loading = "lazy";
+        f.src = "https://w.soundcloud.com/player/?url=" + encodeURIComponent("https://api.soundcloud.com/tracks/" + b.id) +
+          "&auto_play=true&visual=false&show_artwork=false&show_user=false&show_comments=false&show_reposts=false&hide_related=true&download=false&sharing=false&buying=false&color=%238c1a1f";
+        d.textContent = ""; d.append(f, src);
+      };
+      d.append(bt, src); return d;
+    }
     case "tbaread": { const c = el("div", "card read tba-card"); c.appendChild(el("div", "lbl", U().readings[b.kind])); if (b.cite) c.appendChild(el("div", "main cite-t", b.cite)); c.appendChild(el("div", b.cite ? "meta tba" : "main tba", "Text to be added")); return c; }
     case "music": { if (!b.pdf) return document.createTextNode(""); const d = el("div", "music-row"); if (b.pdf.title) d.appendChild(el("div", "vsn", b.pdf.title)); if (b.pdf.practice) d.appendChild(practiceLink(b.pdf)); d.appendChild(musicLink(b.pdf)); return d; }
     case "score": return scoreBox(b.src);
