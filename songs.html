@@ -229,7 +229,40 @@ nav.jump a.later.on b{color:#fff}
   <div class="vscroll" id="vscroll"><img id="vimg" alt=""></div>
 </div>
 
-<script src="data.js"></script>
+<script>/* The songs come from mass-data.js (the same file as the Mass texts page), edited with editor.html */
+document.write('<script src="mass-data.js?v=' + Math.floor(Date.now() / 6e4) + '"><\/script>');</script>
+<script>
+/* mass-data.js -> the list of Masses with their songs (WEEKS, newest first), as this page has always used it.
+   A Mass is listed when it has a song or a sung Mass part. Songs: the "song" blocks (part = entrance, offertory, communion,
+   recessional); sung Mass parts: the "music" blocks with pdf.part (kyrie, gloria, alleluia, holy, mystery, amen, lamb). */
+window.WEEKS = (function () {
+  let D = window.LIT_DATA || { days: [] };
+  try { if (window.parent !== window && window.parent.EDITOR_PREVIEW) D = window.parent.EDITOR_PREVIEW; } catch (e) {}
+  window.SITE = { updated: D.updated || "" };
+  const out = [];
+  (D.days || []).forEach(d => (d.items || []).filter(it => !it.hide && (it.kind || "mass") === "mass").slice(0, 1).forEach(it => {
+    const songs = {}, mass = {}; let any = false;
+    (it.blocks || []).forEach(b => {
+      if (b.k === "song" && b.part && !songs[b.part]) {
+        songs[b.part] = b.title ? { no: b.num || "", title: b.title, composer: b.by || "", youtube: b.youtube || "", start: b.start,
+          sheet: b.pdf && b.pdf.sheet, narrow: b.pdf && b.pdf.narrow, verses: b.pdf && b.pdf.verses } : {};
+        if (b.title) any = true;
+      }
+      if (b.k === "music" && b.pdf && b.pdf.part && !mass[b.pdf.part]) {
+        const p = b.pdf, m = { title: (p.title || "").replace(/^Sung:\s*/, ""), youtube: p.youtube || "", start: p.start, sheet: p.sheet, narrow: p.narrow };
+        if (p.composer != null) m.composer = p.composer;
+        if (p.text) m.text = p.text;
+        mass[p.part] = m; any = true;
+      }
+    });
+    if (!any && !d.songsPage) return;
+    const w = { date: d.date, feast: d.title_en || "", note: d.songNote || "", songs };
+    if (Object.keys(mass).length) w.mass = Object.assign({ name: (it.setting || {}).name || "", composer: (it.setting || {}).composer || "" }, mass);
+    out.push(w);
+  }));
+  return out;
+})();
+</script>
 <script>
 (function(){
   // [key, label, short pill label, Mass part?] in the order of the Mass

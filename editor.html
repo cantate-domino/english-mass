@@ -1,0 +1,976 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Liturgy Editor</title>
+<style>
+:root {
+  --bg: #f4efe6; --panel: #fffdf8; --ink: #2a2522; --ink-2: #5d554e; --ink-3: #8b8178; --line: #e3d9ca; --line-2: #d2c5b2;
+  --red: #8c1a1f; --red-soft: #f6e7e5; --gold: #9a7420; --green: #2f6b3a; --blue: #2c5d8a; --warn: #a35a00;
+  --sel: #efe4d2; --shadow: 0 1px 2px rgba(60,40,20,.08), 0 2px 8px rgba(60,40,20,.06);
+  --r: 8px; --fs: 15px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1d1a18; --panel: #262220; --ink: #ece5dc; --ink-2: #bdb3a8; --ink-3: #8f857b; --line: #3a3430; --line-2: #4a423c;
+    --red: #e0686c; --red-soft: #3a2424; --gold: #d0a64a; --green: #7fbf8a; --blue: #8ab8e0; --warn: #e0a050; --sel: #332d28;
+    --shadow: 0 1px 2px rgba(0,0,0,.3); color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { background: var(--bg); color: var(--ink); font: var(--fs)/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; border: 1px solid var(--line-2); background: var(--panel); border-radius: 6px; padding: 5px 10px; }
+button:hover { border-color: var(--ink-3); }
+button.primary { background: var(--red); border-color: var(--red); color: #fff; font-weight: 600; }
+button.primary:disabled { opacity: .45; cursor: default; }
+button.ghost { border-color: transparent; background: transparent; }
+button.ghost:hover { background: var(--sel); }
+button.sm { padding: 2px 7px; font-size: .86em; }
+button.danger { color: var(--red); }
+input[type=text], input[type=number], input[type=date], input[type=time], input[type=url], input[type=password], select, textarea {
+  width: 100%; border: 1px solid var(--line-2); border-radius: 6px; padding: 6px 8px; background: var(--bg);
+}
+textarea { resize: vertical; min-height: 2.4em; line-height: 1.45; }
+input:focus, select:focus, textarea:focus, [contenteditable]:focus { outline: 2px solid var(--gold); outline-offset: -1px; }
+a { color: var(--red); }
+.muted { color: var(--ink-3); }
+.small { font-size: .85em; }
+
+/* top bar */
+.top { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 10px; padding: 8px 14px; background: var(--panel); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.top .brand { font-weight: 700; letter-spacing: .02em; }
+.top select { width: auto; max-width: 280px; }
+#status { font-size: .88em; color: var(--ink-2); flex: 1; min-width: 120px; }
+#status.dirty { color: var(--warn); font-weight: 600; }
+#status.err { color: var(--red); font-weight: 600; }
+#status.ok { color: var(--green); }
+.top .acts { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* layout */
+.layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); min-height: calc(100vh - var(--toph, 52px)); }
+.layout.pv { grid-template-columns: 250px minmax(0, 1fr) minmax(360px, 42%); }
+aside#days { border-right: 1px solid var(--line); padding: 10px; position: sticky; top: var(--toph, 52px); align-self: start; max-height: calc(100vh - var(--toph, 52px)); overflow: auto; }
+aside#days .dayitem { display: block; width: 100%; text-align: left; border: 0; background: transparent; border-radius: 6px; padding: 6px 8px; margin: 1px 0; }
+aside#days .dayitem:hover { background: var(--sel); }
+aside#days .dayitem.on { background: var(--sel); box-shadow: inset 3px 0 0 var(--red); }
+aside#days .dayitem .d { font-weight: 600; font-size: .9em; display: flex; align-items: center; gap: 6px; }
+aside#days .dayitem .t { font-size: .82em; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+aside#days .grp { font-size: .72em; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); margin: 12px 8px 4px; }
+.dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; border: 1px solid rgba(0,0,0,.2); flex: none; }
+.c-green { background: #3d7a46; } .c-white { background: #fff; } .c-red { background: #b3262c; } .c-violet { background: #6b3d8f; } .c-rose { background: #d98ca8; } .c-black { background: #222; } .c-gold { background: #c9a227; }
+main#main { padding: 14px 18px 120px; min-width: 0; }
+section#preview { border-left: 1px solid var(--line); position: sticky; top: var(--toph, 52px); height: calc(100vh - var(--toph, 52px)); display: flex; flex-direction: column; background: var(--panel); }
+section#preview .pvbar { display: flex; gap: 6px; align-items: center; padding: 6px 8px; border-bottom: 1px solid var(--line); font-size: .88em; flex-wrap: wrap; }
+section#preview[hidden] { display: none !important; }
+section#preview iframe { flex: 1; width: 100%; border: 0; background: #fff; }
+.mobile-days, .mobile-days.row { display: none; margin-bottom: 10px; }
+
+/* cards */
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow); padding: 12px 14px; margin-bottom: 12px; }
+.card h2 { font-size: 1.08em; margin: 0 0 8px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.card h2 .sp { flex: 1; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px 12px; }
+.grid .wide { grid-column: 1 / -1; }
+.fld { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.fld > span { font-size: .78em; color: var(--ink-2); font-weight: 600; letter-spacing: .01em; }
+.fld .hint { font-size: .76em; color: var(--ink-3); font-weight: 400; }
+.chk { display: flex; align-items: center; gap: 6px; font-size: .9em; }
+.chk input { width: auto; }
+.grid > .chk { grid-column: 1 / -1; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.row > .grow { flex: 1; }
+details.more > summary { cursor: pointer; color: var(--ink-2); font-size: .86em; margin-top: 6px; }
+
+/* items (celebrations) */
+.tabs { display: flex; gap: 4px; flex-wrap: wrap; margin: 4px 0 10px; }
+.tabs button { border-radius: 999px; }
+.tabs button.on { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+
+/* blocks */
+.bar { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin: 4px 0 10px; position: sticky; top: var(--toph, 52px); z-index: 5; background: var(--bg); padding: 6px 0; }
+.seg { display: inline-flex; border: 1px solid var(--line-2); border-radius: 7px; overflow: hidden; }
+.seg button { border: 0; border-radius: 0; }
+.seg button.on { background: var(--ink); color: var(--panel); }
+.sec { border: 1px solid var(--line); border-radius: var(--r); background: var(--panel); margin-bottom: 8px; box-shadow: var(--shadow); }
+.sec > .sh { display: flex; align-items: center; gap: 6px; padding: 7px 10px; cursor: pointer; user-select: none; }
+.sec > .sh .tt { font-weight: 650; flex: 1; min-width: 0; }
+.sec > .sh .n { font-size: .78em; color: var(--ink-3); }
+.sec > .sh .caret { width: 14px; color: var(--ink-3); }
+.sec.closed > .sb { display: none; }
+.sec > .sb { border-top: 1px solid var(--line); padding: 6px; }
+.blk { border-radius: 6px; margin: 2px 0; }
+.blk > .bh { display: flex; gap: 8px; align-items: flex-start; padding: 5px 6px; border-radius: 6px; cursor: pointer; }
+.blk > .bh:hover { background: var(--sel); }
+.blk.open { background: var(--bg); outline: 1px solid var(--line-2); }
+.blk.open > .bh { background: var(--sel); }
+.kind { flex: none; font-size: .7em; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 2px 6px; border-radius: 4px; background: var(--sel); color: var(--ink-2); margin-top: 2px; white-space: nowrap; }
+.kind.k-h { background: var(--ink); color: var(--panel); }
+.kind.k-r { background: var(--red-soft); color: var(--red); }
+.kind.k-song, .kind.k-music { background: #e9e0f3; color: #5a3d7a; }
+.kind.k-lect, .kind.k-tbaread, .kind.k-alh, .kind.k-alv { background: #e2ecf5; color: var(--blue); }
+.kind.k-slot, .kind.k-ant, .kind.proper { background: #f3ead2; color: var(--gold); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .kind.k-song, :root:not([data-theme="light"]) .kind.k-music { background: #3a3046; color: #cbb3e6; } :root:not([data-theme="light"]) .kind.k-lect, :root:not([data-theme="light"]) .kind.k-tbaread, :root:not([data-theme="light"]) .kind.k-alh, :root:not([data-theme="light"]) .kind.k-alv { background: #263646; } :root:not([data-theme="light"]) .kind.k-slot, :root:not([data-theme="light"]) .kind.k-ant, :root:not([data-theme="light"]) .kind.proper { background: #3a3220; } }
+.sum { flex: 1; min-width: 0; font-size: .92em; color: var(--ink); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; white-space: pre-line; }
+.sum.r { color: var(--red); font-style: italic; }
+.sum .tba { color: var(--warn); font-weight: 600; }
+.flags { font-size: .72em; color: var(--ink-3); white-space: nowrap; margin-top: 3px; }
+.btools { display: none; gap: 2px; flex: none; }
+.blk > .bh:hover .btools, .blk.open .btools { display: flex; }
+.bf { padding: 6px 10px 12px 10px; }
+.ins { display: flex; justify-content: center; height: 0; position: relative; }
+.lines-ed .ln { display: grid; grid-template-columns: 150px 1fr auto; gap: 6px; margin-bottom: 6px; align-items: start; }
+.chunks-ed .ch { display: grid; grid-template-columns: 70px 1fr 1fr auto; gap: 6px; margin-bottom: 6px; }
+.rich { border: 1px solid var(--line-2); border-radius: 6px; padding: 8px 10px; background: #fff; color: #222; min-height: 4em; font-family: Georgia, serif; }
+.rich .ant, .rich .m { color: #8c1a1f; } .rich .rubric, .rich .epi { color: #8c1a1f; font-style: italic; }
+.rich p { margin: 0 0 .5em; white-space: pre-line; }
+.quick .qh { font-size: .74em; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); margin: 16px 2px 4px; font-weight: 700; }
+.quick .blk { background: var(--panel); border: 1px solid var(--line); margin-bottom: 8px; box-shadow: var(--shadow); }
+.empty { padding: 40px 20px; text-align: center; color: var(--ink-2); }
+.pill { font-size: .72em; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--ink-2); white-space: nowrap; }
+.pill.warn { border-color: var(--warn); color: var(--warn); }
+
+dialog { border: 1px solid var(--line-2); border-radius: 10px; background: var(--panel); color: var(--ink); padding: 0; max-width: min(680px, 94vw); width: 100%; box-shadow: 0 10px 40px rgba(0,0,0,.25); }
+dialog::backdrop { background: rgba(30,20,10,.35); }
+dialog .dh { padding: 12px 16px; border-bottom: 1px solid var(--line); font-weight: 700; display: flex; align-items: center; }
+dialog .dh .sp { flex: 1; }
+dialog .db { padding: 14px 16px; max-height: 70vh; overflow: auto; }
+dialog .df { padding: 10px 16px; border-top: 1px solid var(--line); display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
+.palette { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 6px; }
+.palette button { text-align: left; padding: 8px 10px; }
+.palette button b { display: block; font-size: .92em; }
+.palette button span { display: block; font-size: .78em; color: var(--ink-3); }
+ol.steps { padding-left: 20px; } ol.steps li { margin-bottom: 6px; }
+.toast { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--panel); padding: 9px 16px; border-radius: 8px; z-index: 50; box-shadow: var(--shadow); max-width: 90vw; }
+
+@media (max-width: 900px) {
+  .layout, .layout.pv { grid-template-columns: minmax(0, 1fr); }
+  aside#days { display: none; }
+  .mobile-days, .mobile-days.row { display: flex; }
+  section#preview { position: fixed; inset: var(--toph, 52px) 0 0 0; z-index: 30; height: auto; }
+  main#main { padding: 10px 10px 120px; }
+  .lines-ed .ln { grid-template-columns: 1fr; }
+  .chunks-ed .ch { grid-template-columns: 1fr; }
+  .btools { display: flex; }
+  .top .brand { display: none; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <span class="brand">✠ Editor</span>
+  <select id="site" aria-label="Trang web"></select>
+  <span id="status">Đang tải…</span>
+  <div class="acts">
+    <button id="b-preview" type="button">Xem trước</button>
+    <button id="b-save" class="primary" type="button" disabled>Lưu lên web</button>
+    <button id="b-menu" type="button" aria-label="Thêm">⋯</button>
+  </div>
+</header>
+<div class="layout" id="layout">
+  <aside id="days"></aside>
+  <main id="main"><div class="empty">Đang tải dữ liệu…</div></main>
+  <section id="preview" hidden>
+    <div class="pvbar">
+      <select id="pv-page" style="width:auto"></select>
+      <button id="pv-reload" class="sm" type="button">Làm mới</button>
+      <span class="muted small" style="flex:1">Bản xem trước (chưa lưu lên web)</span>
+      <button id="pv-close" class="sm" type="button">Đóng ✕</button>
+    </div>
+    <iframe id="pv" title="Xem trước"></iframe>
+  </section>
+</div>
+<dialog id="dlg"></dialog>
+
+<script>
+"use strict";
+/* ======================================================================
+   Liturgy Editor — edits the content file of a liturgy site (days -> items -> blocks)
+   and saves it to GitHub. One file for all the sites below; no build step, no library.
+   ====================================================================== */
+const SITES = [
+  { id: "english-mass", name: "English Mass · St. Joseph Convent", owner: "cantate-domino", repo: "english-mass", branch: "main",
+    data: "mass-data.js", base: "https://cantate-domino.github.io/english-mass/", sheets: "sheets/",
+    pages: [["index.html", "Bản văn Thánh lễ"], ["songs.html", "Trang tập hát"]], kinds: ["mass"], songsOnly: true }
+  /* Another site can be added here (same content format). APDFLC 2026 (apdflc.github.io) is frozen since 05/11/2026: not edited. */
+];
+const KIND_NAMES = { mass: "Thánh lễ", lauds: "Kinh Sáng", midday: "Kinh Trưa", vespers: "Kinh Chiều", compline: "Kinh Tối", frame: "Khác" };
+const COLORS = [["green", "Xanh"], ["white", "Trắng"], ["red", "Đỏ"], ["violet", "Tím"], ["rose", "Hồng"], ["black", "Đen"]];
+const WHO = [["P", "Linh mục (Priest)"], ["D", "Phó tế (Deacon)"], ["A", "Mọi người (All)"], ["R", "Cộng đoàn đáp ℟"], ["V", "Câu xướng ℣"], ["L", "Người đọc (Reader)"]];
+const READ_KINDS = [["first", "Bài đọc 1"], ["psalm", "Đáp ca"], ["second", "Bài đọc 2"], ["gospel", "Tin Mừng"]];
+const SONG_PARTS = { entrance: ["Entrance Chant", "Ca Nhập lễ"], offertory: ["Offertory Chant", "Ca Dâng lễ"], communion: ["Communion Chant", "Ca Hiệp lễ"], recessional: ["Recessional", "Kết lễ"] };
+const MASS_PARTS = [["kyrie", "Kyrie"], ["gloria", "Gloria"], ["alleluia", "Alleluia"], ["holy", "Sanctus (Holy)"], ["mystery", "Mầu nhiệm đức tin"], ["amen", "Amen"], ["lamb", "Agnus Dei"]];
+const K = {   // block kinds: name, short description, template for a new one
+  h:       ["Tiêu đề phần", "Đầu một phần lớn (có trong mục lục)", () => ({ k: "h", en: "New section", vi: "", id: "sec-" + Date.now().toString(36) })],
+  sub:     ["Tiêu đề nhỏ", "Tên một nghi thức trong phần", () => ({ k: "sub", en: "", vi: "" })],
+  r:       ["Chỉ dẫn (chữ đỏ)", "Rubric: hướng dẫn nghi thức", () => ({ k: "r", en: "", vi: "" })],
+  v:       ["Lời đọc / đối đáp", "Linh mục, cộng đoàn, mọi người…", () => ({ k: "v", lines: [["P", ""]] })],
+  lect:    ["Bài đọc", "Bài đọc, đáp ca, Tin Mừng có bản văn", () => ({ k: "lect", kind: "first", cite: "", lang: "EN", incipit_en: "", chunks: [["", "", ""]] })],
+  tbaread: ["Bài đọc chưa có bản văn", "Hiện “Text to be added”", () => ({ k: "tbaread", kind: "first", cite: "" })],
+  song:    ["Bài hát", "Nhập lễ, Dâng lễ, Hiệp lễ, Kết lễ", () => ({ k: "song", part: "entrance", partEn: "Entrance Chant", partVi: "Ca Nhập lễ", title: "", by: "", no: "", pdf: null, lyrics: "" })],
+  music:   ["Bản nhạc bộ lễ", "Kyrie, Gloria, Sanctus… (ảnh bản nhạc + YouTube)", () => ({ k: "music", pdf: { title: "", part: "kyrie", sheet: "" } })],
+  alh:     ["Tung hô Tin Mừng", "Thẻ “Alleluia” với trích dẫn", () => ({ k: "alh", cite: "" })],
+  alv:     ["Câu Alleluia", "Câu xướng trước Tin Mừng", () => ({ k: "alv", text: "", sung: false })],
+  ant:     ["Ca tiền xướng", "Ca nhập lễ / Ca hiệp lễ (Sách lễ)", () => ({ k: "ant", text: "", cite: "", proper: true })],
+  slot:    ["Lời nguyện riêng", "Lời nguyện của ngày (có thể để trống)", () => ({ k: "slot", who: "P", en: "Prayer of the day", vi: "" })],
+  audio:   ["Ghi âm bài đọc", "Nút nghe (SoundCloud, USCCB)", () => ({ k: "audio", id: "" })],
+  lat:     ["Bản Latinh", "Kinh Latinh (Salve, O lumen…)", () => ({ k: "lat", title: "", text: "", en: "", vi: "" })],
+  html:    ["Đoạn văn định dạng", "Bản văn Giờ kinh (thánh vịnh, tiền xướng…)", () => ({ k: "html", html: "<p class=\"tx\"></p>", sec: "" })],
+  quote:   ["Trích dẫn", "Câu trích có nguồn", () => ({ k: "quote", text: "", cite: "" })],
+  book:    ["Ghi chú", "Dòng ghi chú nhỏ", () => ({ k: "book", en: "", vi: "" })],
+  epsel:   ["Nút chọn KNTT II | III", "Đặt ở đầu Kinh nguyện Thánh Thể", () => ({ k: "epsel" })],
+  pasel:   ["Nút chọn mẫu Sám hối", "Đặt ở đầu nghi thức Sám hối", () => ({ k: "pasel" })],
+  tba:     ["Chưa có bản văn", "Dòng “Text to be added”", () => ({ k: "tba" })],
+  ps:      ["Danh sách thánh vịnh", "", null], pf: ["Lời nguyện tín hữu", "", null], hymn: ["Thánh thi (có nhạc)", "", null],
+  score:   ["Bản nhạc", "", null], scorefold: ["Bản nhạc (gập)", "", null], chant: ["Bình ca", "", null], read: ["Thẻ bài đọc", "", null]
+};
+const KEY_KINDS = new Set(["song", "music", "lect", "tbaread", "alh", "alv", "slot", "audio", "pf"]);   // "the parts changed each time"
+const isKey = b => KEY_KINDS.has(b.k) || ((b.k === "v" || b.k === "ant") && b.proper);
+
+/* ---------- small helpers ---------- */
+const $ = id => document.getElementById(id);
+function h(tag, attrs, ...kids) {
+  const e = document.createElement(tag);
+  if (attrs) for (const [k, v] of Object.entries(attrs)) {
+    if (v == null || v === false) continue;
+    if (k === "class") e.className = v; else if (k === "text") e.textContent = v; else if (k === "html") e.innerHTML = v;
+    else if (k.startsWith("on")) e.addEventListener(k.slice(2), v); else if (k === "style") e.style.cssText = v; else e.setAttribute(k, v === true ? "" : v);
+  }
+  for (const c of kids.flat()) if (c != null && c !== false) e.append(c.nodeType ? c : String(c));
+  return e;
+}
+const clone = o => JSON.parse(JSON.stringify(o));
+const ls = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }, del(k) { try { localStorage.removeItem(k); } catch (e) {} } };
+function toast(msg, ms = 2600) { const t = h("div", { class: "toast", text: msg }); document.body.appendChild(t); setTimeout(() => t.remove(), ms); }
+function nowVN() { return new Date(Date.now() + 7 * 36e5); }
+function stampVN() {
+  const d = nowVN(), M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return d.getUTCDate() + " " + M[d.getUTCMonth()] + " " + d.getUTCFullYear() + ", " + String(d.getUTCHours()).padStart(2, "0") + ":" + String(d.getUTCMinutes()).padStart(2, "0") + " (UTC+7)";
+}
+const todayVN = () => nowVN().toISOString().slice(0, 10);
+const WD_VI = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"];
+function dayLabel(iso) { const [y, m, d] = iso.split("-").map(Number); return WD_VI[new Date(Date.UTC(y, m - 1, d)).getUTCDay()] + " " + String(d).padStart(2, "0") + "/" + String(m).padStart(2, "0") + "/" + y; }
+const slug = s => (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/đ/gi, "d").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60);
+const smartQuotes = t => t.replace(/(^|[\s(\[—–-])"/g, "$1“").replace(/"/g, "”").replace(/(^|[\s(\[—–-])'/g, "$1‘").replace(/'/g, "’");
+function b64utf8(str) { const bytes = new TextEncoder().encode(str); let s = ""; for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000)); return btoa(s); }
+function b64buf(buf) { const bytes = new Uint8Array(buf); let s = ""; for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000)); return btoa(s); }
+
+/* ---------- state ---------- */
+let SITE = null, DATA = null, SHA = null, HEADTXT = "", dirty = false, LOADED_FROM = "";
+let curD = null, curI = 0, mode = "quick";
+const openBlocks = new WeakSet(), openSecs = new WeakSet(), tableMode = new WeakSet();
+const params = new URLSearchParams(location.search);
+const baseOf = s => params.get("base") || s.base;
+
+/* ---------- GitHub ---------- */
+const tokenKey = s => "ed-token-" + s.owner;
+const token = () => ls.get(tokenKey(SITE)) || "";
+async function gh(path, opts = {}) {
+  const t = token();
+  const r = await fetch("https://api.github.com" + path, Object.assign({}, opts, { headers: Object.assign({ "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" }, t ? { "Authorization": "Bearer " + t } : {}, opts.headers || {}) }));
+  return r;
+}
+const contentsPath = p => "/repos/" + SITE.owner + "/" + SITE.repo + "/contents/" + p.split("/").map(encodeURIComponent).join("/");
+async function ghRead(p) {   // -> { text, sha }
+  const m = await gh(contentsPath(p) + "?ref=" + SITE.branch + "&t=" + Date.now());
+  if (!m.ok) throw new Error("GitHub " + m.status + (m.status === 401 ? " (mã truy cập sai hoặc hết hạn)" : m.status === 404 ? " (không thấy file hoặc mã không có quyền vào kho)" : ""));
+  const meta = await m.json();
+  const r = await gh(contentsPath(p) + "?ref=" + SITE.branch + "&t=" + Date.now(), { headers: { Accept: "application/vnd.github.raw" } });
+  if (!r.ok) throw new Error("GitHub " + r.status);
+  return { text: await r.text(), sha: meta.sha };
+}
+async function ghWrite(p, b64, sha, message) {
+  const r = await gh(contentsPath(p), { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(Object.assign({ message, content: b64, branch: SITE.branch }, sha ? { sha } : {})) });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) { const e = new Error("GitHub " + r.status + ": " + (j.message || "")); e.status = r.status; throw e; }
+  return j;
+}
+async function ghSha(p) { const m = await gh(contentsPath(p) + "?ref=" + SITE.branch + "&t=" + Date.now()); return m.ok ? (await m.json()).sha : null; }
+
+/* ---------- the content file ---------- */
+function parseData(text) {
+  const i = text.indexOf("window.LIT_DATA");
+  if (i < 0) throw new Error("File không có window.LIT_DATA");
+  const a = text.indexOf("{", i), b = text.lastIndexOf("}");
+  return { head: text.slice(0, i), data: JSON.parse(text.slice(a, b + 1)) };
+}
+function serialize() {
+  DATA.days.sort((a, b) => a.date.localeCompare(b.date));
+  const ordered = Object.assign({ updated: DATA.updated }, DATA);   // "updated" first: the pages look for it
+  return HEADTXT + "window.LIT_DATA = " + JSON.stringify(ordered, null, 1) + ";\n";
+}
+async function load(force) {
+  setStatus("Đang tải…");
+  DATA = null; SHA = null; dirty = false; renderAll();
+  try {
+    let text;
+    if (token()) { const r = await ghRead(SITE.data); text = r.text; SHA = r.sha; LOADED_FROM = "GitHub"; }
+    else { const r = await fetch(baseOf(SITE) + SITE.data + "?t=" + Date.now(), { cache: "no-store" }); if (!r.ok) throw new Error("Không tải được " + SITE.data + " (" + r.status + ")"); text = await r.text(); LOADED_FROM = "web"; }
+    const p = parseData(text); HEADTXT = p.head; DATA = p.data; DATA.days = DATA.days || [];
+  } catch (e) { setStatus("Lỗi tải dữ liệu: " + e.message, "err"); renderAll(); return; }
+  const dk = "ed-draft-" + SITE.id, draft = ls.get(dk);
+  if (draft && !force) {
+    try {
+      const dd = JSON.parse(draft);
+      if (dd.data && JSON.stringify(dd.data) !== JSON.stringify(DATA)) {
+        const ok = await ask("Có bản nháp chưa lưu", "Có thay đổi chưa lưu từ " + new Date(dd.time).toLocaleString("vi-VN") + (dd.base !== SHA && SHA ? ". Lưu ý: bản trên web đã đổi sau đó." : ".") + " Mở lại bản nháp này?", "Mở bản nháp", "Bỏ bản nháp");
+        if (ok) { DATA = dd.data; dirty = true; } else ls.del(dk);
+      } else ls.del(dk);
+    } catch (e) { ls.del(dk); }
+  }
+  if (!curD || !DATA.days.includes(curD)) curD = pickDay();
+  curI = 0;
+  setStatus(dirty ? "Có thay đổi chưa lưu" : "Đã tải từ " + LOADED_FROM + (token() ? "" : " · chưa có mã GitHub: chỉ xem / tải file về"), dirty ? "dirty" : "");
+  renderAll();
+}
+function pickDay() {
+  const t = todayVN(), s = DATA.days.slice().sort((a, b) => a.date.localeCompare(b.date));
+  return s.find(d => d.date >= t && !d.songsOnly) || s[s.length - 1] || null;
+}
+function touch(structural) {
+  if (!DATA) return;
+  dirty = true; setStatus("Có thay đổi chưa lưu", "dirty");
+  clearTimeout(touch.t); touch.t = setTimeout(() => { ls.set("ed-draft-" + SITE.id, JSON.stringify({ time: Date.now(), base: SHA, data: DATA })); }, 600);
+  if (structural) renderMain();
+  schedulePreview();
+}
+function setStatus(t, cls) { const s = $("status"); s.textContent = t; s.className = cls || ""; $("b-save").disabled = !(DATA && dirty); }
+
+async function save() {
+  if (!token()) { settings(); return; }
+  const prevUpd = DATA.updated;
+  DATA.updated = stampVN();
+  const text = serialize();
+  setStatus("Đang lưu…");
+  try {
+    const d = curD ? dayLabel(curD.date) : "";
+    const j = await ghWrite(SITE.data, b64utf8(text), SHA, "Editor: " + (d ? "update " + d : "update") + " (" + DATA.updated + ")");
+    SHA = j.content && j.content.sha; dirty = false; ls.del("ed-draft-" + SITE.id);
+    setStatus("Đã lưu lúc " + DATA.updated.replace(" (UTC+7)", "") + " · trang web cập nhật sau khoảng 1 phút", "ok");
+    renderMain();
+  } catch (e) {
+    DATA.updated = prevUpd;
+    if (e.status === 409 || e.status === 422) {
+      const ok = await ask("Bản trên web đã đổi", "Trong lúc anh sửa, file trên GitHub đã được lưu bởi người khác (hoặc ở một thẻ khác). Ghi đè bằng bản của anh?", "Ghi đè", "Huỷ");
+      if (ok) { SHA = await ghSha(SITE.data); return save(); }
+      setStatus("Chưa lưu (xung đột phiên bản)", "err");
+    } else setStatus("Lưu không được: " + e.message, "err");
+  }
+}
+
+/* ---------- dialogs ---------- */
+function dialog(title, body, buttons) {
+  const d = $("dlg"); d.textContent = "";
+  return new Promise(res => {
+    const close = v => { d.close(); res(v); };
+    d.append(h("div", { class: "dh" }, h("span", { class: "sp", text: title }), h("button", { class: "ghost sm", type: "button", onclick: () => close(null), "aria-label": "Đóng" }, "✕")),
+      h("div", { class: "db" }, body),
+      h("div", { class: "df" }, buttons.map(([label, val, cls]) => h("button", { type: "button", class: cls || "", onclick: () => close(typeof val === "function" ? val() : val) }, label))));
+    d.onclose = () => res(null);
+    d.showModal();
+  });
+}
+const ask = (title, msg, yes, no) => dialog(title, h("p", { text: msg }), [[no, false], [yes, true, "primary"]]);
+
+function settings() {
+  const inp = h("input", { type: "password", value: token(), placeholder: "github_pat_… hoặc ghp_…", autocomplete: "off" });
+  const res = h("p", { class: "small muted" });
+  const body = h("div", null,
+    h("p", null, "Để lưu thẳng lên web, editor cần một ", h("b", { text: "mã truy cập GitHub" }), " (chỉ làm một lần trên mỗi máy / trình duyệt; mã được giữ trong trình duyệt này, không gửi đi đâu khác ngoài GitHub)."),
+    h("ol", { class: "steps" },
+      h("li", null, "Mở ", h("a", { href: "https://github.com/settings/personal-access-tokens/new", target: "_blank", rel: "noopener", text: "github.com → Fine-grained token mới" }), " (đăng nhập bằng tài khoản có quyền vào kho)."),
+      h("li", null, "Token name: ", h("b", { text: "Liturgy editor" }), " · Expiration: chọn 1 năm (hoặc No expiration)."),
+      h("li", null, "Resource owner: ", h("b", { text: SITE.owner }), "."),
+      h("li", null, "Repository access: ", h("b", { text: "Only select repositories" }), " → chọn ", h("b", { text: SITE.repo }), "."),
+      h("li", null, "Permissions → Repository permissions → ", h("b", { text: "Contents: Read and write" }), ". Bấm Generate token, chép mã, dán vào ô dưới.")),
+    h("label", { class: "fld" }, h("span", { text: "Mã truy cập cho " + SITE.owner + "/" + SITE.repo }), inp), res,
+    h("p", { class: "small muted", text: "Nếu bước 3 không thấy " + SITE.owner + ", hoặc mã báo “chưa được duyệt”: vào github.com/organizations/" + SITE.owner + "/settings → Personal access tokens → cho phép (Allow) và duyệt yêu cầu (Pending requests). Cách khác: token cổ điển (Tokens classic) với quyền public_repo." }));
+  const test = async () => {
+    ls.set(tokenKey(SITE), inp.value.trim()); res.textContent = "Đang kiểm tra…";
+    const r = await gh("/repos/" + SITE.owner + "/" + SITE.repo);
+    if (!r.ok) { res.textContent = "✗ Không vào được kho (" + r.status + "). Kiểm tra lại mã và quyền."; return; }
+    const j = await r.json(); res.textContent = j.permissions && j.permissions.push ? "✓ Mã dùng được: có quyền ghi vào " + j.full_name + "." : "✗ Mã chỉ có quyền đọc, chưa có quyền ghi (Contents: Read and write).";
+  };
+  dialog("Mã truy cập GitHub", body, [["Xoá mã", () => { ls.del(tokenKey(SITE)); return "del"; }, "danger"], ["Kiểm tra", () => { test(); return "keep"; }], ["Lưu mã", () => { ls.set(tokenKey(SITE), inp.value.trim()); return "ok"; }, "primary"]])
+    .then(v => { if (v === "keep") { $("dlg").showModal(); return; } if (v === "ok" || v === "del") load(true); });
+}
+
+function menu() {
+  const body = h("div", { class: "palette" },
+    h("button", { type: "button", onclick: () => { $("dlg").close(); settings(); } }, h("b", { text: "Mã truy cập GitHub" }), h("span", { text: token() ? "Đã có mã · đổi / kiểm tra" : "Chưa có · cần để lưu lên web" })),
+    h("button", { type: "button", onclick: () => { $("dlg").close(); download(); } }, h("b", { text: "Tải file dữ liệu về" }), h("span", { text: SITE.data + " (sao lưu, hoặc tự đẩy bằng GitHub Desktop)" })),
+    h("button", { type: "button", onclick: () => { $("dlg").close(); openFile(); } }, h("b", { text: "Mở file dữ liệu từ máy" }), h("span", { text: "Thay nội dung đang sửa bằng file " + SITE.data })),
+    h("button", { type: "button", onclick: async () => { $("dlg").close(); if (!dirty || await ask("Tải lại", "Bỏ mọi thay đổi chưa lưu và tải lại bản trên web?", "Tải lại", "Huỷ")) { ls.del("ed-draft-" + SITE.id); load(true); } } }, h("b", { text: "Tải lại bản trên web" }), h("span", { text: "Bỏ thay đổi chưa lưu" })),
+    h("button", { type: "button", onclick: () => { window.open(baseOf(SITE) + SITE.pages[0][0], "_blank"); } }, h("b", { text: "Mở trang web" }), h("span", { text: baseOf(SITE) + SITE.pages[0][0] })),
+    h("button", { type: "button", onclick: () => { window.open("https://github.com/" + SITE.owner + "/" + SITE.repo + "/commits/" + SITE.branch + "/" + SITE.data, "_blank"); } }, h("b", { text: "Lịch sử thay đổi" }), h("span", { text: "Các lần lưu trên GitHub (khôi phục bản cũ)" })));
+  dialog("Thêm", body, [["Đóng", null]]);
+}
+function download() {
+  const a = h("a", { href: URL.createObjectURL(new Blob([serialize()], { type: "text/javascript" })), download: SITE.data });
+  document.body.appendChild(a); a.click(); a.remove();
+}
+function openFile() {
+  const i = h("input", { type: "file", accept: ".js,.json" });
+  i.onchange = async () => { try { const p = parseData(await i.files[0].text()); HEADTXT = p.head || HEADTXT; DATA = p.data; curD = pickDay(); curI = 0; touch(); renderAll(); toast("Đã mở " + i.files[0].name); } catch (e) { toast("File không đúng: " + e.message, 5000); } };
+  i.click();
+}
+
+/* ---------- rendering: days list ---------- */
+function renderAll() { renderDays(); renderMain(); schedulePreview(); }
+function dayTitle(d) { return d.title_en || d.title || (d.items && d.items[0] && d.items[0].en) || "—"; }
+function renderDays() {
+  const a = $("days"); a.textContent = "";
+  if (!DATA) return;
+  a.append(h("button", { class: "", type: "button", style: "width:100%;margin-bottom:6px", onclick: newDay }, "＋ Thêm ngày"));
+  const t = todayVN(), sorted = DATA.days.slice().sort((x, y) => y.date.localeCompare(x.date));
+  const up = sorted.filter(d => d.date >= t), past = sorted.filter(d => d.date < t);
+  const item = d => h("button", { class: "dayitem" + (d === curD ? " on" : ""), type: "button", onclick: () => { curD = d; curI = 0; renderAll(); window.scrollTo(0, 0); } },
+    h("div", { class: "d" }, h("span", { class: "dot c-" + (d.color || "green") }), dayLabel(d.date), d.songsOnly ? h("span", { class: "pill", text: "chỉ tập hát" }) : null),
+    h("div", { class: "t", text: dayTitle(d) }));
+  if (up.length) a.append(h("div", { class: "grp", text: "Sắp tới" }), ...up.map(item));
+  if (past.length) a.append(h("div", { class: "grp", text: "Đã qua" }), ...past.map(item));
+}
+
+/* ---------- rendering: one day ---------- */
+function fld(label, obj, key, type = "text", o = {}) {
+  let inp;
+  const get = () => obj[key];
+  if (type === "textarea") { inp = h("textarea", { rows: o.rows || 2 }); inp.value = get() == null ? "" : get(); autoGrow(inp); }
+  else if (type === "select") { inp = h("select", null, o.options.map(([v, t]) => h("option", { value: v, text: t }))); inp.value = get() == null ? (o.def || "") : get(); }
+  else if (type === "checkbox") { inp = h("input", { type: "checkbox" }); inp.checked = !!get(); }
+  else { inp = h("input", { type, placeholder: o.ph || "" }); inp.value = get() == null ? "" : get(); }
+  const ev = type === "checkbox" || type === "select" ? "change" : "input";
+  inp.addEventListener(ev, () => {
+    let v = type === "checkbox" ? inp.checked : inp.value;
+    if (type === "number") v = inp.value === "" ? null : Number(inp.value);
+    if (o.set) o.set(v); else if ((v === "" || v === null || v === false) && o.optional) delete obj[key]; else obj[key] = v;
+    if (type === "textarea") autoGrow(inp);
+    touch(!!o.structural);
+    if (o.after) o.after(v);
+  });
+  if (type === "checkbox") return h("label", { class: "chk" + (o.wide ? " wide" : "") }, inp, label);
+  return h("label", { class: "fld" + (o.wide ? " wide" : "") }, h("span", null, label, o.hint ? h("span", { class: "hint", text: " · " + o.hint }) : null), inp);
+}
+function autoGrow(t) { requestAnimationFrame(() => { t.style.height = "auto"; t.style.height = Math.min(t.scrollHeight + 2, 640) + "px"; }); }
+
+function renderMain() {
+  const m = $("main"); m.textContent = "";
+  if (!DATA) { m.append(h("div", { class: "empty", text: $("status").textContent })); return; }
+  // phone: day picker
+  const sel = h("select", { onchange: () => { curD = DATA.days.find(d => d.date + "|" + DATA.days.indexOf(d) === sel.value); curI = 0; renderAll(); } },
+    DATA.days.slice().sort((x, y) => y.date.localeCompare(x.date)).map(d => h("option", { value: d.date + "|" + DATA.days.indexOf(d), text: dayLabel(d.date) + " · " + dayTitle(d), selected: d === curD })));
+  m.append(h("div", { class: "mobile-days row" }, h("div", { class: "grow" }, sel), h("button", { type: "button", onclick: newDay }, "＋ Ngày")));
+  if (!curD) { m.append(h("div", { class: "empty" }, "Chưa có ngày nào. ", h("button", { type: "button", onclick: newDay }, "＋ Thêm ngày"))); return; }
+  const d = curD;
+  // day card
+  const dayCard = h("div", { class: "card" },
+    h("h2", null, h("span", { class: "dot c-" + (d.color || "green") }), dayLabel(d.date), h("span", { class: "sp" }),
+      h("button", { class: "sm", type: "button", onclick: () => copyDay(d) }, "Nhân bản ngày…"),
+      h("button", { class: "sm danger", type: "button", onclick: () => delDay(d) }, "Xoá ngày")),
+    h("div", { class: "grid" },
+      fld("Ngày", d, "date", "date", { structural: true, after: () => renderDays() }),
+      fld("Tên ngày lễ (tiếng Anh)", d, "title_en", "text", { wide: true, after: () => renderDays(), ph: "vd. Saturday of the Thirty-second Week in Ordinary Time" }),
+      fld("Bậc lễ / ghi chú", d, "note_en", "text", { ph: "Feast · Memorial · Optional memorial: …", optional: true }),
+      fld("Màu phụng vụ", d, "color", "select", { options: COLORS, def: "green", after: () => renderDays(), structural: true }),
+      "title_vi" in d ? fld("Tên ngày lễ (tiếng Việt)", d, "title_vi", "text", { wide: true }) : null,
+      SITE.songsOnly ? fld("Chỉ hiện ở trang tập hát (ẩn ở trang bản văn)", d, "songsOnly", "checkbox", { optional: true, wide: true, after: () => renderDays() }) : null),
+    otherFields(d, ["date", "title_en", "title_vi", "note_en", "color", "songsOnly", "items"]));
+  m.append(dayCard);
+  // items
+  d.items = d.items || [];
+  if (curI >= d.items.length) curI = 0;
+  const tabs = h("div", { class: "tabs" }, d.items.map((it, i) => h("button", { type: "button", class: i === curI ? "on" : "", onclick: () => { curI = i; renderMain(); schedulePreview(); } }, (it.t && it.t !== "00:00" ? it.t + " · " : "") + (it.en || KIND_NAMES[it.kind] || it.kind) + (it.hide ? " (ẩn)" : ""))),
+    h("button", { type: "button", class: "sm", onclick: () => addItem(d) }, "＋ Buổi cử hành"));
+  m.append(tabs);
+  const it = d.items[curI];
+  if (!it) return;
+  it.blocks = it.blocks || [];
+  const itemCard = h("details", { class: "card", open: d.items.length > 1 ? true : null },
+    h("summary", { style: "cursor:pointer;font-weight:650" }, "Thông tin buổi cử hành: " + (it.en || "") + " ", h("span", { class: "muted small", text: "(giờ, tên, nơi, phận vụ…)" })),
+    h("div", { class: "grid", style: "margin-top:10px" },
+      fld("Loại", it, "kind", "select", { options: Object.entries(KIND_NAMES), structural: true }),
+      fld("Giờ (để sắp xếp)", it, "t", "time"),
+      "time" in it || SITE.id === "english-mass" ? fld("Giờ hiện trên trang", it, "time", "text", { ph: "05:30", hint: "trống = không hiện" }) : null,
+      fld("Tên", it, "en", "text", { after: () => renderTabsOnly() }),
+      "vi" in it ? fld("Tên (tiếng Việt)", it, "vi", "text") : null,
+      "place_en" in it || SITE.id === "apdflc" ? fld("Nơi cử hành", it, "place_en", "text", { optional: true }) : null,
+      "sub_en" in it ? fld("Dòng phụ", it, "sub_en", "text", { optional: true, wide: true }) : null,
+      fld("Ẩn buổi này", it, "hide", "checkbox", { optional: true, structural: true }),
+      it.setting || SITE.id === "english-mass" ? settingFields(it) : null,
+      it.roles ? rolesEditor(it) : null),
+    otherFields(it, ["kind", "t", "time", "en", "vi", "place_en", "place_vi", "sub_en", "sub_vi", "hide", "setting", "roles", "blocks", "id", "links"]),
+    h("div", { class: "row", style: "margin-top:10px" },
+      h("button", { class: "sm", type: "button", onclick: () => moveItem(d, curI, -1), disabled: curI === 0 }, "◀ Lên trước"),
+      h("button", { class: "sm", type: "button", onclick: () => moveItem(d, curI, 1), disabled: curI === d.items.length - 1 }, "Ra sau ▶"),
+      h("button", { class: "sm", type: "button", onclick: () => { const c = clone(it); delete c.id; d.items.splice(curI + 1, 0, c); curI++; touch(true); } }, "Nhân bản"),
+      h("button", { class: "sm danger", type: "button", onclick: async () => { if (await ask("Xoá buổi cử hành", "Xoá “" + (it.en || it.kind) + "” của ngày này?", "Xoá", "Huỷ")) { d.items.splice(curI, 1); curI = 0; touch(true); } } }, "Xoá buổi này")));
+  m.append(itemCard);
+  // toolbar
+  m.append(h("div", { class: "bar" },
+    h("div", { class: "seg" },
+      h("button", { type: "button", class: mode === "quick" ? "on" : "", onclick: () => { mode = "quick"; renderMain(); } }, "Phần hay sửa"),
+      h("button", { type: "button", class: mode === "all" ? "on" : "", onclick: () => { mode = "all"; renderMain(); } }, "Toàn bộ")),
+    mode === "all" ? h("button", { class: "sm", type: "button", onclick: () => { sections(it.blocks).forEach(s => s.head && openSecs.add(s.head)); renderMain(); } }, "Mở hết") : null,
+    mode === "all" ? h("button", { class: "sm", type: "button", onclick: () => { sections(it.blocks).forEach(s => s.head && openSecs.delete(s.head)); renderMain(); } }, "Gập hết") : null,
+    h("span", { style: "flex:1" }),
+    h("button", { class: "sm", type: "button", onclick: () => importSection(it, it.blocks.length) }, "＋ Chép phần từ ngày khác"),
+    h("button", { class: "sm", type: "button", onclick: () => palette(it, it.blocks.length) }, "＋ Thêm khối")));
+  m.append(mode === "quick" ? quickView(it) : allView(it));
+}
+function renderTabsOnly() { const t = document.querySelector(".tabs"); if (!t) return; const d = curD; t.querySelectorAll("button").forEach((b, i) => { const it = d.items[i]; if (it) b.textContent = (it.t && it.t !== "00:00" ? it.t + " · " : "") + (it.en || it.kind) + (it.hide ? " (ẩn)" : ""); }); }
+function settingFields(it) {
+  const s = it.setting || {};
+  const set = (k) => v => { it.setting = Object.assign({}, it.setting || {}, { [k]: v }); if (!it.setting.name && !it.setting.composer) delete it.setting; };
+  return h("div", { class: "wide grid" },
+    fld("Bộ lễ hát (tên)", s, "name", "text", { set: set("name"), ph: "Heritage Mass", hint: "hiện ở trang tập hát" }),
+    fld("Tác giả bộ lễ", s, "composer", "text", { set: set("composer"), ph: "Owen Alstott" }));
+}
+function rolesEditor(it) {
+  const box = h("div", { class: "wide" }, h("div", { class: "fld" }, h("span", { text: "Phận vụ (vai trò EN · VI · người)" })));
+  const draw = () => {
+    box.querySelectorAll(".rl").forEach(e => e.remove());
+    it.roles.forEach((r, i) => {
+      const mk = j => { const x = h("input", { type: "text", value: r[j] || "" }); x.oninput = () => { r[j] = x.value; touch(); }; return x; };
+      box.append(h("div", { class: "rl row", style: "margin:4px 0" }, h("div", { class: "grow" }, mk(0)), h("div", { class: "grow" }, mk(1)), h("div", { class: "grow", style: "flex:2" }, mk(2)),
+        h("button", { class: "sm ghost", type: "button", onclick: () => { it.roles.splice(i, 1); touch(); draw(); } }, "✕")));
+    });
+    box.append(h("div", { class: "rl" }, h("button", { class: "sm", type: "button", onclick: () => { it.roles.push(["", "", ""]); touch(); draw(); } }, "＋ Phận vụ")));
+  };
+  draw(); return box;
+}
+function otherFields(obj, known) {
+  const keys = Object.keys(obj).filter(k => !known.includes(k));
+  if (!keys.length) return null;
+  const sub = {}; keys.forEach(k => sub[k] = obj[k]);
+  const ta = h("textarea", { rows: 4, style: "font-family:ui-monospace,monospace;font-size:.82em" }); ta.value = JSON.stringify(sub, null, 1);
+  const msg = h("span", { class: "small muted" });
+  ta.oninput = () => { try { const v = JSON.parse(ta.value); keys.forEach(k => delete obj[k]); Object.assign(obj, v); msg.textContent = "✓"; touch(); } catch (e) { msg.textContent = "JSON chưa đúng"; } };
+  autoGrow(ta);
+  return h("details", { class: "more" }, h("summary", null, "Trường khác (" + keys.join(", ") + ")"), ta, msg);
+}
+
+/* ---------- blocks: views ---------- */
+function sections(blocks) {   // [{ head: block|null, start, end }]
+  const out = []; let cur = { head: null, start: 0 };
+  blocks.forEach((b, i) => { if (b.k === "h") { cur.end = i; if (cur.end > cur.start || cur.head) out.push(cur); cur = { head: b, start: i }; } });
+  cur.end = blocks.length; if (cur.end > cur.start || cur.head) out.push(cur);
+  return out;
+}
+function allView(it) {
+  const wrap = h("div");
+  sections(it.blocks).forEach(s => {
+    const n = s.end - s.start - (s.head ? 1 : 0);
+    const open = !s.head || openSecs.has(s.head);
+    const sec = h("div", { class: "sec" + (open ? "" : " closed") });
+    if (s.head) {
+      const hb = s.head;
+      sec.append(h("div", { class: "sh", onclick: e => { if (e.target.closest("button")) return; openSecs.has(hb) ? openSecs.delete(hb) : openSecs.add(hb); renderMain(); } },
+        h("span", { class: "caret", text: open ? "▾" : "▸" }), h("span", { class: "tt", text: hb.en || hb.vi || "(không tên)" }), h("span", { class: "n", text: n + " khối" }),
+        flagsOf(hb) ? h("span", { class: "flags", text: flagsOf(hb) }) : null,
+        h("button", { class: "sm ghost", type: "button", title: "Chuyển phần lên", onclick: () => moveSection(it, s, -1) }, "↑"),
+        h("button", { class: "sm ghost", type: "button", title: "Chuyển phần xuống", onclick: () => moveSection(it, s, 1) }, "↓"),
+        h("button", { class: "sm ghost danger", type: "button", title: "Xoá cả phần", onclick: () => delSection(it, s) }, "Xoá phần")));
+    }
+    const body = h("div", { class: "sb" });
+    if (open) for (let i = s.start; i < s.end; i++) body.append(blockEl(it, i));
+    if (open) body.append(h("div", { class: "row", style: "padding:4px" },
+      h("button", { class: "sm", type: "button", onclick: () => palette(it, s.end) }, "＋ Thêm khối vào cuối phần"),
+      h("button", { class: "sm", type: "button", onclick: () => importSection(it, s.end) }, "＋ Chép phần từ ngày khác vào đây")));
+    sec.append(body); wrap.append(sec);
+  });
+  if (!it.blocks.length) wrap.append(h("div", { class: "empty" }, "Chưa có khối nào. ", h("button", { type: "button", onclick: () => importSection(it, 0) }, "Chép từ ngày khác"), " ", h("button", { type: "button", onclick: () => palette(it, 0) }, "＋ Thêm khối")));
+  return wrap;
+}
+function quickView(it) {
+  const wrap = h("div", { class: "quick" });
+  let lastHead = null, n = 0;
+  it.blocks.forEach((b, i) => {
+    if (b.k === "h") { lastHead = b; return; }
+    if (!isKey(b)) return;
+    if (lastHead) { wrap.append(h("div", { class: "qh", text: lastHead.en })); lastHead = null; }
+    openBlocks.add(b); wrap.append(blockEl(it, i)); n++;
+  });
+  if (!n) wrap.append(h("div", { class: "empty", text: "Buổi này không có bài đọc, bài hát hay lời nguyện riêng. Chọn “Toàn bộ” để sửa mọi khối." }));
+  wrap.append(h("p", { class: "small muted", style: "margin-top:16px" }, "Đây là các phần thay đổi theo ngày: bài hát, bài đọc, câu Alleluia, lời nguyện riêng, ca tiền xướng. Các phần cố định (nghi thức, đối đáp…) ở mục “Toàn bộ”."));
+  return wrap;
+}
+const flagsOf = b => [b.pa ? "Sám hối mẫu " + b.pa.join(",") : "", b.ep ? "KNTT " + (b.ep === 2 ? "II" : b.ep === 3 ? "III" : b.ep) : "", b.proper ? "riêng" : "", b.keep ? "luôn hiện" : ""].filter(Boolean).join(" · ");
+function summary(b) {
+  const tba = t => h("span", { class: "tba", text: t });
+  switch (b.k) {
+    case "h": case "sub": case "book": return b.en || b.vi || "";
+    case "r": return b.en || b.vi || "";
+    case "v": return (b.lines || []).map(([w, t]) => (w === "R" ? "℟ " : w === "V" ? "℣ " : w + ": ") + (t || "").split("\n")[0]).join("   ");
+    case "lect": return [READ_KINDS.find(x => x[0] === b.kind)?.[1], b.cite, ((b.chunks || [])[0] || [])[1]?.split("\n")[0]].filter(Boolean).join(" · ");
+    case "tbaread": return h("span", null, (READ_KINDS.find(x => x[0] === b.kind) || [, b.kind])[1] + (b.cite ? " · " + b.cite : "") + " · ", tba("chưa có bản văn"));
+    case "song": return b.title ? (SONG_PARTS[b.part] ? "" : (b.partEn || "") + ": ") + b.title + (b.num ? " (" + b.num + ")" : "") + (b.youtube ? " ▶" : "") : h("span", null, (b.partEn || "Bài hát") + ": ", tba("chưa chọn bài"));
+    case "music": { const p = typeof b.pdf === "object" && b.pdf ? b.pdf : {}; return (p.part ? (MASS_PARTS.find(x => x[0] === p.part) || [, p.part])[1] + ": " : "") + (p.title || p.sheet || b.pdf || "") + (p.youtube ? " ▶" : ""); }
+    case "alh": return "Alleluia · " + (b.cite || "(chưa có trích dẫn)");
+    case "alv": return b.text ? (b.sung ? "(hát) " : "") + b.text : tba("chưa có câu Alleluia");
+    case "ant": return (b.text || "") + (b.cite ? " — " + b.cite : "");
+    case "slot": return b.full ? (b.en || "") + ": " + b.full.split("\n")[0] + "…" : h("span", null, (b.en || "Lời nguyện") + " · ", tba("chưa có bản văn"));
+    case "audio": return b.id ? "SoundCloud " + b.id : tba("chưa có mã ghi âm");
+    case "lat": return (b.title || "") + " · " + (b.text || "").split("\n")[0];
+    case "html": return (b.sec ? "[" + b.sec + "] " : "") + (b.html || "").replace(/<br\s*\/?>/g, " / ").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 200);
+    case "quote": return (b.text || "") + (b.cite ? " — " + b.cite : "");
+    case "pf": return (b.intro_en || "") + " (" + (b.items || []).length + " ý)";
+    case "ps": return (b.items || []).map(x => x[0]).join(" · ");
+    default: return "";
+  }
+}
+function blockEl(it, i) {
+  const b = it.blocks[i];
+  const open = openBlocks.has(b);
+  const name = (K[b.k] || [b.k])[0];
+  const el = h("div", { class: "blk" + (open ? " open" : "") });
+  const sumEl = h("div", { class: "sum" + (b.k === "r" ? " r" : "") }, summary(b));
+  const fl = flagsOf(b);
+  el.append(h("div", { class: "bh", onclick: e => { if (e.target.closest("button")) return; open ? openBlocks.delete(b) : openBlocks.add(b); renderMain(); } },
+    h("span", { class: "kind k-" + b.k + (b.proper ? " proper" : ""), text: name }), sumEl, fl ? h("span", { class: "flags", text: fl }) : null,
+    h("span", { class: "btools" },
+      h("button", { class: "sm ghost", type: "button", title: "Lên", onclick: () => moveBlock(it, i, -1) }, "↑"),
+      h("button", { class: "sm ghost", type: "button", title: "Xuống", onclick: () => moveBlock(it, i, 1) }, "↓"),
+      h("button", { class: "sm ghost", type: "button", title: "Nhân bản", onclick: () => { it.blocks.splice(i + 1, 0, clone(b)); touch(true); } }, "⧉"),
+      h("button", { class: "sm ghost", type: "button", title: "Thêm khối ở dưới", onclick: () => palette(it, i + 1) }, "＋"),
+      h("button", { class: "sm ghost danger", type: "button", title: "Xoá", onclick: () => { it.blocks.splice(i, 1); touch(true); } }, "✕"))));
+  if (open) {
+    const f = h("div", { class: "bf" });
+    const refresh = () => { sumEl.textContent = ""; sumEl.append(summary(b)); };
+    form(b, f, refresh, it, i);
+    el.append(f);
+  }
+  return el;
+}
+
+/* ---------- block forms ---------- */
+function form(b, f, refresh, it, i) {
+  const F = (label, key, type, o = {}) => fld(label, b, key, type, Object.assign({}, o, { after: v => { refresh(); o.after && o.after(v); } }));
+  const g = (...kids) => h("div", { class: "grid" }, ...kids);
+  switch (b.k) {
+    case "h": f.append(g(F("Tiêu đề (EN)", "en", "text", { wide: true }), F("Tiêu đề (VI)", "vi", "text", { optional: true }), F("Mã neo (id)", "id", "text", { hint: "dùng cho mục lục, không dấu" }))); break;
+    case "sub": f.append(g(F("Tiêu đề nhỏ (EN)", "en", "text", { wide: true }), F("(VI)", "vi", "text", { optional: true }))); break;
+    case "r": case "book": f.append(g(F("Chỉ dẫn (EN)", "en", "textarea", { wide: true }), F("(VI)", "vi", "textarea", { optional: true, wide: true }),
+      b.k === "r" ? F("Luôn hiện (cả khi tắt “Rubrics”)", "keep", "checkbox", { optional: true }) : null)); break;
+    case "v": f.append(linesEditor(b, refresh), g(F("Phần riêng của ngày (in kiểu lời nguyện)", "proper", "checkbox", { optional: true }), F("Không ghi tên người đọc (nối tiếp)", "cont", "checkbox", { optional: true }))); break;
+    case "lect": f.append(lectForm(b, refresh, it, i)); break;
+    case "tbaread": f.append(g(F("Loại", "kind", "select", { options: READ_KINDS }), F("Trích dẫn", "cite", "text", { optional: true, ph: "Luke 18:1-8" })),
+      h("div", { class: "row", style: "margin-top:8px" }, h("button", { type: "button", class: "primary sm", onclick: () => { it.blocks[i] = Object.assign({ k: "lect", kind: b.kind, cite: b.cite || "", lang: "EN" }, b.kind === "psalm" ? { refrain_en: "" } : b.kind === "gospel" ? { evangelist: "" } : { incipit_en: "" }, { chunks: [["", "", ""]] }); openBlocks.add(it.blocks[i]); touch(true); } }, "Nhập bản văn cho bài đọc này"))); break;
+    case "song": f.append(songForm(b, refresh)); break;
+    case "music": f.append(musicForm(b, refresh)); break;
+    case "alh": f.append(g(F("Trích dẫn câu Alleluia", "cite", "text", { ph: "See 2 Thessalonians 2:14", wide: true }))); break;
+    case "alv": f.append(g(F("Câu xướng", "text", "textarea", { wide: true, rows: 3, hint: "xuống dòng theo sách" }), F("Hát (lễ kính trở lên): chỉ hiện câu xướng, không đọc “Alleluia, alleluia”", "sung", "checkbox", { wide: true }))); break;
+    case "ant": f.append(g(F("Ca tiền xướng", "text", "textarea", { wide: true, rows: 3 }), F("Nguồn", "cite", "text", { ph: "Ps 33:1" }), F("Phần riêng", "proper", "checkbox", { optional: true }), F("Luôn hiện (cả khi tắt “Rubrics”)", "keep", "checkbox", { optional: true }))); break;
+    case "slot": f.append(g(F("Tên lời nguyện", "en", "text", { ph: "Collect of the day" }), F("Người đọc", "who", "select", { options: WHO }),
+      F("Bản văn đầy đủ", "full", "textarea", { wide: true, rows: 5, optional: true, hint: "để trống = hiện “… of the day · Roman Missal”" }))); break;
+    case "audio": f.append(g(F("Mã bản ghi SoundCloud (track id)", "id", "text", { ph: "2418300474", hint: "trong trang podcast USCCB của ngày đó" }))); break;
+    case "lat": f.append(g(F("Tên", "title", "text"), F("Bản Latinh", "text", "textarea", { wide: true, rows: 4 }), F("Bản dịch (EN)", "en", "textarea", { wide: true, optional: true }), F("Bản dịch (VI)", "vi", "textarea", { wide: true, optional: true }))); break;
+    case "quote": f.append(g(F("Câu trích", "text", "textarea", { wide: true }), F("Nguồn", "cite", "text"), F("(VI)", "vi", "textarea", { optional: true, wide: true }))); break;
+    case "html": f.append(htmlForm(b, refresh)); break;
+    case "epsel": case "pasel": case "tba": f.append(h("p", { class: "small muted", text: "Khối này không có gì để sửa." })); break;
+    default: f.append(jsonForm(b, refresh, it, i)); return;
+  }
+  // shown only with … (Penitential Act form / Eucharistic Prayer)
+  f.append(h("details", { class: "more" }, h("summary", null, "Nâng cao: chỉ hiện với mẫu Sám hối / Kinh nguyện Thánh Thể · sửa dạng JSON"),
+    h("div", { class: "row", style: "margin:6px 0" },
+      h("span", { class: "small", text: "Sám hối mẫu:" }), [1, 2, 3].map(n => { const c = h("input", { type: "checkbox" }); c.checked = !!(b.pa && b.pa.includes(n)); c.onchange = () => { const s = new Set(b.pa || []); c.checked ? s.add(n) : s.delete(n); if (s.size) b.pa = [...s].sort(); else delete b.pa; touch(); refresh(); }; return h("label", { class: "chk" }, c, String(n)); }),
+      h("span", { class: "small", style: "margin-left:12px", text: "KNTT:" }), (() => { const s = h("select", { style: "width:auto" }, [["", "mọi KNTT"], ["2", "chỉ II"], ["3", "chỉ III"]].map(([v, t]) => h("option", { value: v, text: t }))); s.value = b.ep ? String(b.ep) : ""; s.onchange = () => { if (s.value) b.ep = Number(s.value); else delete b.ep; touch(); refresh(); }; return s; })()),
+    jsonForm(b, refresh, it, i)));
+}
+function jsonForm(b, refresh, it, i) {
+  const ta = h("textarea", { rows: 6, style: "font-family:ui-monospace,monospace;font-size:.82em" }); ta.value = JSON.stringify(b, null, 1); autoGrow(ta);
+  const msg = h("span", { class: "small muted", text: "Sửa trực tiếp dữ liệu của khối (cẩn thận dấu ngoặc, dấu phẩy)." });
+  ta.oninput = () => { try { const v = JSON.parse(ta.value); if (!v || typeof v.k !== "string") throw 0; Object.keys(b).forEach(k => delete b[k]); Object.assign(b, v); msg.textContent = "✓ đúng"; touch(); refresh(); } catch (e) { msg.textContent = "✗ JSON chưa đúng — chưa áp dụng"; } };
+  return h("div", { style: "margin-top:6px" }, ta, msg);
+}
+function linesEditor(b, refresh) {
+  b.lines = b.lines || [];
+  const box = h("div", { class: "lines-ed" });
+  const draw = () => {
+    box.textContent = "";
+    b.lines.forEach((ln, j) => {
+      const s = h("select", null, WHO.map(([v, t]) => h("option", { value: v, text: t }))); s.value = ln[0];
+      s.onchange = () => { ln[0] = s.value; touch(); refresh(); };
+      const t = h("textarea", { rows: 2 }); t.value = ln[1] || ""; autoGrow(t);
+      t.oninput = () => { ln[1] = t.value; autoGrow(t); touch(); refresh(); };
+      box.append(h("div", { class: "ln" }, s, t, h("div", { class: "row", style: "gap:2px" },
+        h("button", { class: "sm ghost", type: "button", title: "Lên", onclick: () => { if (j) { b.lines.splice(j - 1, 0, b.lines.splice(j, 1)[0]); touch(); draw(); refresh(); } } }, "↑"),
+        h("button", { class: "sm ghost danger", type: "button", title: "Xoá dòng", onclick: () => { b.lines.splice(j, 1); touch(); draw(); refresh(); } }, "✕"))));
+    });
+    box.append(h("button", { class: "sm", type: "button", onclick: () => { b.lines.push([b.lines.length && b.lines[b.lines.length - 1][0] === "P" ? "R" : "P", ""]); touch(); draw(); refresh(); } }, "＋ Thêm lời"));
+  };
+  draw(); return box;
+}
+function lectForm(b, refresh, it, i) {
+  const F = (label, key, type, o = {}) => fld(label, b, key, type, Object.assign({}, o, { after: () => refresh() }));
+  b.chunks = b.chunks || [];
+  const simple = !tableMode.has(b) && b.chunks.every(c => !c[0] && !c[2]);
+  const top = h("div", { class: "grid" },
+    F("Loại", "kind", "select", { options: READ_KINDS, structural: true }),
+    F("Trích dẫn", "cite", "text", { ph: b.kind === "psalm" ? "Psalm 112:1-2, 3-4, 5-6" : "Luke 18:1-8" }),
+    "cite_vi" in b ? F("Trích dẫn (VI)", "cite_vi", "text", { optional: true }) : null,
+    b.kind === "psalm" ? F("Điệp ca (℟)", "refrain_en", "text", { wide: true }) : null,
+    b.kind === "gospel" ? F("Thánh sử", "evangelist", "text", { ph: "Luke" }) : null,
+    b.kind !== "psalm" && b.kind !== "gospel" ? F("Câu dẫn", "incipit_en", "text", { wide: true, ph: "A reading from the Book of …", optional: true }) : null,
+    F("Ngôn ngữ chính", "lang", "select", { options: [["EN", "Tiếng Anh"], ["VN", "Tiếng Việt"]], def: "EN" }));
+  const body = h("div", { style: "margin-top:8px" });
+  if (simple) {
+    const ta = h("textarea", { rows: 10 }); ta.value = b.chunks.map(c => c[1] || "").join("\n\n"); autoGrow(ta);
+    const apply = () => { const paras = ta.value.replace(/\r/g, "").split(/\n\s*\n/).map(p => p.replace(/[ \t]+$/gm, "").trim()).filter(Boolean); b.chunks = paras.map(p => ["", p, ""]); touch(); refresh(); };
+    ta.oninput = () => { autoGrow(ta); apply(); };
+    body.append(h("label", { class: "fld" }, h("span", null, b.kind === "psalm" ? "Các khổ thánh vịnh" : "Bản văn", h("span", { class: "hint", text: " · mỗi đoạn cách nhau một dòng trống; xuống dòng giữ nguyên như sách" + (b.kind === "psalm" ? "; điệp ca tự lặp sau mỗi khổ" : "") })), ta),
+      h("div", { class: "row", style: "margin-top:6px" },
+        h("button", { class: "sm", type: "button", onclick: () => { let t = ta.value.replace(/\r/g, ""); const lines = t.split("\n");
+          const rf = lines.find(l => /^\s*R\.\s/.test(l)); if (rf && b.kind === "psalm" && !b.refrain_en) b.refrain_en = rf.replace(/^\s*R\.\s*(\([^)]*\)\s*)?/, "").trim();
+          t = lines.filter(l => !/^\s*R\.\s/.test(l)).join("\n").replace(/\n{3,}/g, "\n\n"); ta.value = smartQuotes(t).trim(); apply(); renderMain(); toast("Đã làm sạch: bỏ dòng “R.”, đổi ngoặc kép thẳng thành ngoặc cong"); } }, "Làm sạch văn bản dán từ USCCB"),
+        h("button", { class: "sm", type: "button", onclick: () => { if (!b.chunks.length) b.chunks = [["", "", ""]]; tableMode.add(b); renderMain(); } }, "Chia theo câu / có bản dịch…")));
+  } else {
+    const box = h("div", { class: "chunks-ed" });
+    const draw = () => {
+      box.textContent = "";
+      box.append(h("div", { class: "ch small muted" }, h("span", { text: "Câu số" }), h("span", { text: "Bản văn chính" }), h("span", { text: "Bản dịch" }), h("span")));
+      b.chunks.forEach((c, j) => {
+        const mk = (k, rows) => { const x = rows ? h("textarea", { rows }) : h("input", { type: "text" }); x.value = c[k] || ""; if (rows) autoGrow(x); x.oninput = () => { c[k] = x.value; if (rows) autoGrow(x); touch(); refresh(); }; return x; };
+        box.append(h("div", { class: "ch" }, mk(0), mk(1, 3), mk(2, 3), h("div", null,
+          h("button", { class: "sm ghost", type: "button", onclick: () => { b.chunks.splice(j + 1, 0, ["", "", ""]); touch(); draw(); } }, "＋"),
+          h("button", { class: "sm ghost danger", type: "button", onclick: () => { b.chunks.splice(j, 1); touch(); draw(); refresh(); } }, "✕"))));
+      });
+      box.append(h("button", { class: "sm", type: "button", onclick: () => { b.chunks.push(["", "", ""]); touch(); draw(); } }, "＋ Thêm đoạn"));
+    };
+    draw(); body.append(box);
+  }
+  const conv = h("div", { class: "row", style: "margin-top:8px" },
+    h("button", { class: "sm", type: "button", onclick: async () => { if (await ask("Bỏ bản văn", "Đổi bài đọc này thành “Text to be added” (xoá bản văn)?", "Đồng ý", "Huỷ")) { it.blocks[i] = { k: "tbaread", kind: b.kind, cite: b.cite || "" }; touch(true); } } }, "Đổi thành “chưa có bản văn”"));
+  return h("div", null, top, body, conv);
+}
+function songForm(b, refresh) {
+  const isEM = SITE.id === "english-mass";
+  if (b.pdf === undefined) b.pdf = null;
+  const pdfObj = () => { if (!b.pdf || typeof b.pdf !== "object") b.pdf = typeof b.pdf === "string" && b.pdf ? { sheet: b.pdf } : {}; return b.pdf; };
+  const P = (label, key, type, o = {}) => fld(label, b.pdf && typeof b.pdf === "object" ? b.pdf : {}, key, type, Object.assign({ set: v => { const p = pdfObj(); if (v === "" || v == null) delete p[key]; else p[key] = v; } }, o, { after: () => refresh() }));
+  const F = (label, key, type, o = {}) => fld(label, b, key, type, Object.assign({}, o, { after: v => { refresh(); o.after && o.after(v); } }));
+  const partSel = F("Phần", "part", "select", { options: [...Object.keys(SONG_PARTS).map(k => [k, SONG_PARTS[k][1] + " (" + SONG_PARTS[k][0] + ")"]), ["", "Khác (tự đặt tên)"]],
+    set: v => { if (v) { b.part = v; b.partEn = SONG_PARTS[v][0]; b.partVi = SONG_PARTS[v][1]; } else delete b.part; }, structural: true });
+  const titleF = F("Tên bài hát", "title", "text", { wide: true, set: v => { b.title = v; if (v && !b.pdf && isEM) b.pdf = {}; if (!v && isEM) { b.pdf = null; } } });
+  const grid = h("div", { class: "grid" }, partSel,
+    !b.part || !SONG_PARTS[b.part] ? F("Tên phần (EN)", "partEn", "text") : null,
+    !b.part || !SONG_PARTS[b.part] ? F("Tên phần (VI)", "partVi", "text", { optional: true }) : null,
+    titleF,
+    F("Tác giả / giai điệu", "by", "text", { ph: "Dan Schutte, S.J. · Tune: Picardy" }),
+    isEM || "num" in b ? F("Số bài (sách ICLA in cũ)", "num", "number", { optional: true, set: v => { if (v) { b.num = v; b.no = "ICLA No. " + v; } else { delete b.num; b.no = ""; } } }) : F("Số / ghi chú", "no", "text", { optional: true }),
+    F("YouTube (link)", "youtube", "url", { optional: true, ph: "https://youtu.be/…", hint: "nút ▶ ở trang tập hát" }),
+    F("Bắt đầu từ giây", "start", "number", { optional: true, ph: "12" }),
+    typeof b.pdf === "string" ? F("Mã bản nhạc", "pdf", "text") : P("Ảnh bản nhạc", "sheet", "text", { ph: SITE.sheets + "ten-bai-ipa.png", wide: true }),
+    typeof b.pdf === "string" ? null : P("Ảnh cho điện thoại (tuỳ chọn)", "narrow", "text", { ph: SITE.sheets + "ten-bai-narrow.png", wide: true }),
+    typeof b.pdf === "string" ? null : P("Câu cần hát", "verses", "text", { ph: "Sing verse 4", optional: true }),
+    F("Lời bài hát (hiện dưới tên bài)", "lyrics", "textarea", { wide: true, rows: 2 }));
+  const yt = h("div", { class: "row", style: "margin-top:6px" },
+    h("button", { class: "sm", type: "button", onclick: () => { if (b.youtube) window.open(b.youtube + (b.start ? (b.youtube.includes("?") ? "&" : "?") + "t=" + b.start : ""), "_blank"); else toast("Chưa có link YouTube"); } }, "Nghe thử YouTube từ giây bắt đầu"),
+    uploadBtn(path => { pdfObj().sheet = path; touch(true); }, () => slug(b.title) || "song"),
+    h("a", { class: "small", href: "https://www.youtube.com/results?search_query=" + encodeURIComponent((b.title || "") + " " + (b.by || "") + " OCP"), target: "_blank", rel: "noopener", text: "Tìm trên YouTube ↗" }));
+  return h("div", null, grid, yt);
+}
+function musicForm(b, refresh) {
+  if (typeof b.pdf === "string") return h("div", { class: "grid" }, fld("Mã bản nhạc", b, "pdf", "text", { after: refresh }));
+  b.pdf = b.pdf || {};
+  const p = b.pdf;
+  const F = (label, key, type, o = {}) => fld(label, p, key, type, Object.assign({ optional: true }, o, { after: () => refresh() }));
+  return h("div", null, h("div", { class: "grid" },
+    F("Phần bộ lễ", "part", "select", { options: [["", "—"], ...MASS_PARTS] }),
+    F("Tên hiện trên trang", "title", "text", { ph: "Lord, Have Mercy", wide: true }),
+    F("YouTube (link)", "youtube", "url", { ph: "https://youtu.be/…" }), F("Bắt đầu từ giây", "start", "number"),
+    F("Ảnh bản nhạc", "sheet", "text", { wide: true, optional: false }), F("Ảnh cho điện thoại", "narrow", "text", { wide: true }),
+    F("Tác giả (trống = theo bộ lễ)", "composer", "text"), F("Dòng chữ dưới tên (trang tập hát)", "text", "text", { wide: true }),
+    F("Không có nút “Listen & practise”", "noPractice", "checkbox")),
+    h("div", { class: "row", style: "margin-top:6px" }, uploadBtn(path => { p.sheet = path; touch(true); }, () => slug(p.title || p.part) || "mass-part")));
+}
+function uploadBtn(onDone, nameOf) {
+  return h("button", { class: "sm", type: "button", onclick: () => {
+    if (!token()) { settings(); return; }
+    const i = h("input", { type: "file", accept: "image/png,image/jpeg,image/webp" });
+    i.onchange = async () => {
+      const file = i.files[0]; if (!file) return;
+      const ext = (file.name.match(/\.(png|jpe?g|webp)$/i) || [, "png"])[1].toLowerCase();
+      const name = await dialog("Tải ảnh bản nhạc lên", h("div", null, h("p", { class: "small", text: "Tên file trên web (không dấu, gạch nối):" }), (() => { const x = h("input", { type: "text", id: "upname", value: nameOf() + "." + ext }); return x; })()),
+        [["Huỷ", null], ["Tải lên", () => $("upname").value.trim(), "primary"]]);
+      if (!name) return;
+      const path = SITE.sheets + name.replace(/^\/+/, "");
+      setStatus("Đang tải ảnh lên…");
+      try { const sha = await ghSha(path); await ghWrite(path, b64buf(await file.arrayBuffer()), sha, "Editor: sheet music " + name); onDone(path); toast("Đã tải lên " + path + (sha ? " (thay ảnh cũ)" : "")); setStatus("Ảnh đã lên web · nhớ bấm “Lưu lên web” để lưu thay đổi", "dirty"); }
+      catch (e) { setStatus("Tải ảnh không được: " + e.message, "err"); }
+    };
+    i.click();
+  } }, "Tải ảnh bản nhạc lên…");
+}
+function htmlForm(b, refresh) {
+  const ed = h("div", { class: "rich", contenteditable: "true" }); ed.innerHTML = b.html || "";
+  const raw = h("textarea", { rows: 8, style: "font-family:ui-monospace,monospace;font-size:.82em;display:none" }); raw.value = b.html || "";
+  ed.oninput = () => { b.html = ed.innerHTML; raw.value = b.html; touch(); refresh(); };
+  raw.oninput = () => { b.html = raw.value; ed.innerHTML = b.html; autoGrow(raw); touch(); refresh(); };
+  const tog = h("button", { class: "sm", type: "button", onclick: () => { const on = raw.style.display === "none"; raw.style.display = on ? "" : "none"; ed.style.display = on ? "none" : ""; tog.textContent = on ? "Sửa dạng chữ" : "Sửa mã HTML"; if (on) autoGrow(raw); } }, "Sửa mã HTML");
+  return h("div", null, h("p", { class: "small muted", text: "Sửa chữ trực tiếp trong khung. Muốn thêm đoạn, tiền xướng… theo đúng định dạng thì dùng “Sửa mã HTML” và chép theo mẫu có sẵn." }),
+    ed, raw, h("div", { class: "row", style: "margin-top:6px" }, tog, fld("Thuộc phần (sec)", b, "sec", "text", { optional: true })));
+}
+
+/* ---------- block operations ---------- */
+function moveBlock(it, i, dir) { const j = i + dir; if (j < 0 || j >= it.blocks.length) return; const [b] = it.blocks.splice(i, 1); it.blocks.splice(j, 0, b); touch(true); }
+function moveSection(it, s, dir) {
+  const secs = sections(it.blocks), k = secs.findIndex(x => x.head === s.head), o = secs[k + dir];
+  if (!o || !o.head) return;
+  const A = it.blocks.slice(s.start, s.end), B = it.blocks.slice(o.start, o.end);
+  if (dir < 0) it.blocks.splice(o.start, s.end - o.start, ...A, ...B); else it.blocks.splice(s.start, o.end - s.start, ...B, ...A);
+  touch(true);
+}
+async function delSection(it, s) {
+  if (!await ask("Xoá cả phần", "Xoá phần “" + (s.head.en || "") + "” (" + (s.end - s.start) + " khối)? Có thể chép lại từ ngày khác nếu cần.", "Xoá", "Huỷ")) return;
+  it.blocks.splice(s.start, s.end - s.start); touch(true);
+}
+function palette(it, at) {
+  const body = h("div", { class: "palette" }, Object.entries(K).filter(([, v]) => v[2]).map(([k, [name, desc, mk]]) =>
+    h("button", { type: "button", onclick: () => { const b = mk(); it.blocks.splice(at, 0, b); openBlocks.add(b); $("dlg").close(); touch(true); } }, h("b", { text: name }), h("span", { text: desc }))));
+  dialog("Thêm khối", body, [["Huỷ", null]]);
+}
+function importSection(it, at) {
+  const days = DATA.days.slice().sort((a, b) => b.date.localeCompare(a.date));
+  const dSel = h("select"), iSel = h("select"), sBox = h("div", { style: "margin-top:10px" });
+  dSel.append(...days.map((d, k) => h("option", { value: k, text: dayLabel(d.date) + " · " + dayTitle(d) })));
+  const fillItems = () => { const d = days[dSel.value]; iSel.textContent = ""; (d.items || []).forEach((x, k) => iSel.append(h("option", { value: k, text: (x.t || "") + " " + (x.en || x.kind) }))); fillSecs(); };
+  const fillSecs = () => {
+    sBox.textContent = ""; const src = (days[dSel.value].items || [])[iSel.value]; if (!src) return;
+    sections(src.blocks || []).forEach((s, k) => sBox.append(h("label", { class: "chk", style: "margin:3px 0" }, h("input", { type: "checkbox", value: k }), (s.head ? s.head.en : "(đầu, trước tiêu đề đầu tiên)") + " · " + (s.end - s.start) + " khối")));
+  };
+  dSel.onchange = fillItems; iSel.onchange = fillSecs; fillItems();
+  dialog("Chép phần từ ngày khác", h("div", null, h("div", { class: "grid" }, h("label", { class: "fld" }, h("span", { text: "Ngày" }), dSel), h("label", { class: "fld" }, h("span", { text: "Buổi" }), iSel)),
+    h("p", { class: "small muted", text: "Chọn các phần cần chép (vd. Gloria, Lời nguyện tín hữu). Chép nguyên văn; sửa lại sau nếu cần." }), sBox),
+    [["Huỷ", null], ["Chép vào", () => { const src = days[dSel.value].items[iSel.value]; const secs = sections(src.blocks); return [...sBox.querySelectorAll("input:checked")].flatMap(c => clone(src.blocks.slice(secs[c.value].start, secs[c.value].end))); }, "primary"]])
+    .then(bl => { if (bl && bl.length) { it.blocks.splice(at, 0, ...bl); if (bl[0].k === "h") openSecs.add(bl[0]); touch(true); toast("Đã chép " + bl.length + " khối"); } });
+}
+
+/* ---------- days & items ---------- */
+function clearPropers(blocks) {
+  const out = [];
+  for (let j = 0; j < blocks.length; j++) {
+    const b = blocks[j];
+    if (b.k === "audio") continue;
+    if (b.k === "lect") { out.push({ k: "tbaread", kind: b.kind, cite: "" }); continue; }
+    if (b.k === "alh") { out.push({ k: "alh", cite: "" }); continue; }
+    if (b.k === "alv") { out.push(Object.assign({}, b, { text: "" })); continue; }
+    if (b.k === "song") { const s = { k: "song", partEn: b.partEn, partVi: b.partVi, title: "", by: "", no: "", pdf: typeof b.pdf === "string" ? "" : null, lyrics: "" }; if (b.part) s.part = b.part; out.push(s); continue; }
+    if (b.k === "slot" && b.full) { const s = Object.assign({}, b); delete s.full; s.en = (s.en || "Prayer").replace(/ of the day$/, "") + " of the day"; out.push(s); continue; }
+    if (b.k === "ant" && b.proper) { out.push(Object.assign({}, b, { text: "To be added.", cite: "" })); continue; }
+    if (b.k === "v" && b.proper) {
+      let lab = "", k = out.length - 1;
+      for (; k >= 0; k--) { const x = out[k]; if ((x.k === "sub" || x.k === "h") && /collect|prayer|preface/i.test(x.en || "")) { lab = x.en; break; } if (x.k === "h") break; }
+      const prev = out[out.length - 1], prev2 = out[out.length - 2];
+      if (prev && prev.k === "sub" && prev2 && prev2.k === "sub" && /^preface$/i.test(prev2.en || "")) { out.pop(); lab = "Preface"; }   // the name of the day's preface
+      out.push({ k: "slot", who: (b.lines && b.lines[0] && b.lines[0][0]) || "P", en: (lab || "Prayer") + " of the day", vi: "" });
+      continue;
+    }
+    out.push(clone(b));
+  }
+  return out;
+}
+async function newDay(base) {
+  if (!base || !base.date) base = null;
+  const days = DATA.days.slice().sort((a, b) => b.date.localeCompare(a.date));
+  const last = days.find(d => !d.songsOnly) || days[0];
+  const next = (() => { const t = new Date((last ? last.date : todayVN()) + "T00:00:00Z"); t.setUTCDate(t.getUTCDate() + 7); return t.toISOString().slice(0, 10); })();
+  const date = h("input", { type: "date", value: next });
+  const title = h("input", { type: "text", placeholder: "Saturday of the … Week in Ordinary Time" });
+  const src = h("select", null, h("option", { value: "", text: "— Ngày trống —" }), days.map((d, k) => h("option", { value: k, text: dayLabel(d.date) + " · " + dayTitle(d), selected: base ? d === base : d === last })));
+  const clr = h("input", { type: "checkbox", checked: true });
+  const color = h("select", null, COLORS.map(([v, t]) => h("option", { value: v, text: t })));
+  const body = h("div", null, h("div", { class: "grid" },
+    h("label", { class: "fld" }, h("span", { text: "Ngày" }), date),
+    h("label", { class: "fld" }, h("span", { text: "Màu phụng vụ" }), color),
+    h("label", { class: "fld wide" }, h("span", { text: "Tên ngày lễ (tiếng Anh)" }), title),
+    h("label", { class: "fld wide" }, h("span", { text: "Dựa trên ngày (chép toàn bộ cấu trúc)" }), src),
+    h("label", { class: "chk wide" }, clr, "Xoá phần riêng của ngày gốc: bài đọc, câu Alleluia, bài hát, lời nguyện riêng, ca tiền xướng, ghi âm")),
+    h("p", { class: "small muted", text: "Mẹo: chọn một ngày cùng bậc lễ (thứ Bảy thường, lễ nhớ, lễ kính, Chúa Nhật) để có sẵn đúng các phần (Gloria, Kinh Tin Kính, Lời nguyện tín hữu…). Sau đó thêm / xoá phần nếu cần." }));
+  const ok = await dialog("Thêm ngày", body, [["Huỷ", null], ["Tạo ngày", true, "primary"]]);
+  if (!ok) return;
+  if (!date.value) { toast("Chưa chọn ngày"); return; }
+  const from = src.value === "" ? null : days[src.value];
+  const d = { date: date.value, title_en: title.value.trim(), note_en: "", color: color.value, items: [] };
+  if (from) d.items = clone(from.items || []).map(it => { if (clr.checked) it.blocks = clearPropers(it.blocks || []); delete it.hide; delete it.id; delete it.upd; delete it.updRoles; return it; });
+  if (from) ["sub_en", "sub_vi", "doc_title", "logo"].forEach(k => { if (from[k] != null) d[k] = from[k]; });
+  else d.items = [{ kind: "mass", t: "00:00", time: "", en: "Holy Mass", blocks: [] }];
+  if (from && from.title_vi != null) d.title_vi = "";
+  DATA.days.push(d); curD = d; curI = 0; mode = "quick"; touch(); renderAll(); window.scrollTo(0, 0);
+  toast("Đã tạo ngày " + dayLabel(d.date) + " · điền bài hát, bài đọc, lời nguyện bên dưới");
+}
+async function copyDay(d) { return newDay(d); }
+async function delDay(d) {
+  if (!await ask("Xoá ngày", "Xoá hẳn ngày " + dayLabel(d.date) + " (" + dayTitle(d) + ")? Sau khi lưu vẫn khôi phục được từ “Lịch sử thay đổi” trên GitHub.", "Xoá", "Huỷ")) return;
+  DATA.days.splice(DATA.days.indexOf(d), 1); curD = pickDay(); curI = 0; touch(); renderAll();
+}
+function addItem(d) {
+  const kind = h("select", null, SITE.kinds.map(k => h("option", { value: k, text: KIND_NAMES[k] })));
+  const t = h("input", { type: "time", value: "07:00" });
+  const srcs = []; DATA.days.forEach(x => (x.items || []).forEach(it => srcs.push([x, it])));
+  srcs.sort((a, b) => b[0].date.localeCompare(a[0].date));
+  const src = h("select", null, h("option", { value: "", text: "— Trống —" }), srcs.map(([x, it], k) => h("option", { value: k, text: dayLabel(x.date) + " · " + (it.t || "") + " " + (it.en || it.kind) })));
+  const clr = h("input", { type: "checkbox", checked: true });
+  dialog("Thêm buổi cử hành", h("div", { class: "grid" }, h("label", { class: "fld" }, h("span", { text: "Loại" }), kind), h("label", { class: "fld" }, h("span", { text: "Giờ" }), t),
+    h("label", { class: "fld wide" }, h("span", { text: "Chép cấu trúc từ" }), src), h("label", { class: "chk wide" }, clr, "Xoá phần riêng (bài đọc, bài hát, lời nguyện riêng)")),
+    [["Huỷ", null], ["Thêm", true, "primary"]]).then(ok => {
+      if (!ok) return;
+      const from = src.value === "" ? null : srcs[src.value][1];
+      const it = from ? clone(from) : { kind: kind.value, t: t.value, en: KIND_NAMES[kind.value] || "", blocks: [] };
+      it.t = t.value; if (!from) it.kind = kind.value; if (from && clr.checked) it.blocks = clearPropers(it.blocks || []); delete it.id; delete it.hide;
+      d.items.push(it); d.items.sort((a, b) => (a.t || "").localeCompare(b.t || "")); curI = d.items.indexOf(it); touch(true);
+    });
+}
+function moveItem(d, i, dir) { const j = i + dir; if (j < 0 || j >= d.items.length) return; const [x] = d.items.splice(i, 1); d.items.splice(j, 0, x); curI = j; touch(true); }
+
+/* ---------- preview ---------- */
+let pvPage = null, pvTimer = null, pvHTML = {};
+window.EDITOR_PREVIEW = null;
+function schedulePreview() { if ($("preview").hidden) return; clearTimeout(pvTimer); pvTimer = setTimeout(preview, 900); }
+async function preview() {
+  if (!DATA) return;
+  $("preview").hidden = false; $("layout").classList.add("pv");
+  const page = pvPage || SITE.pages[0][0];
+  const url = baseOf(SITE) + page;
+  try {
+    if (!pvHTML[url]) { const r = await fetch(url + "?t=" + Date.now(), { cache: "no-store" }); if (!r.ok) throw new Error(r.status); pvHTML[url] = await r.text(); }
+    window.EDITOR_PREVIEW = clone(DATA); window.EDITOR_PREVIEW.updated = (DATA.updated || "") + " · preview";
+    const it = curD && curD.items && curD.items[curI];
+    const hash = !curD ? "" : SITE.id === "english-mass" ? curD.date : it ? "s-" + (it.id || ("d" + curD.date.replace(/-/g, "") + "-" + (it.kind || "mass"))) + "-top" : "";
+    let html = pvHTML[url].replace(/document\.write\('<script src="[\w-]+-data\.js[^;]*\);/, "");
+    html = html.replace(/<head([^>]*)>/i, '<head$1><base href="' + baseOf(SITE) + '"><script>' + (hash ? 'try{location.hash=' + JSON.stringify(hash) + '}catch(e){}' : "") + '<\/script>');
+    const f = $("pv"), y = f.contentWindow ? f.contentWindow.scrollY : 0, same = f.dataset.page === page + "|" + hash;
+    f.dataset.page = page + "|" + hash;
+    f.onload = () => { if (same && y) try { f.contentWindow.scrollTo(0, y); } catch (e) {} };
+    f.srcdoc = html;
+  } catch (e) { $("pv").srcdoc = "<p style='font:15px system-ui;padding:20px'>Không mở được trang để xem trước (" + url + ": " + e.message + ").<br>Trang này cần được đưa lên web trước.</p>"; }
+}
+
+/* ---------- start ---------- */
+function initSites() {
+  const s = $("site");
+  s.append(...SITES.map(x => h("option", { value: x.id, text: x.name })));
+  const want = params.get("site") || (SITES.find(x => location.href.startsWith(x.base)) || SITES[0]).id;
+  SITE = SITES.find(x => x.id === want) || SITES[0]; s.value = SITE.id;
+  s.onchange = async () => {
+    if (dirty && !await ask("Đổi trang", "Thay đổi chưa lưu của trang này vẫn được giữ làm bản nháp trong trình duyệt. Đổi trang?", "Đổi", "Huỷ")) { s.value = SITE.id; return; }
+    SITE = SITES.find(x => x.id === s.value); curD = null; pvPage = null; fillPvPages(); $("pv").srcdoc = ""; load();
+  };
+  fillPvPages();
+}
+function fillPvPages() { const p = $("pv-page"); p.textContent = ""; p.append(...SITE.pages.map(([f, n]) => h("option", { value: f, text: n }))); p.onchange = () => { pvPage = p.value; preview(); }; }
+$("b-save").onclick = save;
+$("b-menu").onclick = menu;
+$("b-preview").onclick = () => { if ($("preview").hidden) preview(); else { $("preview").hidden = true; $("layout").classList.remove("pv"); } };
+$("pv-close").onclick = () => { $("preview").hidden = true; $("layout").classList.remove("pv"); };
+$("pv-reload").onclick = () => { pvHTML = {}; preview(); };
+window.addEventListener("beforeunload", e => { if (dirty) { e.preventDefault(); e.returnValue = ""; } });
+document.addEventListener("keydown", e => { if ((e.ctrlKey || e.metaKey) && e.key === "s") { e.preventDefault(); if (dirty) save(); } });
+new ResizeObserver(() => document.documentElement.style.setProperty("--toph", document.querySelector(".top").offsetHeight + "px")).observe(document.querySelector(".top"));
+initSites(); load();
+</script>
+</body>
+</html>

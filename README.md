@@ -1,29 +1,31 @@
 # English Mass · St. Joseph Convent
 
 Static site (GitHub Pages, no build step) for the English Mass at St. Joseph Convent.
-Two pages, one set of data:
+Two pages, one content file, one editor:
 
-| Page | What it shows |
+| File | What it is |
 |---|---|
-| `index.html` | **Mass texts**: the whole Order of Mass with the day's readings and prayers, each song and sung Mass part in its place (sheet music opens in place) |
+| `index.html` | **Mass texts**: the whole Order of Mass with the day's readings and prayers, each song and sung Mass part in its place |
 | `songs.html` | **Songs & practice**: sheet music with IPA, the recording (play button), for learning the songs |
+| `mass-data.js` | **All the content** of both pages: days → celebrations → blocks (readings, songs, prayers, rubrics…) |
+| `editor.html` | **The editor**: change, add or remove days, songs, readings, prayers and any part of the Mass, preview, and save straight to GitHub |
 
-Both pages read `data.js`, so a song changed there changes on both. Each song on the texts page has
-"Listen & practise", which opens the same song on `songs.html`; each week on `songs.html` has "Texts".
+## Weekly update (with the editor)
+1. Open `https://cantate-domino.github.io/english-mass/editor.html` (first time on a computer/phone: ⋯ → *Mã truy cập GitHub*).
+2. **＋ Thêm ngày** → date, name of the day, colour, "based on" a similar day (a Saturday, a memorial, a feast…);
+   the readings, songs and proper prayers of that day are cleared.
+3. In **Phần hay sửa**: choose the songs (ICLA number of the printed book, YouTube link, start second, sheet image),
+   paste the readings (one blank line between paragraphs; *Làm sạch văn bản dán từ USCCB*), the Alleluia verse, the prayers.
+4. **Xem trước** to check, then **Lưu lên web**. "Updated …" changes by itself; the pages show it within a minute.
 
-## Files
-- `data.js` – `SITE.updated` + `WEEKS`: date, feast, songs (entrance, offertory, communion?, recessional), sung Mass parts (`mass`)
-- `texts.js` – `TEXTS["YYYY-MM-DD"]`: readings, Gospel acclamation verse, proper prayers, Gloria/Creed (see the comment at the top)
-- `sheets/` – sheet music cut from the ICLA Song Book (`<song-title>.png`, `-ipa` with IPA, `-narrow` for phones)
-- `icons/` – Dominican seal
-- `tools/crop.py`, `tools/icla-index.json`, `tools/book-index.json` – cutting songs from the ICLA PDF; `tools/ipa/` – IPA overlay
+Anything else (Gloria, Creed, Universal Prayer, a rubric, a whole section): **Toàn bộ** → add / move / delete blocks,
+or *Chép phần từ ngày khác*. Every save is a commit: older versions stay in the GitHub history.
 
-## Weekly update
-1. Songs: add the Mass at the top of `WEEKS` in `data.js` (numbers follow the community's printed ICLA book).
-2. Texts: add the same date in `texts.js` (a reading not yet typed: `{ kind, cite, tba: true }`).
-3. Change `SITE.updated` (Vietnam time), commit and push.
-
-A Mass stays at the top until 12:00 noon (Vietnam time) on its day, then the next Mass opens (both pages).
-Past Masses appear on the texts page only when their texts were entered.
-
-`index.html#2026-11-07` opens that Mass; `songs.html#2026-11-07-entrance` opens that song.
+## Notes
+- Song numbers follow the community's printed (older) ICLA book; `num` → "ICLA No. …".
+- A day marked *Chỉ hiện ở trang tập hát* (`songsOnly`) is on `songs.html` only.
+- A Mass stays at the top until 12:00 noon (Vietnam time) on its day, then the next Mass opens (both pages).
+- `index.html#2026-11-07` opens that Mass; `songs.html#2026-11-07-entrance` opens that song.
+- `sheets/` sheet music (`<song-title>-ipa.png`, `-narrow` for phones), `icons/` Dominican seal,
+  `tools/` cutting songs from the ICLA PDF and the IPA overlay.
+- Until 05/11/2026 the content was in `data.js` + `texts.js` and built by the page; those two files are no longer used.

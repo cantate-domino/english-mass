@@ -447,7 +447,7 @@ html.offline .pdfdl, html.offline .foot a[href$=".pdf"] { display: none; }
     <div style="min-width:0">
       <div class="t1" id="t-title">English Mass</div>
       <div class="t2" id="t-sub" hidden></div>
-      <!-- Version stamp: filled from SITE.updated in data.js -->
+      <!-- Version stamp: filled from "updated" in mass-data.js -->
       <div class="t3" id="t-upd"></div>
       <div class="t3 offl" id="t-off" hidden>Offline · saved copy</div>
     </div>
@@ -481,496 +481,41 @@ html.offline .pdfdl, html.offline .foot a[href$=".pdf"] { display: none; }
   <span class="credit">St. Joseph Convent · English Mass</span>
 </footer>
 
-<script src="data.js"></script>
-<script src="texts.js"></script>
+<script>/* All the content (days, readings, prayers, songs) is in mass-data.js — edited with editor.html.
+   A new file name every minute, so a change is seen at once (GitHub keeps files 10 minutes). */
+document.write('<script src="mass-data.js?v=' + Math.floor(Date.now() / 6e4) + '"><\/script>');</script>
 <script>
-/* ---------- Readings with translation ----------
-   Texts exactly as provided by the Liturgy Committee
-   ("2026.10.25 - Thirtieth Sunday in Ordinary Time.docx"), only split by verse so the two languages line up.
-   chunks: [verse label, English, Vietnamese] */
-const LECT = o => ({ k: "lect", ...o });
-
-const RD = {};   // readings are in texts.js
-const ALLELUIA_VI = {
-  "John 14:23": "Chúa nói : Ai yêu mến Thầy, thì sẽ giữ lời Thầy. Cha Thầy sẽ yêu mến người ấy. Cha Thầy và Thầy sẽ đến với người ấy."
-};
-
-const HOURS25 = {}, HOURS29 = {}, HOURS2628 = {}, HOURS2931 = {};   // no Liturgy of the Hours on this page
-/* Gloria and Sanctus: text as provided by the Liturgy Committee ("Lyrics of all mass hymns.docx") */
-const MASSTEXT = {"gloria": "Glory to God in the highest,\nand on earth peace to people of good will.\nWe praise you,\nwe bless you,\nwe adore you,\nwe glorify you,\nwe give you thanks for your great glory,\nLord God, heavenly King,\nO God almighty Father.\nLord Jesus Christ, Only Begotten Son,\nLord God, Lamb of God, Son of The Father,\nyou take away the sins of the world,\nhave mercy on us;\nyou take away the sins of the world,\nreceive our prayer;\nyou are seated at the right hand of the Father\nhave mercy on us.\nFor you alone are the Holy One,\nyou alone are the Lord,\nyou alone are the Most High,\nJesus Christ,\nwith the Holy Spirit,\nin the glory of God the Father.\nAmen.", "sanctus": "Holy, Holy, Holy Lord God of hosts. Heav'n and earth are full of your glory. Hosanna! Hosanna in the highest. Blessed is he who comes in the name of the Lord. Hosanna! Hosanna in the highest."};
-
-/* ---------- builders ---------- */
-const H = (en, vi, id) => ({ k: "h", en, vi, id });
-const R = (en, vi) => ({ k: "r", en, vi });
-const V = (...lines) => ({ k: "v", lines });            // lines: [who, text] ; who: "V" | "R" | "P" | "D" | "L" | "A"
-const LAT = (title, text, en, vi) => ({ k: "lat", title, text, en, vi });
-const SONG = (partEn, partVi, title, by, no, pdf, lyrics) => ({ k: "song", partEn, partVi, title, by, no, pdf, lyrics });   // lyrics: optional words under the title (27/10)
-const MUSIC = (pdf) => ({ k: "music", pdf });
-const READ = o => ({ k: "read", ...o });
-const BOOK = (en, vi) => ({ k: "book", en, vi });
-const PF = o => ({ k: "pf", ...o });
-const PS = (items) => ({ k: "ps", items });
-/* Fixed texts of the Order of Mass and propers of the 30th Sunday in Ordinary Time (Roman Missal, English translation 2011) */
-const MISSAL = {"penInv": "Brethren (brothers and sisters), let us acknowledge our sins,\nand so prepare ourselves to celebrate the sacred mysteries.", "creed": "I believe in one God,\nthe Father almighty,\nmaker of heaven and earth,\nof all things visible and invisible.\nI believe in one Lord Jesus Christ,\nthe Only Begotten Son of God,\nborn of the Father before all ages.\nGod from God, Light from Light,\ntrue God from true God,\nbegotten, not made, consubstantial with the Father;\nthrough him all things were made.\nFor us men and for our salvation\nhe came down from heaven,\nand by the Holy Spirit was incarnate of the Virgin Mary,\nand became man.\nFor our sake he was crucified under Pontius Pilate,\nhe suffered death and was buried,\nand rose again on the third day\nin accordance with the Scriptures.\nHe ascended into heaven\nand is seated at the right hand of the Father.\nHe will come again in glory\nto judge the living and the dead\nand his kingdom will have no end.\nI believe in the Holy Spirit, the Lord, the giver of life,\nwho proceeds from the Father and the Son,\nwho with the Father and the Son is adored and glorified,\nwho has spoken through the prophets.\nI believe in one, holy, catholic and apostolic Church.\nI confess one Baptism for the forgiveness of sins\nand I look forward to the resurrection of the dead\nand the life of the world to come. Amen.", "bread": "Blessed are you, Lord God of all creation,\nfor through your goodness we have received\nthe bread we offer you:\nfruit of the earth and work of human hands,\nit will become for us the bread of life.", "wine": "Blessed are you, Lord God of all creation,\nfor through your goodness we have received\nthe wine we offer you:\nfruit of the vine and work of human hands,\nit will become our spiritual drink.", "orate": "Pray, brethren (brothers and sisters),\nthat my sacrifice and yours\nmay be acceptable to God,\nthe almighty Father.", "suscipiat": "May the Lord accept the sacrifice at your hands\nfor the praise and glory of his name,\nfor our good\nand the good of all his holy Church.", "sanctus": "Holy, Holy, Holy Lord God of hosts.\nHeaven and earth are full of your glory.\nHosanna in the highest.\nBlessed is he who comes in the name of the Lord.\nHosanna in the highest.", "mysterium": "We proclaim your Death, O Lord,\nand profess your Resurrection\nuntil you come again.", "doxology": "Through him, and with him, and in him,\nO God, almighty Father,\nin the unity of the Holy Spirit,\nall glory and honor is yours,\nfor ever and ever.", "paterInv": "At the Savior's command\nand formed by divine teaching,\nwe dare to say:", "embolism": "Deliver us, Lord, we pray, from every evil,\ngraciously grant peace in our days,\nthat, by the help of your mercy,\nwe may be always free from sin\nand safe from all distress,\nas we await the blessed hope\nand the coming of our Savior, Jesus Christ.", "pax": "Lord Jesus Christ,\nwho said to your Apostles:\nPeace I leave you, my peace I give you,\nlook not on our sins,\nbut on the faith of your Church,\nand graciously grant her peace and unity\nin accordance with your will.\nWho live and reign for ever and ever.", "ecce": "Behold the Lamb of God,\nbehold him who takes away the sins of the world.\nBlessed are those called to the supper of the Lamb.", "domine": "Lord, I am not worthy\nthat you should enter under my roof,\nbut only say the word\nand my soul shall be healed.", "po30": "Look, we pray, O Lord,\non the offerings we make to your majesty,\nthat whatever is done by us in your service\nmay be directed above all to your glory.\nThrough Christ our Lord.", "ea30": ["Let the hearts that seek the Lord rejoice;\nturn to the Lord and his strength;\nconstantly seek his face.", "Cf. Ps 105 (104): 3-4"], "ca30": [["We will ring out our joy at your saving help\nand exult in the name of our God.", "Cf. Ps 20 (19): 6"], ["Christ loved us and gave himself up for us,\nas a fragrant offering to God.", "Eph 5: 2"]], "pc30": "May your Sacraments, O Lord, we pray,\nperfect in us what lies within them,\nthat what we now celebrate in signs\nwe may one day possess in truth.\nThrough Christ our Lord."};
-const SLOT = (who, en, vi, full) => ({ k: "slot", who, en, vi, full });   // priest/people text from the Roman Missal, not reproduced             // psalmody list [[label, cite]]
-
-const LINKS = {
-  booklet25mass: "https://1drv.ms/b/c/af83d231d43518d9/IQABH2NnvHX5TYYJ7aH94xmQAXQfNHmkI0V1PGn0oovLHkI?e=baTTPb",
-  booklet25lauds: "https://1drv.ms/w/c/af83d231d43518d9/IQA3UwCc0pAORoFQPnp0lbG4AYuMYO20mBODExjfAl4gOPE?e=uIhump",
-  folder29: "https://drive.google.com/drive/folders/1sYoNmN2vEuOmZ9wh8Yvlb3yD7myNWNG_?usp=drive_link",
-  // "Read on iBreviary" opens the app: iPhone/iPad → App Store, Android → Google Play
-  // (the store page shows "Open" if the app is installed, "Install" if not); computers → iBreviary web
-  ibreviary: /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
-    ? "https://apps.apple.com/app/id422601705"
-    : /Android/.test(navigator.userAgent)
-      ? "https://play.google.com/store/apps/details?id=com.netguru.ibreviary"
-      : "https://www.ibreviary.com/m2/breviario.php"
-};
-
-/* ---------- common Latin texts (public domain) ---------- */
-const LA = {
-  gloriaPatri: "Gloria Patri, et Filio, et Spiritui Sancto.\nSicut erat in principio, et nunc et semper, et in saecula saeculorum. Amen.",
-  deus: "℣ Deus, in adiutorium meum intende.\n℟ Domine, ad adiuvandum me festina.",
-  confiteor: "Confiteor Deo omnipotenti et vobis, fratres, quia peccavi nimis cogitatione, verbo, opere et omissione: mea culpa, mea culpa, mea maxima culpa. Ideo precor beatam Mariam semper Virginem, omnes Angelos et Sanctos, et vos, fratres, orare pro me ad Dominum Deum nostrum.",
-  kyrie: "Kyrie, eleison. ℟ Kyrie, eleison.\nChriste, eleison. ℟ Christe, eleison.\nKyrie, eleison. ℟ Kyrie, eleison.",
-  gloria: "Gloria in excelsis Deo et in terra pax hominibus bonae voluntatis. Laudamus te, benedicimus te, adoramus te, glorificamus te, gratias agimus tibi propter magnam gloriam tuam, Domine Deus, Rex caelestis, Deus Pater omnipotens.\nDomine Fili unigenite, Iesu Christe, Domine Deus, Agnus Dei, Filius Patris, qui tollis peccata mundi, miserere nobis; qui tollis peccata mundi, suscipe deprecationem nostram. Qui sedes ad dexteram Patris, miserere nobis.\nQuoniam tu solus Sanctus, tu solus Dominus, tu solus Altissimus, Iesu Christe, cum Sancto Spiritu: in gloria Dei Patris. Amen.",
-  credo: "Credo in unum Deum, Patrem omnipotentem, factorem caeli et terrae, visibilium omnium et invisibilium.\nEt in unum Dominum Iesum Christum, Filium Dei unigenitum, et ex Patre natum ante omnia saecula. Deum de Deo, lumen de lumine, Deum verum de Deo vero, genitum, non factum, consubstantialem Patri: per quem omnia facta sunt. Qui propter nos homines et propter nostram salutem descendit de caelis. Et incarnatus est de Spiritu Sancto ex Maria Virgine, et homo factus est. Crucifixus etiam pro nobis sub Pontio Pilato; passus et sepultus est, et resurrexit tertia die, secundum Scripturas, et ascendit in caelum, sedet ad dexteram Patris. Et iterum venturus est cum gloria, iudicare vivos et mortuos, cuius regni non erit finis.\nEt in Spiritum Sanctum, Dominum et vivificantem: qui ex Patre Filioque procedit. Qui cum Patre et Filio simul adoratur et conglorificatur: qui locutus est per prophetas. Et unam, sanctam, catholicam et apostolicam Ecclesiam. Confiteor unum baptisma in remissionem peccatorum. Et exspecto resurrectionem mortuorum, et vitam venturi saeculi. Amen.",
-  suscipiat: "Suscipiat Dominus sacrificium de manibus tuis ad laudem et gloriam nominis sui, ad utilitatem quoque nostram totiusque Ecclesiae suae sanctae.",
-  sursum: "℣ Dominus vobiscum. ℟ Et cum spiritu tuo.\n℣ Sursum corda. ℟ Habemus ad Dominum.\n℣ Gratias agamus Domino Deo nostro. ℟ Dignum et iustum est.",
-  sanctus: "Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth. Pleni sunt caeli et terra gloria tua. Hosanna in excelsis.\nBenedictus qui venit in nomine Domini. Hosanna in excelsis.",
-  mysterium: "Mortem tuam annuntiamus, Domine, et tuam resurrectionem confitemur, donec venias.",
-  pater: "Pater noster, qui es in caelis, sanctificetur nomen tuum. Adveniat regnum tuum. Fiat voluntas tua, sicut in caelo et in terra. Panem nostrum quotidianum da nobis hodie, et dimitte nobis debita nostra, sicut et nos dimittimus debitoribus nostris. Et ne nos inducas in tentationem; sed libera nos a malo.\n℟ Quia tuum est regnum, et potestas, et gloria in saecula.",
-  agnus: "Agnus Dei, qui tollis peccata mundi: miserere nobis.\nAgnus Dei, qui tollis peccata mundi: miserere nobis.\nAgnus Dei, qui tollis peccata mundi: dona nobis pacem.",
-  nonsum: "Domine, non sum dignus, ut intres sub tectum meum: sed tantum dic verbo, et sanabitur anima mea.",
-  benedictus: "Benedictus Dominus, Deus Israel, quia visitavit et fecit redemptionem plebi suae,\net erexit cornu salutis nobis in domo David pueri sui,\nsicut locutus est per os sanctorum, qui a saeculo sunt, prophetarum eius,\nsalutem ex inimicis nostris et de manu omnium, qui oderunt nos;\nad faciendam misericordiam cum patribus nostris et memorari testamenti sui sancti,\niusiurandum, quod iuravit ad Abraham patrem nostrum, daturum se nobis,\nut sine timore, de manu inimicorum liberati, serviamus illi\nin sanctitate et iustitia coram ipso omnibus diebus nostris.\nEt tu, puer, propheta Altissimi vocaberis: praeibis enim ante faciem Domini parare vias eius,\nad dandam scientiam salutis plebi eius in remissionem peccatorum eorum,\nper viscera misericordiae Dei nostri, in quibus visitabit nos oriens ex alto,\nilluminare his, qui in tenebris et in umbra mortis sedent,\nad dirigendos pedes nostros in viam pacis.",
-  magnificat: "Magnificat anima mea Dominum,\net exsultavit spiritus meus in Deo salvatore meo,\nquia respexit humilitatem ancillae suae.\nEcce enim ex hoc beatam me dicent omnes generationes,\nquia fecit mihi magna, qui potens est, et sanctum nomen eius,\net misericordia eius in progenies et progenies timentibus eum.\nFecit potentiam in brachio suo, dispersit superbos mente cordis sui;\ndeposuit potentes de sede et exaltavit humiles;\nesurientes implevit bonis et divites dimisit inanes.\nSuscepit Israel puerum suum, recordatus misericordiae,\nsicut locutus est ad patres nostros, Abraham et semini eius in saecula.",
-  nunc: "Nunc dimittis servum tuum, Domine, secundum verbum tuum in pace,\nquia viderunt oculi mei salutare tuum,\nquod parasti ante faciem omnium populorum,\nlumen ad revelationem gentium et gloriam plebis tuae Israel.",
-  salve: "Salve, Regina, mater misericordiae, vita, dulcedo, et spes nostra, salve.\nAd te clamamus, exsules filii Hevae.\nAd te suspiramus, gementes et flentes in hac lacrimarum valle.\nEia ergo, advocata nostra, illos tuos misericordes oculos ad nos converte.\nEt Iesum, benedictum fructum ventris tui, nobis post hoc exsilium ostende.\nO clemens, O pia, O dulcis Virgo Maria.",
-  ospem: "O spem miram quam dedisti\nmortis hora te flentibus,\ndum post mortem promisisti\nte profuturum fratribus:\nImple, Pater, quod dixisti,\nnos tuis juvans precibus.\nQui tot signis claruisti\nin aegrorum corporibus,\nnobis opem ferens Christi,\naegris medere moribus.\nImple, Pater, quod dixisti,\nnos tuis juvans precibus.",
-  olumen: "O lumen Ecclesiae, doctor veritatis,\nrosa patientiae, ebur castitatis,\naquam sapientiae propinasti gratis:\npraedicator gratiae, nos iunge beatis."
-};
-const EN = {
-  ospem: "O wonderful hope you gave to those who wept for you at the hour of your death, when you promised that after death you would help your brothers: fulfil, Father, what you said, and help us by your prayers. You who shone with so many signs of healing in the bodies of the sick, bring us the help of Christ and heal our sick souls.",
-  olumen: "O light of the Church, teacher of truth,\nrose of patience, ivory of chastity,\nyou freely poured out the water of wisdom:\npreacher of grace, unite us with the blessed.",
-  ourFather: "Our Father, who art in heaven, hallowed be thy name; thy kingdom come, thy will be done on earth as it is in heaven. Give us this day our daily bread, and forgive us our trespasses, as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil."
-};
-
-const VI = {
-  ospem: "Ôi niềm hy vọng lạ lùng Cha đã trao cho những người khóc thương Cha trong giờ lâm tử, khi Cha hứa sau khi qua đời sẽ giúp đỡ anh em: Lạy Cha, xin giữ lời Cha đã hứa, lấy lời cầu bầu mà phù trợ chúng con. Cha đã rạng danh bởi bao dấu lạ chữa lành thân xác bệnh nhân, xin đem ơn Đức Kitô đến cho chúng con và chữa lành những tâm hồn yếu đau."
-};
-
-const HYMN_AUDIO = {};
-const HYMN_BY_KEY = {};
-const HTML = (html, sec, mass) => ({ k: "html", html, sec, mass });   // sec: which part of the Hour (for the role labels)
-const SONG_SCORE = {};
-const EP_TEXT = {"2":{"name":"Eucharistic Prayer II","prefRub":"Although it is provided with its own Preface, this Eucharistic Prayer may also be used with other Prefaces, especially those that present an overall view of the mystery of salvation, such as the Common Prefaces.","pref":"It is truly right and just, our duty and salvation,\nalways and everywhere to give you thanks, Father most holy,\nthrough your beloved Son, Jesus Christ,\nyour Word through whom you made all things,\nwhom you sent as our Savior and Redeemer,\nincarnate by the Holy Spirit and born of the Virgin.\nFulfilling your will and gaining for you a holy people,\nhe stretched out his hands as he endured his Passion,\nso as to break the bonds of death and manifest the resurrection.\nAnd so, with the Angels and all the Saints\nwe declare your glory,\nas with one voice we acclaim:","pre":[["r","The Priest, with hands extended, says:"],["P","You are indeed Holy, O Lord,\nthe fount of all holiness."],["r","He joins his hands and, holding them extended over the offerings, says:"],["P","Make holy, therefore, these gifts, we pray,\nby sending down your Spirit upon them like the dewfall,"],["r","He joins his hands and makes the Sign of the Cross once over the bread and the chalice together, saying:"],["P","so that they may become for us\nthe Body and ✠ Blood of our Lord Jesus Christ."],["r","He joins his hands."],["r","In the formulas that follow, the words of the Lord should be pronounced clearly and distinctly, as the nature of these words requires."],["P","At the time he was betrayed\nand entered willingly into his Passion,"],["r","He takes the bread and, holding it slightly raised above the altar, continues:"],["P","he took bread and, giving thanks, broke it,\nand gave it to his disciples, saying:"],["r","He bows slightly."],["P","TAKE THIS, ALL OF YOU, AND EAT OF IT,\n\nFOR THIS IS MY BODY,\nWHICH WILL BE GIVEN UP FOR YOU."],["r","He shows the consecrated host to the people, places it again on the paten, and genuflects in adoration."],["r","After this, he continues:"],["P","In a similar way, when supper was ended,"],["r","He takes the chalice and, holding it slightly raised above the altar, continues:"],["P","he took the chalice\nand, once more giving thanks,\nhe gave it to his disciples, saying:"],["r","He bows slightly."],["P","TAKE THIS, ALL OF YOU, AND DRINK FROM IT,\n\nFOR THIS IS THE CHALICE OF MY BLOOD,\nTHE BLOOD OF THE NEW AND ETERNAL COVENANT,\nWHICH WILL BE POURED OUT FOR YOU AND FOR MANY\nFOR THE FORGIVENESS OF SINS.\n\nDO THIS IN MEMORY OF ME."],["r","He shows the chalice to the people, places it on the corporal, and genuflects in adoration."]],"post":[["r","Then the Priest, with hands extended, says:"],["P","Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit.\n\nRemember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand John our Bishop, Dominic his Auxiliary Bishop,\nand all the clergy.\n\nRemember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"],["r","He joins his hands."],["P","through your Son, Jesus Christ."]]},"3":{"name":"Eucharistic Prayer III","pre":[["r","The Priest, with hands extended, says:"],["P","You are indeed Holy, O Lord,\nand all you have created rightly gives you praise,\nfor through your Son our Lord Jesus Christ,\nby the power and working of the Holy Spirit,\nyou give life to all things and make them holy,\nand you never cease to gather a people to yourself,\nso that from the rising of the sun to its setting\na pure sacrifice may be offered to your name."],["r","He joins his hands and, holding them extended over the offerings, says:"],["P","Therefore, O Lord, we humbly implore you:\nby the same Spirit graciously make holy\nthese gifts we have brought to you for consecration,"],["r","He joins his hands and makes the Sign of the Cross once over the bread and chalice together, saying:"],["P","that they may become the Body and ✠ Blood\nof your Son our Lord Jesus Christ,"],["r","He joins his hands."],["P","at whose command we celebrate these mysteries."],["r","In the formulas that follow, the words of the Lord should be pronounced clearly and distinctly, as the nature of these words requires."],["P","For on the night he was betrayed"],["r","He takes the bread and, holding it slightly raised above the altar, continues:"],["P","he himself took bread,\nand, giving you thanks, he said the blessing,\nbroke the bread and gave it to his disciples, saying:"],["r","He bows slightly."],["P","TAKE THIS, ALL OF YOU, AND EAT OF IT,\n\nFOR THIS IS MY BODY,\nWHICH WILL BE GIVEN UP FOR YOU."],["r","He shows the consecrated host to the people, places it again on the paten, and genuflects in adoration."],["r","After this, he continues:"],["P","In a similar way, when supper was ended,"],["r","He takes the chalice and, holding it slightly raised above the altar, continues:"],["P","he took the chalice,\nand, giving you thanks, he said the blessing,\nand gave the chalice to his disciples, saying:"],["r","He bows slightly."],["P","TAKE THIS, ALL OF YOU, AND DRINK FROM IT,\n\nFOR THIS IS THE CHALICE OF MY BLOOD,\nTHE BLOOD OF THE NEW AND ETERNAL COVENANT,\nWHICH WILL BE POURED OUT FOR YOU AND FOR MANY\nFOR THE FORGIVENESS OF SINS.\n\nDO THIS IN MEMORY OF ME."],["r","He shows the chalice to the people, places it on the corporal, and genuflects in adoration."]],"post":[["r","Then the Priest, with hands extended, says:"],["P","Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ.\n\nMay he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help.\n\nMay this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand John our Bishop, Dominic his Auxiliary Bishop,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"],["r","He joins his hands."],["P","through Christ our Lord,\nthrough whom you bestow on the world all that is good."]]}};
-const EP_VI = { 2: "Kinh nguyện Thánh Thể II", 3: "Kinh nguyện Thánh Thể III" };
-/* The local bishops named in the Eucharistic Prayer (GIRM 149). EP_TEXT has those of Xuân Lộc (St. Martin, Biên Hòa);
-   a Mass celebrated elsewhere gives its own in mass({ bishop }) — 1 Nov at St. Joseph Convent is in the Archdiocese of
-   Saigon: Archbishop Joseph (Giuse) Nguyễn Năng, auxiliaries Joseph (Giuse) Bùi Công Trác and John Baptist (Gioan Baotixita)
-   Nguyễn Quang Tuyến (ordained 23 Jun 2026) (anh Khải 31/10). */
-const EP_BISHOPS_XL = "John our Bishop, Dominic his Auxiliary Bishop";
-let EP_BISHOPS = null;
-const EPB = (n, part) => { let seen = false; return EP_TEXT[n][part].map(([w, t]) => { if (EP_BISHOPS) t = t.replace(EP_BISHOPS_XL, EP_BISHOPS); if (w === "r") return { ...R(t, ""), ep: n }; const b = { ...V([w, t]), ep: n, cont: seen }; seen = true; return b; }); };   // PRIEST label only on the first text of each part
-function mass(o) {
-  EP_BISHOPS = o.bishop || null;
-  const S = o.songs, L = o.readings;
-  const out = [];
-  /* Headings, rubrics and texts follow The Roman Missal (Order of Mass, nos. 1–144; English translation 2011) */
-  out.push(H("The Introductory Rites", "Nghi thức Đầu lễ", "intro"));
-  if (o.laudsOpen) {
-    /* Order given by the Dominican Family of the Philippines for 26 Oct (25/10): Hymn · Procession · "Lord, open my lips" ·
-       Invitatory · Psalmody · Collect; Mass as usual; after Communion the Canticle of Zechariah; conclusion. */
-    out.push({ k: "sub", en: "Entrance Hymn", vi: "Thánh thi Nhập lễ" });
-    out.push(R("All stand. The Hymn is sung as the Entrance Hymn, during the entrance procession of the Priest and the ministers.", "Mọi người đứng. Hát Thánh thi làm bài Nhập lễ, trong khi chủ tế và các thừa tác viên tiến lên bàn thờ."));
-    out.push({ k: "hymn", html: o.laudsOpen.hymn, h: o.laudsOpen.audio });
-    out.push(R("When he has arrived at the altar, after making a profound bow with the ministers, the Priest venerates the altar with a kiss and, if appropriate, incenses the cross and the altar. Then, with the ministers, he goes to the chair.", ""));
-    out.push(H("Invitatory", "Giáo đầu", "invitatory"));
-    out.push(R("Lauds is joined to Mass (GILH 94). At the chair, the Priest begins with the Invitatory, signing his lips with the cross:", "Kinh Sáng nối với Thánh lễ (QCTQ số 94). Tại ghế chủ tọa, chủ tế bắt đầu bằng Giáo đầu, vạch dấu thánh giá trên môi:"));
-    out.push(HTML(o.laudsOpen.invitatory, "invitatory", true));
-    out.push(H("Psalmody of Lauds", "Ca vịnh Kinh Sáng", "psalmody"));
-    out.push(R("The psalmody of Lauds follows. The Penitential Act and Kyrie are omitted.", "Tiếp theo là phần ca vịnh Kinh Sáng. Bỏ nghi thức sám hối và Kinh Thương xót."));
-    out.push(HTML(o.laudsText.psalmody, "psalmody", true));
-  } else {
-  out.push(R("When the people are gathered, the Priest approaches the altar with the ministers while the Entrance Chant is sung.", ""));
-  if (o.entranceHymn) {   // the hymn of Lauds sung as the Entrance Chant (anh Khải 26/10, for 27 Oct)
-    out.push({ k: "sub", en: "Entrance Hymn", vi: "Thánh thi Nhập lễ" });
-    out.push(R("The Hymn of Lauds is sung as the Entrance Hymn.", "Hát Thánh thi Kinh Sáng làm bài Nhập lễ."));
-    out.push(HTML(o.entranceHymn, "hymn", true));
-  } else if (!o.recited || S.entrance[0]) out.push(SONG("Entrance Chant", "Ca Nhập lễ", S.entrance[0], S.entrance[1], S.entrance[2], S.entrance[3], S.entrance[4]));   // recited: Mass without singing (anh Khải 29/10, for 30–31 Oct)
-  if (o.ea) { out.push({ k: "sub", en: "Entrance Antiphon", vi: "Ca Nhập lễ" }); out.push({ k: "ant", text: o.ea[0], cite: o.ea[1], proper: true, keep: !!o.recited && !S.entrance[0] }); }
-  out.push(R("When he has arrived at the altar, after making a profound bow with the ministers, the Priest venerates the altar with a kiss and, if appropriate, incenses the cross and the altar. Then, with the ministers, he goes to the chair.", ""));
-  out.push(R("When the Entrance Chant is concluded, the Priest and the faithful, standing, sign themselves with the Sign of the Cross, while the Priest, facing the people, says:", ""));
-  out.push(V(["P", "In the name of the Father, and of the Son, and of the Holy Spirit."]));
-  out.push(R("The people reply:", ""));
-  out.push(V(["R", "Amen."]));
-  out.push(R("Then the Priest, extending his hands, greets the people, saying:", ""));
-  out.push(V(["P", "The Lord be with you."]));
-  out.push(R("The people reply:", ""));
-  out.push(V(["R", "And with your spirit."]));
-  out.push(R("The Priest, or a Deacon, or another minister, may very briefly introduce the faithful to the Mass of the day.", ""));
-  if (o.lauds) {
-    out.push(H("Psalmody of Lauds", "Ca vịnh Kinh Sáng", "psalmody"));
-    out.push(R("Lauds is joined to Mass (GILH 94): after the greeting, the psalmody of Lauds follows. The Penitential Act and Kyrie are omitted.",
-      "Kinh Sáng nối với Thánh lễ (QCTQ Phụng vụ Giờ kinh, số 94): sau lời chào là phần ca vịnh Kinh Sáng. Bỏ nghi thức sám hối và Kinh Thương xót."));
-    if (o.psalmsRecited) out.push(R("On Thursday the psalms are recited.", "Thứ Năm: các ca vịnh ĐỌC."));
-    if (o.laudsText) out.push(HTML(o.laudsText.psalmody, "psalmody", true));
-    else { out.push(PS(o.lauds)); out.push(BOOK("Antiphons and psalm texts: booklet or iBreviary.", "Tiền xướng và bản văn thánh vịnh: sách hoặc iBreviary.")); }
-  } else {
-    /* Penitential Act: the three forms of the Roman Missal (Order of Mass 4–6), chosen like the Eucharistic Prayer (anh Khải 04/11).
-       pa: [forms] = the block belongs only to those forms; with Form 3 (invocations) the Kyrie that follows is omitted. */
-    const PA = (forms, b) => ({ ...b, pa: forms });
-    out.push(H("Penitential Act", "Nghi thức Sám hối", "penitential"));
-    out.push({ k: "pasel" });
-    out.push(R("Then follows the Penitential Act, to which the Priest invites the faithful, saying:", ""));
-    out.push(V(["P", MISSAL.penInv]));
-    out.push(R("A brief pause for silence follows.", ""));
-    // Form 1: the Confiteor
-    out.push(PA([1], R("Then all recite together the formula of general confession:", "")));
-    out.push(PA([1], V(["A", "I confess to almighty God\nand to you, my brothers and sisters,\nthat I have greatly sinned,\nin my thoughts and in my words,\nin what I have done and in what I have failed to do,"])));
-    out.push(PA([1], R("And, striking their breast, they say:", "")));
-    out.push(PA([1], V(["A", "through my fault, through my fault,\nthrough my most grievous fault;"])));
-    out.push(PA([1], R("Then they continue:", "")));
-    out.push(PA([1], V(["A", "therefore I ask blessed Mary ever-Virgin,\nall the Angels and Saints,\nand you, my brothers and sisters,\nto pray for me to the Lord our God."])));
-    // Form 2
-    out.push(PA([2], R("The Priest then says:", "")));
-    out.push(PA([2], V(["P", "Have mercy on us, O Lord."])));
-    out.push(PA([2], R("The people reply:", "")));
-    out.push(PA([2], V(["R", "For we have sinned against you."])));
-    out.push(PA([2], R("The Priest:", "")));
-    out.push(PA([2], V(["P", "Show us, O Lord, your mercy."])));
-    out.push(PA([2], R("The people:", "")));
-    out.push(PA([2], V(["R", "And grant us your salvation."])));
-    // Form 3: invocations with Kyrie (Missal, Appendix VI, first set)
-    out.push(PA([3], R("The Priest, or a Deacon or another minister, then says the following or other invocations with Kyrie, eleison (Lord, have mercy):", "")));
-    if (S.setting) out.push(PA([3], R("Sung: " + S.setting + ".", "Hát: " + S.setting + ".")));
-    if (S.music && S.music.kyrie) out.push(PA([3], MUSIC(S.music.kyrie)));
-    out.push(PA([3], V(["P", "You were sent to heal the contrite of heart:\nLord, have mercy."], ["R", "Lord, have mercy."],
-                       ["P", "You came to call sinners:\nChrist, have mercy."], ["R", "Christ, have mercy."],
-                       ["P", "You are seated at the right hand of the Father to intercede for us:\nLord, have mercy."], ["R", "Lord, have mercy."])));
-    out.push(R("The absolution by the Priest follows:", ""));
-    out.push(V(["P", "May almighty God have mercy on us,\nforgive us our sins,\nand bring us to everlasting life."]));
-    out.push(R("The people reply:", ""));
-    out.push(V(["R", "Amen."]));
-    // Kyrie: not after Form 3, where it has just been said
-    out.push(PA([1, 2], H("Kyrie", "Kinh Thương xót", "kyrie")));
-    out.push(PA([1, 2], R("The “Kyrie, eleison (Lord, have mercy)” invocations follow, unless they have just occurred in a formula of the Penitential Act.", "")));
-    if (S.setting) out.push(PA([1, 2], R("Sung: " + S.setting + ".", "Hát: " + S.setting + ".")));
-    if (S.music && S.music.kyrie) out.push(PA([1, 2], MUSIC(S.music.kyrie)));   // sheet right under the heading (anh Khải 31/10)
-    out.push(PA([1, 2], V(["P", "Lord, have mercy."], ["R", "Lord, have mercy."], ["P", "Christ, have mercy."], ["R", "Christ, have mercy."], ["P", "Lord, have mercy."], ["R", "Lord, have mercy."])));
-  }
-  }   // end of the usual opening (not o.laudsOpen)
-  if (o.gloria) {
-    out.push(H("Gloria", "Kinh Vinh danh", "gloria"));
-    out.push(R("Then, when it is prescribed, this hymn is either sung or said:", ""));
-    if (S.setting) out.push(R("Sung: " + S.setting + ".", "Hát: " + S.setting + "."));
-    if (S.music && S.music.gloria) out.push(MUSIC(S.music.gloria));
-    out.push(o.gloriaText ? V(["A", o.gloriaText]) : V(["A", "Glory to God in the highest,\nand on earth peace to people of good will.\nWe praise you,\nwe bless you,\nwe adore you,\nwe glorify you,\nwe give you thanks for your great glory,\nLord God, heavenly King,\nO God, almighty Father.\nLord Jesus Christ, Only Begotten Son,\nLord God, Lamb of God, Son of the Father,\nyou take away the sins of the world,\nhave mercy on us;\nyou take away the sins of the world,\nreceive our prayer;\nyou are seated at the right hand of the Father,\nhave mercy on us.\nFor you alone are the Holy One,\nyou alone are the Lord,\nyou alone are the Most High,\nJesus Christ,\nwith the Holy Spirit,\nin the glory of God the Father.\nAmen."]));
-    out.push(LAT("Gloria in excelsis", LA.gloria));
-  }
-  out.push(H("Collect", "Lời nguyện Nhập lễ", "collect"));
-  out.push(R(o.gloria ? "When this hymn is concluded, the Priest, with hands joined, says:" : "The Priest, with hands joined, says:", ""));
-  out.push(V(["P", "Let us pray."]));
-  out.push(R("And all pray in silence with the Priest for a while.", ""));
-  out.push(R("Then the Priest, with hands extended, says the Collect prayer, at the end of which the people acclaim:", ""));
-  out.push(o.collect ? { k: "v", lines: [["P", o.collect]], proper: true } : SLOT("P", "Collect of the day", "Lời nguyện Nhập lễ trong ngày"));
-  if (o.collect && o.collectNote) out.push(R(o.collectNote[0], o.collectNote[1]));
-  out.push(V(["R", "Amen."]));
-
-  out.push(H("The Liturgy of the Word", "Phụng vụ Lời Chúa", "word"));
-  if (o.audio) out.push({ k: "audio", id: o.audio });   // USCCB recording of the day's readings (SoundCloud), anh Khải 04/11
-  L.forEach(r => {
-    if (r.kind === "first") out.push(R("Then the reader goes to the ambo and reads the First Reading, while all sit and listen.", ""));
-    if (r.kind === "psalm") out.push(R("The psalmist or cantor sings or says the Psalm, with the people making the response.", ""));
-    if (r.kind === "second") out.push(R("After this, if there is to be a Second Reading, a reader reads it from the ambo, as above.", ""));
-    out.push(r.tba ? { k: "tbaread", kind: r.kind, cite: r.cite } : r.chunks ? LECT(r) : READ(r));
-  });
-  out.push(R("There follows the “Alleluia” or another chant laid down by the rubrics, as the liturgical time requires.", ""));
-  if (o.blank) { out.push(SONG("Alleluia", "Tung hô Tin Mừng", "Alleluia", "", "")); out.push({ k: "tba" }); }
-  else {
-  /* Alleluia (anh Khải 04/11): a heading like the readings (label + reference), then the text in full:
-     said → ℟ Alleluia, alleluia. / verse / ℟ Alleluia, alleluia.; sung (Feast and above, Sundays) → the sung Alleluia
-     (e.g. Sing Halleluia, sheet music + practice link) and the verse. */
-  out.push({ k: "alh", cite: o.alleluia.cite });
-  if (o.alleluia.pdf) out.push(MUSIC(Object.assign({ title: "Sung: " + (o.alleluia.song || "Alleluia") }, o.alleluia.pdf)));
-  out.push({ k: "alv", text: o.alleluia.text, sung: !!o.alleluia.pdf });
-  }
-  out.push(R("Meanwhile, if incense is used, the Priest puts some into the thurible. After this, the Deacon who is to proclaim the Gospel, bowing profoundly before the Priest, asks for the blessing, saying in a low voice:", ""));
-  out.push(V(["D", "Your blessing, Father."]));
-  out.push(R("The Priest says in a low voice:", ""));
-  out.push(V(["P", "May the Lord be in your heart and on your lips,\nthat you may proclaim his Gospel worthily and well,\nin the name of the Father, and of the Son, ✠ and of the Holy Spirit."]));
-  out.push(R("The Deacon signs himself with the Sign of the Cross and replies:", ""));
-  out.push(V(["D", "Amen."]));
-  out.push(R("If, however, a Deacon is not present, the Priest, bowing before the altar, says quietly:", ""));
-  out.push(V(["P", "Cleanse my heart and my lips, almighty God,\nthat I may worthily proclaim your holy Gospel."]));
-  out.push(R("The Deacon, or the Priest, then proceeds to the ambo, accompanied, if appropriate, by ministers with incense and candles. There he says:", ""));
-  out.push(V(["D", "The Lord be with you."]));
-  out.push(R("The people reply:", ""));
-  out.push(V(["R", "And with your spirit."]));
-  out.push(R("The Deacon, or the Priest:", ""));
-  out.push(V(["D", "A reading from the holy Gospel according to " + o.gospel.evangelist + "."]));
-  out.push(R("and, at the same time, he makes the Sign of the Cross on the book and on his forehead, lips, and breast.", ""));
-  out.push(R("The people acclaim:", ""));
-  out.push(V(["R", "Glory to you, O Lord."]));
-  out.push(R("Then the Deacon, or the Priest, incenses the book, if incense is used, and proclaims the Gospel.", ""));
-  out.push(o.gospel.tba ? { k: "tbaread", kind: "gospel", cite: o.gospel.cite } : o.gospel.chunks ? LECT(o.gospel) : READ({ kind: "gospel", lang: "EN", ...o.gospel }));
-  out.push(R("At the end of the Gospel, the Deacon, or the Priest, acclaims:", ""));
-  out.push(V(["D", "The Gospel of the Lord."]));
-  out.push(R("All reply:", ""));
-  out.push(V(["R", "Praise to you, Lord Jesus Christ."]));
-  out.push(R("Then he kisses the book, saying quietly:", ""));
-  out.push(V(["D", "Through the words of the Gospel\nmay our sins be wiped away."]));
-  out.push(H("Homily", "Bài giảng", "homily"));
-  out.push(R("Then follows the Homily, which is to be preached by a Priest or Deacon on all Sundays and Holydays of Obligation; on other days, it is recommended.", ""));
-  if (o.homilyNote_en) out.push(R(o.homilyNote_en, o.homilyNote_vi || ""));
-  if (o.creed) {
-    out.push(H("Profession of Faith", "Kinh Tin kính", "creed"));
-    out.push(R("At the end of the Homily, the Symbol or Profession of Faith or Creed, when prescribed, is either sung or said:", ""));
-    out.push(R("At the words that follow, up to and including “and became man,” all bow.", ""));
-    out.push(V(["A", MISSAL.creed]));
-    out.push(LAT("Credo (Nicene Creed)", LA.credo));
-  }
-  /* Universal Prayer: at the convent only on Sundays (anh Khải 04/11); texts.js universal: true / false overrides */
-  if (o.universal) {
-    out.push(H(o.lauds ? "Intercessions" : "Universal Prayer", o.lauds ? "Lời cầu" : "Lời nguyện giáo dân", "pf"));
-    if (!o.lauds) out.push(R("Then follows the Universal Prayer, that is, the Prayer of the Faithful or Bidding Prayers.", ""));
-    if (o.pf) out.push(PF(o.pf));
-    else if (o.laudsText) { out.push(R("The intercessions of Lauds are used as the Universal Prayer (GILH 94).", "Dùng Lời cầu của Kinh Sáng làm Lời nguyện giáo dân (QCTQ số 94).")); out.push(HTML(o.laudsText.intercessions, "intercessions", true)); out.push(R("The Priest concludes the intercessions with a prayer.", "Chủ tế đọc lời nguyện kết thúc Lời cầu.")); out.push(V(["R", "Amen."])); }
-    else if (o.pfBook) out.push(BOOK(o.pfBook[0], o.pfBook[1]));   // 1 Nov
-    else out.push(BOOK("The intercessions of Lauds may be used.", "Có thể dùng lời cầu của Kinh Sáng."));
-  }
-
-  out.push(H("The Liturgy of the Eucharist", "Phụng vụ Thánh Thể", "eucharist"));
-  out.push(R("When all this has been done, the Offertory Chant begins. Meanwhile, the ministers place the corporal, the purificator, the chalice, the pall, and the Missal on the altar.", ""));
-  out.push(R("It is desirable that the faithful express their participation by making an offering, bringing forward bread and wine for the celebration of the Eucharist and perhaps other gifts to relieve the needs of the Church and of the poor.", ""));
-  if (!o.recited || S.offertory[0]) out.push(SONG("Offertory Chant", "Ca Dâng lễ", S.offertory[0], S.offertory[1], S.offertory[2], S.offertory[3], S.offertory[4]));
-  out.push(R("The Priest, standing at the altar, takes the paten with the bread and holds it slightly raised above the altar with both hands, saying in a low voice:", ""));
-  out.push(V(["P", MISSAL.bread]));
-  out.push(R("Then he places the paten with the bread on the corporal.", ""));
-  out.push(R("If, however, the Offertory Chant is not sung, the Priest may speak these words aloud; at the end, the people may acclaim:", ""));
-  out.push(V(["R", "Blessed be God for ever."]));
-  out.push(R("The Deacon, or the Priest, pours wine and a little water into the chalice, saying quietly:", ""));
-  out.push(V(["D", "By the mystery of this water and wine\nmay we come to share in the divinity of Christ\nwho humbled himself to share in our humanity."]));
-  out.push(R("The Priest then takes the chalice and holds it slightly raised above the altar with both hands, saying in a low voice:", ""));
-  out.push(V(["P", MISSAL.wine]));
-  out.push(R("Then he places the chalice on the corporal.", ""));
-  out.push(R("If, however, the Offertory Chant is not sung, the Priest may speak these words aloud; at the end, the people may acclaim:", ""));
-  out.push(V(["R", "Blessed be God for ever."]));
-  out.push(R("After this, the Priest, bowing profoundly, says quietly:", ""));
-  out.push(V(["P", "With humble spirit and contrite heart\nmay we be accepted by you, O Lord,\nand may our sacrifice in your sight this day\nbe pleasing to you, Lord God."]));
-  out.push(R("If appropriate, he also incenses the offerings, the cross, and the altar. A Deacon or other minister then incenses the Priest and the people.", ""));
-  out.push(R("Then the Priest, standing at the side of the altar, washes his hands, saying quietly:", ""));
-  out.push(V(["P", "Wash me, O Lord, from my iniquity\nand cleanse me from my sin."]));
-  out.push(R("Standing at the middle of the altar, facing the people, extending and then joining his hands, he says:", ""));
-  out.push(V(["P", MISSAL.orate]));
-  out.push(R("The people rise and reply:", ""));
-  out.push(V(["R", MISSAL.suscipiat]));
-  out.push({ k: "sub", en: "Prayer over the Offerings", vi: "Lời nguyện Tiến lễ" });
-  out.push(R("Then the Priest, with hands extended, says the Prayer over the Offerings, at the end of which the people acclaim:", ""));
-  out.push(SLOT("P", "Prayer over the Offerings of the day", "Lời nguyện Tiến lễ trong ngày", o.po));
-  out.push(V(["R", "Amen."]));
-
-  out.push(H("The Eucharistic Prayer", "Kinh Nguyện Thánh Thể", "ep"));
-  out.push({ k: "epsel" });   // Eucharistic Prayer II | III (anh Khải 21/10)
-  out.push(R("Then the Priest begins the Eucharistic Prayer.", ""));
-  out.push(R("Extending his hands, he says:", ""));
-  out.push(V(["P", "The Lord be with you."]));
-  out.push(R("The people reply:", ""));
-  out.push(V(["R", "And with your spirit."]));
-  out.push(R("The Priest, raising his hands, continues:", ""));
-  out.push(V(["P", "Lift up your hearts."]));
-  out.push(R("The people:", ""));
-  out.push(V(["R", "We lift them up to the Lord."]));
-  out.push(R("The Priest, with hands extended, adds:", ""));
-  out.push(V(["P", "Let us give thanks to the Lord our God."]));
-  out.push(R("The people:", ""));
-  out.push(V(["R", "It is right and just."]));
-  out.push(LAT("Sursum corda", LA.sursum));
-  out.push({ k: "sub", en: "Preface", vi: "Kinh Tiền tụng" });
-  out.push(R("The Priest, with hands extended, continues the Preface.", ""));
-  const prefSlot = SLOT("P", o.preface_en || "Preface", o.preface_vi || "Kinh Tiền tụng");
-  if (!o.preface_en || /chosen by the presider/i.test(o.preface_en)) {   // weekdays: EP II may take its own Preface; Sundays / feasts keep the prescribed one
-    out.push({ ...R(EP_TEXT[2].prefRub, ""), ep: 2 }, { ...V(["P", EP_TEXT[2].pref]), ep: 2 }, { ...prefSlot, ep: 3 });
-  } else if (o.prefaces) o.prefaces.forEach(([t, tx]) => out.push({ k: "sub", en: t, vi: t }, { k: "v", lines: [["P", tx]], proper: true }));   // full texts (28 Oct)
-  else out.push(prefSlot);
-  out.push(H("Sanctus", "Kinh Thánh Thánh Thánh", "sanctus"));
-  out.push(R("At the end of the Preface he joins his hands and concludes the Preface with the people, singing or saying aloud:", ""));
-  out.push(S.setting ? R("Sung: " + S.setting + ". All kneel after the Sanctus.", "Hát: " + S.setting + ". Mọi người quỳ sau kinh Thánh Thánh Thánh.") : R("All kneel after the Sanctus.", "Mọi người quỳ sau kinh Thánh Thánh Thánh."));
-  if (S.music && S.music.sanctus) out.push(MUSIC(S.music.sanctus));
-  out.push(o.sanctusText ? V(["A", o.sanctusText]) : V(["A", MISSAL.sanctus]));
-  out.push(LAT("Sanctus", LA.sanctus));
-  [2, 3].forEach(n => out.push({ ...H(EP_TEXT[n].name, EP_VI[n], "ep" + n), ep: n }, ...EPB(n, "pre")));   // a full heading, like Sanctus (anh Khải 21/10)
-  out.push(H("Mystery of Faith", "Mầu nhiệm Đức tin", "mysterium"));
-  out.push(R("Then he says:", ""));
-  out.push(V(["P", "The mystery of faith."]));
-  out.push(R("And the people continue, acclaiming:", ""));
-  if (S.music && S.music.mystery) out.push(MUSIC(S.music.mystery));
-  out.push(V(["A", MISSAL.mysterium]));
-  out.push(R("Or:", ""));
-  out.push(V(["A", "When we eat this Bread and drink this Cup,\nwe proclaim your Death, O Lord,\nuntil you come again."]));
-  out.push(R("Or:", ""));
-  out.push(V(["A", "Save us, Savior of the world,\nfor by your Cross and Resurrection\nyou have set us free."]));
-  out.push(LAT("Mortem tuam", LA.mysterium));
-  [2, 3].forEach(n => out.push(...EPB(n, "post")));
-  out.push({ k: "sub", en: "Concluding Doxology", vi: "Vinh tụng ca" });
-  out.push(R("He takes the chalice and the paten with the host and, raising both, he says:", ""));
-  out.push(V(["P", MISSAL.doxology]));
-  out.push(R("The people acclaim:", ""));
-  out.push(V(["R", "Amen."]));
-  if (S.music && S.music.amen) out.push(MUSIC(S.music.amen));
-
-  out.push(H("The Communion Rite", "Nghi thức Hiệp lễ", "communion"));
-  out.push({ k: "sub", en: "The Lord's Prayer", vi: "Kinh Lạy Cha" });
-  out.push(R("After the chalice and paten have been set down, the Priest, with hands joined, says:", ""));
-  out.push(V(["P", MISSAL.paterInv]));
-  out.push(R("He extends his hands and, together with the people, continues:", ""));
-  out.push(V(["A", EN.ourFather]));
-  out.push(R("With hands extended, the Priest alone continues, saying:", ""));
-  out.push(V(["P", MISSAL.embolism]));
-  out.push(R("He joins his hands.", ""));
-  out.push(R("The people conclude the prayer, acclaiming:", ""));
-  out.push(V(["R", "For the kingdom,\nthe power and the glory are yours\nnow and for ever."]));
-  out.push({ k: "sub", en: "The Rite of Peace", vi: "Nghi thức Chúc bình an" });
-  out.push(R("Then the Priest, with hands extended, says aloud:", ""));
-  out.push(V(["P", MISSAL.pax]));
-  out.push(R("The people reply:", ""));
-  out.push(V(["R", "Amen."]));
-  out.push(R("The Priest, turned towards the people, extending and then joining his hands, adds:", ""));
-  out.push(V(["P", "The peace of the Lord be with you always."]));
-  out.push(R("The people reply:", ""));
-  out.push(V(["R", "And with your spirit."]));
-  out.push(R("Then, if appropriate, the Deacon, or the Priest, adds:", ""));
-  out.push(V(["D", "Let us offer each other the sign of peace."]));
-  out.push(R("And all offer one another a sign, in keeping with local customs, that expresses peace, communion, and charity. The Priest gives the sign of peace to a Deacon or minister.", ""));
-  out.push({ k: "sub", en: "The Fraction of the Bread", vi: "Bẻ bánh" });
-  out.push(R("Then he takes the host, breaks it over the paten, and places a small piece in the chalice, saying quietly:", ""));
-  out.push(V(["P", "May this mingling of the Body and Blood\nof our Lord Jesus Christ\nbring eternal life to us who receive it."]));
-  out.push(R("Meanwhile the following is sung or said:", ""));
-  if (S.music && S.music.agnus) out.push(MUSIC(S.music.agnus));
-  out.push(V(["A", "Lamb of God, you take away the sins of the world,\nhave mercy on us.\nLamb of God, you take away the sins of the world,\nhave mercy on us.\nLamb of God, you take away the sins of the world,\ngrant us peace."]));
-  out.push(LAT("Agnus Dei", LA.agnus));
-  out.push(R("The invocation may even be repeated several times if the fraction is prolonged. Only the final time, however, is “grant us peace” said.", ""));
-  out.push(R("Then the Priest, with hands joined, says quietly:", ""));
-  out.push(V(["P", "Lord Jesus Christ, Son of the living God,\nwho, by the will of the Father\nand the work of the Holy Spirit,\nthrough your Death gave life to the world,\nfree me by this, your most holy Body and Blood,\nfrom all my sins and from every evil;\nkeep me always faithful to your commandments,\nand never let me be parted from you."]));
-  out.push(R("Or:", ""));
-  out.push(V(["P", "May the receiving of your Body and Blood,\nLord Jesus Christ,\nnot bring me to judgment and condemnation,\nbut through your loving mercy\nbe for me protection in mind and body\nand a healing remedy."]));
-  out.push({ k: "sub", en: "Communion", vi: "Rước lễ" });
-  out.push(R("The Priest genuflects, takes the host and, holding it slightly raised above the paten or above the chalice, while facing the people, says aloud:", ""));
-  out.push(V(["P", MISSAL.ecce]));
-  out.push(R("And together with the people he adds once:", ""));
-  out.push(V(["A", MISSAL.domine]));
-  out.push(LAT("Domine, non sum dignus", LA.nonsum));
-  out.push(R("The Priest, facing the altar, says quietly:", ""));
-  out.push(V(["P", "May the Body of Christ\nkeep me safe for eternal life."]));
-  out.push(R("And he reverently consumes the Body of Christ.", ""));
-  out.push(R("Then he takes the chalice and says quietly:", ""));
-  out.push(V(["P", "May the Blood of Christ\nkeep me safe for eternal life."]));
-  out.push(R("And he reverently consumes the Blood of Christ.", ""));
-  out.push(R("After this, he takes the paten or ciborium and approaches the communicants. The Priest raises a host slightly and shows it to each of the communicants, saying:", ""));
-  out.push(V(["P", "The Body of Christ."]));
-  out.push(R("The communicant replies:", ""));
-  out.push(V(["R", "Amen."]));
-  out.push(R("And receives Holy Communion.", ""));
-  out.push(R("While the Priest is receiving the Body of Christ, the Communion Chant begins.", ""));
-  if (!o.recited && S.communion[0]) out.push(SONG("Communion Chant", "Ca Hiệp lễ", S.communion[0], S.communion[1], S.communion[2], S.communion[3], S.communion[4]));
-  if (o.ca) { out.push({ k: "sub", en: "Communion Antiphon", vi: "Ca Hiệp lễ" }); const caKeep = !!o.recited && !S.communion[0]; o.ca.forEach((a, i) => { if (i) out.push({ ...R("Or:", ""), keep: caKeep }); out.push({ k: "ant", text: a[0], cite: a[1], proper: true, keep: caKeep }); }); }
-  out.push(R("When the distribution of Communion is over, the Priest or a Deacon or an acolyte purifies the paten over the chalice and also the chalice itself.", ""));
-  out.push(R("While he carries out the purification, the Priest says quietly:", ""));
-  out.push(V(["P", "What has passed our lips as food, O Lord,\nmay we possess in purity of heart,\nthat what has been given to us in time\nmay be our healing for eternity."]));
-  if (o.lauds) {
-    out.push(H("Canticle of Zechariah", "Thánh ca Da-ca-ri-a", "benedictus"));
-    out.push(R("After Communion the Benedictus is recited with its antiphon (GILH 94).", "Sau Hiệp lễ, ĐỌC Thánh ca Da-ca-ri-a với tiền xướng (QCTQ số 94)."));
-    if (o.laudsText) out.push(HTML(o.laudsText.benedictus, "gospel-canticle", true));
-    out.push(LAT("Benedictus", LA.benedictus + "\n" + LA.gloriaPatri));
-  } else {
-    out.push(R("Then the Priest may return to the chair. If appropriate, a sacred silence may be observed for a while, or a psalm or other canticle of praise or a hymn may be sung.", ""));
-  }
-  out.push({ k: "sub", en: "Prayer after Communion", vi: "Lời nguyện Hiệp lễ" });
-  out.push(R("Then, standing at the altar or at the chair and facing the people, with hands joined, the Priest says:", ""));
-  out.push(V(["P", "Let us pray."]));
-  out.push(R("All pray in silence with the Priest for a while, unless silence has just been observed. Then the Priest, with hands extended, says the Prayer after Communion, at the end of which the people acclaim:", ""));
-  out.push(SLOT("P", "Prayer after Communion of the day", "Lời nguyện Hiệp lễ trong ngày", o.pc));
-  out.push(V(["R", "Amen."]));
-
-  out.push(H("The Concluding Rites", "Nghi thức Kết lễ", "end"));
-  out.push(R("If they are necessary, any brief announcements to the people follow here.", ""));
-  out.push(R("Then the dismissal takes place. The Priest, facing the people and extending his hands, says:", ""));
-  out.push(V(["P", "The Lord be with you."]));
-  out.push(R("The people reply:", ""));
-  out.push(V(["R", "And with your spirit."]));
-  out.push(R("The Priest blesses the people, saying:", ""));
-  out.push(V(["P", "May almighty God bless you,\nthe Father, and the Son, ✠ and the Holy Spirit."]));
-  out.push(R("The people reply:", ""));
-  out.push(V(["R", "Amen."]));
-  out.push(R("Then the Deacon, or the Priest himself, with hands joined and facing the people, says:", ""));
-  out.push(V(["D", "Go forth, the Mass is ended."]));
-  out.push(R("Or:", ""));
-  out.push(V(["D", "Go and announce the Gospel of the Lord."]));
-  out.push(R("Or:", ""));
-  out.push(V(["D", "Go in peace, glorifying the Lord by your life."]));
-  out.push(R("Or:", ""));
-  out.push(V(["D", "Go in peace."]));
-  out.push(R("The people reply:", ""));
-  out.push(V(["R", "Thanks be to God."]));
-  out.push(R("Then the Priest venerates the altar as usual with a kiss, as at the beginning. After making a profound bow with the ministers, he withdraws.", ""));
-  if (!o.recited || S.recessional[0]) out.push(SONG("Recessional", "Kết lễ", S.recessional[0], S.recessional[1], S.recessional[2], S.recessional[3], S.recessional[4]));
-  return out;
-}
-
-
-/* ---------- the Masses ----------
-   Songs and sung Mass parts: data.js (WEEKS, shared with the song page songs.html).
-   Readings and prayers: texts.js (TEXTS, same date). A date in either file gets a Mass on this page. */
-const WEEKS_ = window.WEEKS || [], TEXTS = window.TEXTS || {};
-const BISHOP_HERE = "Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops";   // Archdiocese of Saigon (anh Khải 31/10)
-const WDAY = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+/* ---------- the content ----------
+   mass-data.js: window.LIT_DATA = { updated, days: [ { date, title_en, color, note_en, songsOnly?, items: [ { id, t, kind, blocks: [...] } ] } ] }
+   The page only shows it; every text is edited in mass-data.js (editor.html). The old builders (mass(), data.js, texts.js)
+   were used once (05/11/2026) to make that file. */
+let LIT_PREVIEW = null;   // the editor's preview (editor.html): its unsaved content
+try { if (window.parent !== window && window.parent.EDITOR_PREVIEW) LIT_PREVIEW = window.parent.EDITOR_PREVIEW; } catch (e) {}
+const LIT_DATA = LIT_PREVIEW || window.LIT_DATA || { updated: "", days: [] };
+const HYMN_BY_KEY = {}, SONG_SCORE = {};
+const EP_TEXT = { 2: { name: "Eucharistic Prayer II" }, 3: { name: "Eucharistic Prayer III" } };
 const longDate = iso => { const [y, m, d] = iso.split("-").map(Number); return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }); };
-const practice = (date, part) => "songs.html#" + date + "-" + part;
-function songOf(s, date, part, lyr) {   // data.js song → [title, by, no, sheet, lyrics] for SONG()
-  if (!s || !s.title) return ["", "", "", null, ""];
-  return [s.title, s.composer || "", s.no ? "ICLA No. " + s.no : "", { sheet: s.sheet, narrow: s.narrow, practice: practice(date, part), verses: s.verses }, lyr || ""];
-}
-function massOf(date) {
-  const w = WEEKS_.find(x => x.date === date) || {}, t = TEXTS[date] || {}, sg = w.songs || {}, ms = w.mass || null, ly = t.lyrics || {};
-  const part = k => ms && ms[k] && ms[k].title ? { sheet: ms[k].sheet, narrow: ms[k].narrow, practice: practice(date, k), title: ms[k].title } : null;
-  const S = {
-    entrance: songOf(sg.entrance, date, "entrance", ly.entrance), offertory: songOf(sg.offertory, date, "offertory", ly.offertory),
-    communion: songOf(sg.communion, date, "communion", ly.communion), recessional: songOf(sg.recessional, date, "recessional", ly.recessional),
-    setting: ms ? [ms.name, ms.composer].filter(Boolean).join(" (") + (ms.composer ? ")" : "") : "",
-    music: ms ? { kyrie: part("kyrie"), gloria: part("gloria"), sanctus: part("holy"), mystery: part("mystery"), amen: part("amen"), agnus: part("lamb") } : null
-  };
-  // Sung Alleluia: as given in data.js; otherwise, on a Feast or Solemnity or a Sunday, "Sing Halleluia" (anh Khải 04/11)
-  const feastUp = /^(Feast|Solemnity)\b/.test(t.note || "") || new Date(date + "T00:00:00Z").getUTCDay() === 0;
-  const al = t.alleluia || {}, alSung = ms && ms.alleluia && ms.alleluia.title ? ms.alleluia
-    : feastUp ? { title: "Sing Halleluia", sheet: "sheets/sing-halleluia.png", narrow: "sheets/sing-halleluia-narrow.png", noPractice: true } : null;
-  const o = Object.assign({}, t, {
-    songs: S, bishop: t.bishop || BISHOP_HERE,
-    readings: t.readings || [{ kind: "first", tba: true }, { kind: "psalm", tba: true }],
-    gospel: Object.assign({ evangelist: "N." }, t.gospel || {}, t.gospel && t.gospel.chunks ? {} : { tba: true }),   // no text yet → "Text to be added"
-    alleluia: { song: alSung ? alSung.title : "Alleluia", cite: al.cite || "", text: al.text || "",
-                pdf: alSung ? { sheet: alSung.sheet, narrow: alSung.narrow, practice: alSung.noPractice ? "" : practice(date, "alleluia") } : null },
-    pfBook: t.pf ? null : (t.pfBook || ["Intentions prepared by the community."]),
-    universal: t.universal != null ? !!t.universal : new Date(date + "T00:00:00Z").getUTCDay() === 0
+const WDAY = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+/* Days of the song list only (songsOnly) are not shown here. Day labels, tab title and "Listen & practise" links are made from the date. */
+const LIT_DAYS = JSON.parse(JSON.stringify(LIT_DATA.days)).filter(d => !d.songsOnly && d.items && d.items.length).sort((a, b) => a.date.localeCompare(b.date));
+LIT_DAYS.forEach(d => {
+  const [y, m, dd] = d.date.split("-").map(Number), label = WDAY[new Date(Date.UTC(y, m - 1, dd)).getUTCDay()] + " " + dd + " " + MON[m - 1];
+  d.en = d.vi = label; d.logo = d.logo || "op";
+  d.title_en = d.title_en || "Holy Mass"; d.title_vi = d.title_vi || d.title_en; d.note_vi = d.note_vi || d.note_en || "";
+  d.doc_title = d.title_en + " · English Mass";
+  d.items = d.items.filter(it => !it.hide);
+  const seen = {};
+  d.items.forEach(it => {
+    const k = it.kind || "mass"; seen[k] = (seen[k] || 0) + 1;
+    it.id = "d" + d.date.replace(/-/g, "") + "-" + k + (seen[k] > 1 ? seen[k] : "");
+    it.links = it.links || []; it.vi = it.vi || it.en; it.t = it.t || it.time || "00:00";
+    (it.blocks || []).forEach(b => {
+      if (b.k === "song" && b.num) b.no = "ICLA No. " + b.num;
+      if (b.k === "song" && b.pdf && b.part) b.pdf.practice = "songs.html#" + d.date + "-" + b.part;
+      if (b.k === "music" && b.pdf && b.pdf.part && !b.pdf.noPractice) b.pdf.practice = "songs.html#" + d.date + "-" + b.pdf.part;
+    });
   });
-  return o;
-}
-const TODAY = new Date(Date.now() + 7 * 36e5).toISOString().slice(0, 10);
-// past Masses only when their texts were entered (older Saturdays of the song list have songs only)
-const DATES = [...new Set([...WEEKS_.map(w => w.date), ...Object.keys(TEXTS)])].filter(d => TEXTS[d] || d >= TODAY).sort();
-const LIT_DAYS = DATES.map(date => {
-  const w = WEEKS_.find(x => x.date === date) || {}, t = TEXTS[date] || {};
-  const [y, m, d] = date.split("-").map(Number), wd = WDAY[new Date(Date.UTC(y, m - 1, d)).getUTCDay()];
-  const label = wd + " " + d + " " + MON[m - 1];
-  return { date, en: label, vi: label, title_en: w.feast || t.title || "Holy Mass", title_vi: w.feast || t.title || "Holy Mass",
-    color: t.color || "green", note_en: t.note || "", note_vi: t.note || "", logo: "op",
-    doc_title: (w.feast || t.title || "Holy Mass") + " · English Mass",
-    items: [{ id: "d" + date.replace(/-/g, "") + "-mass", t: t.time || "00:00", time: t.time || "", kind: "mass",
-      en: "Holy Mass", vi: "Holy Mass", links: [], blocks: mass(massOf(date)) }] };
 });
-
-const SHOW_FROM = "";
-for (let i = LIT_DAYS.length - 1; i >= 0; i--) if (LIT_DAYS[i].date < SHOW_FROM) LIT_DAYS.splice(i, 1);
-LIT_DAYS.forEach(d => { d.items = d.items.filter(it => !it.hide); });   // items with hide: true are left out everywhere
 
 const UI = {
   en: { title: "English Mass", sub: "", vnMark: "VN", presider: "Presider", presiderHours: "Presider", roles: "Ministries", rolesMore: "Show all ministries", rolesLess: "Show presider only", rolesLessHours: "Show presider only", contents: "Contents",
@@ -1364,7 +909,7 @@ function block(b, it, day) {
       // sheet-music button right under the title, then the words (anh Khải 30/10)
       if (b.pdf && b.pdf.verses) c.appendChild(el("div", "vsn", b.pdf.verses));
       if (b.pdf && b.pdf.practice) c.appendChild(practiceLink(b.pdf));
-      if (b.pdf) c.appendChild(musicLink(b.pdf));
+      if (b.pdf && b.pdf.sheet) c.appendChild(musicLink(b.pdf));   // a song chosen in the editor before its sheet is ready
       if (b.lyrics) c.appendChild(senseLines(el("div", "lyr"), b.lyrics));
       return c;
     }
@@ -1727,7 +1272,7 @@ function setFs(d) { fs = Math.max(15, Math.min(28, fs + d)); try { localStorage.
 document.getElementById("fs-up").onclick = () => setFs(1);
 document.getElementById("fs-down").onclick = () => setFs(-1);
 window.addEventListener("hashchange", () => { let h = location.hash.slice(1); if (/^\d{4}-\d\d-\d\d$/.test(h)) h = "d" + h.replace(/-/g, "") + "-mass"; if (isOpen(h) && h !== curId) { curId = h; render(); } });
-document.getElementById("t-upd").textContent = window.SITE && SITE.updated ? "Updated " + SITE.updated : "";
+document.getElementById("t-upd").textContent = LIT_DATA.updated ? "Updated " + LIT_DATA.updated : "";
 render(); markSeen(ALL.find(i => i.id === curId) || {});
 if (hashPart) setTimeout(() => goTo(hash), 60);
 setInterval(renderBar, 60000);
@@ -1739,7 +1284,7 @@ setInterval(renderBar, 60000);
 })();
 
 /* ---------- Newer version ----------
-   While the page stays open, it checks data.js (when it is shown again, when it comes back online, every 10 minutes);
+   While the page stays open, it checks mass-data.js (when it is shown again, when it comes back online, every 10 minutes);
    if SITE.updated has changed, a Reload button appears. Without network, "Offline" shows under the title. */
 (function () {
   const off = document.getElementById("t-off"), bar = document.getElementById("newver");
@@ -1748,12 +1293,12 @@ setInterval(renderBar, 60000);
   const mine = norm(document.getElementById("t-upd").textContent);
   let busy = false;
   async function check() {
-    if (busy || document.visibilityState === "hidden") return;
+    if (busy || document.visibilityState === "hidden" || LIT_PREVIEW) return;
     busy = true;
     try {
-      const r = await fetch("data.js?v=" + Date.now(), { cache: "no-store" });
+      const r = await fetch("mass-data.js?v=" + Date.now(), { cache: "no-store" });
       if (!r.ok) throw new Error(r.status);
-      const m = (await r.text()).match(/updated:\s*"([^"]*)"/); if (m) m[1] = "Updated " + m[1];
+      const m = (await r.text()).match(/"updated":\s*"([^"]*)"/); if (m) m[1] = "Updated " + m[1];
       setOffline(false);
       if (m && norm(m[1]) && norm(m[1]) !== mine) bar.hidden = false;
     } catch (e) { setOffline(true); }
