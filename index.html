@@ -586,6 +586,9 @@ try { const f = +localStorage.getItem("lit-fs"); if (f >= 15 && f <= 28) fs = f;
 function pickDefault(now) {
   // A Mass stays the one shown until 12:00 noon (Vietnam time) on its own day; then the next Mass (same rule as songs.html).
   const n = new Date(now + 7 * 36e5).toISOString().slice(0, 16);
+  // mass-data.js "show_first": { date, until } puts that Mass first until "until" (default: noon on its day)
+  const sf = LIT_DATA.show_first;
+  if (sf && sf.date && n < (sf.until || sf.date + "T12:00")) { const f = LIT_DAYS.find(x => x.date === sf.date); if (f) return f.items[0].id; }
   const d = LIT_DAYS.find(x => x.date + "T12:00" > n) || LIT_DAYS[LIT_DAYS.length - 1];
   return d.items[0].id;
 }

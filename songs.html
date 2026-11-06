@@ -238,7 +238,7 @@ document.write('<script src="mass-data.js?v=' + Math.floor(Date.now() / 6e4) + '
 window.WEEKS = (function () {
   let D = window.LIT_DATA || { days: [] };
   try { if (window.parent !== window && window.parent.EDITOR_PREVIEW) D = window.parent.EDITOR_PREVIEW; } catch (e) {}
-  window.SITE = { updated: D.updated || "" };
+  window.SITE = { updated: D.updated || "", show_first: D.show_first || null };
   const out = [];
   (D.days || []).forEach(d => (d.items || []).filter(it => !it.hide && (it.kind || "mass") === "mass").slice(0, 1).forEach(it => {
     const songs = {}, mass = {}; let any = false;
@@ -303,6 +303,8 @@ window.WEEKS = (function () {
   const nowVN = () => new Date(Date.now() + 7*36e5).toISOString().slice(0,16);   // "YYYY-MM-DDTHH:MM", Vietnam (UTC+7, no DST)
   function pickDefault(){
     const now = nowVN(), cut = "T" + String(SWITCH_HOUR).padStart(2,"0") + ":00";
+    const sf = (window.SITE||{}).show_first;   // mass-data.js "show_first": { date, until } = this Mass first until "until"
+    if (sf && sf.date && now < (sf.until || sf.date + cut) && WEEKS.some(w=>w.date===sf.date)) return sf.date;
     const up = WEEKS.filter(w=>w.date + cut > now).sort((a,b)=>a.date.localeCompare(b.date));
     return (up[0]||WEEKS[0]||{}).date;
   }
