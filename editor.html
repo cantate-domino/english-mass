@@ -652,7 +652,7 @@ function form(b, f, refresh, it, i) {
   const g = (...kids) => h("div", { class: "grid" }, ...kids);
   switch (b.k) {
     case "h": f.append(g(F("Tiêu đề (EN)", "en", "text", { wide: true }), F("Tiêu đề (VI)", "vi", "text", { optional: true }), F("Mã neo (id)", "id", "text", { hint: "dùng cho mục lục, không dấu" }))); break;
-    case "sub": f.append(g(F("Tiêu đề nhỏ (EN)", "en", "text", { wide: true }), F("(VI)", "vi", "text", { optional: true }))); break;
+    case "sub": f.append(g(F("Tiêu đề nhỏ (EN)", "en", "text", { wide: true }), F("(VI)", "vi", "text", { optional: true }), F("Dòng phụ nhỏ, chữ nghiêng (vd. tên Tiền tụng)", "small", "checkbox", { optional: true }))); break;
     case "r": case "book": f.append(g(F("Chỉ dẫn (EN)", "en", "textarea", { wide: true }), F("(VI)", "vi", "textarea", { optional: true, wide: true }),
       b.k === "r" ? F("Luôn hiện (cả khi tắt “Rubrics”)", "keep", "checkbox", { optional: true }) : null)); break;
     case "v": f.append(linesEditor(b, refresh), g(F("Phần riêng của ngày (in kiểu lời nguyện)", "proper", "checkbox", { optional: true }), F("Không ghi tên người đọc (nối tiếp)", "cont", "checkbox", { optional: true }))); break;
@@ -866,6 +866,7 @@ function clearPropers(blocks) {
       for (; k >= 0; k--) { const x = out[k]; if ((x.k === "sub" || x.k === "h") && /collect|prayer|preface/i.test(x.en || "")) { lab = x.en; break; } if (x.k === "h") break; }
       const prev = out[out.length - 1], prev2 = out[out.length - 2];
       if (prev && prev.k === "sub" && prev2 && prev2.k === "sub" && /^preface$/i.test(prev2.en || "")) { out.pop(); lab = "Preface"; }   // the name of the day's preface
+      else if (prev && prev.k === "sub" && prev.small) out.pop();   // the small note naming the day's preface goes with it
       out.push({ k: "slot", who: (b.lines && b.lines[0] && b.lines[0][0]) || "P", en: (lab || "Prayer") + " of the day", vi: "" });
       continue;
     }

@@ -34,16 +34,16 @@
   --f-ui: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --fs: 19px;
   --logo-bg: transparent;
-  --priest: #d0161d; --proper-bg: #fbeee6; --all: #1f3f7f; --reader: #6f665d;
+  --priest: #d0161d; --proper-bg: #fbeee6; --all: #1f3f7f; --reader: #6f665d; --sub-blue: #1d3a7a;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #16130f; --sheet: #1d1915; --ink: #eee5d6; --ink-2: #c3b8a7; --ink-3: #8f8577; --rubric: #e57d74; --gold: #c9a95e; --line: #3a3229; --green: #8cc596; --red-lit: #e57d74; --cel-sel: #a8323a; --cel-sel-ink: #fff4ea; --day-sel: #322a22; --day-sel-bd: #5c4e3f; --day-sel-ink: #1d1915; --logo-bg: transparent; --priest: #f0565a; --proper-bg: #2b1d19; --all: #7598dc; --reader: #a89d8f;
+    --paper: #16130f; --sheet: #1d1915; --ink: #eee5d6; --ink-2: #c3b8a7; --ink-3: #8f8577; --rubric: #e57d74; --gold: #c9a95e; --line: #3a3229; --green: #8cc596; --red-lit: #e57d74; --cel-sel: #a8323a; --cel-sel-ink: #fff4ea; --day-sel: #322a22; --day-sel-bd: #5c4e3f; --day-sel-ink: #1d1915; --logo-bg: transparent; --priest: #f0565a; --proper-bg: #2b1d19; --all: #7598dc; --reader: #a89d8f; --sub-blue: #8fb0ee;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --paper: #16130f; --sheet: #1d1915; --ink: #eee5d6; --ink-2: #c3b8a7; --ink-3: #8f8577; --rubric: #e57d74; --gold: #c9a95e; --line: #3a3229; --green: #8cc596; --red-lit: #e57d74; --cel-sel: #a8323a; --cel-sel-ink: #fff4ea; --day-sel: #322a22; --day-sel-bd: #5c4e3f; --day-sel-ink: #1d1915; --logo-bg: transparent; --priest: #f0565a; --proper-bg: #2b1d19; --all: #7598dc; --reader: #a89d8f;
+  --paper: #16130f; --sheet: #1d1915; --ink: #eee5d6; --ink-2: #c3b8a7; --ink-3: #8f8577; --rubric: #e57d74; --gold: #c9a95e; --line: #3a3229; --green: #8cc596; --red-lit: #e57d74; --cel-sel: #a8323a; --cel-sel-ink: #fff4ea; --day-sel: #322a22; --day-sel-bd: #5c4e3f; --day-sel-ink: #1d1915; --logo-bg: transparent; --priest: #f0565a; --proper-bg: #2b1d19; --all: #7598dc; --reader: #a89d8f; --sub-blue: #8fb0ee;
   color-scheme: dark;
 }
 html { -webkit-text-size-adjust: 100%; }
@@ -328,7 +328,9 @@ details.music.score[open] summary::after { content: " ▴"; }
 details.music.score img { max-width: 640px; height: auto; box-sizing: border-box; border: 1px solid var(--line); padding: 4px; }
 details.music picture { display: block; }
 @media (max-width: 699px) { details.music.score img { width: calc(100% + 1.2em); max-width: none; margin-inline: -0.6em; } }
-.text h4.subrite { font-family: var(--f-text); font-weight: 600; font-size: 1em; margin: 1.2em 0 0.3em; color: var(--ink); border-bottom: 1px solid var(--line); padding-bottom: 0.15em; }
+.text h4.subrite { font-family: var(--f-text); font-weight: 700; font-size: 1.04em; margin: 1.4em 0 0.45em; color: var(--sub-blue); text-align: center; display: flex; align-items: center; justify-content: center; gap: 0.7em; }
+.text .subnote { font-family: var(--f-text); font-style: italic; font-size: 0.95em; color: var(--sub-blue); text-align: center; margin: -0.2em 0 0.7em; line-height: 1.35; }
+.text h4.subrite::before, .text h4.subrite::after { content: ""; flex: 1 1 1.5em; min-width: 1.5em; height: 1px; background: var(--line); }
 .dlg .tx.slot { font-style: italic; color: var(--ink-2); }
 /* Eucharistic Prayer II | III switch (anh Khải 21/10): pills like the celebration buttons, chosen = deep red */
 .epsel { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 0.35em 0 0.9em; font-family: var(--f-ui); }
@@ -885,7 +887,7 @@ function block(b, it, day) {
     case "score": return scoreBox(b.src);
     case "scorefold": return scoreFold(b.src);
     case "chant": { const d = el("div", "chant-row"); d.innerHTML = b.svg; return d; }
-    case "sub": return el("h4", "subrite", T(b));
+    case "sub": return b.small ? el("div", "subnote", T(b)) : el("h4", "subrite", T(b));   // small: a one-line note under the heading (e.g. the name of the Preface)
     case "ant": { const q = el("div", "ant" + (b.proper ? " proper" : "")); q.appendChild(isLines(b.text) ? senseLines(el("div", "ant-t lines"), b.text) : el("div", "ant-t", b.text)); q.appendChild(el("div", "ant-c", b.cite)); return q; }
     case "slot": {
       if (b.full) { const g = dialog([[b.who, b.full]]); properize(g); return g; }   // full Roman Missal text of the day's proper prayer (prayed in English)

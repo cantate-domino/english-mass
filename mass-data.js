@@ -1,7 +1,7 @@
 /* English Mass · St. Joseph Convent – ALL the content of both pages (index.html: Mass texts, songs.html: songs & practice).
    Edited with editor.html (or by hand). Structure: days -> items (celebrations) -> blocks. "updated" is shown on both pages. */
 window.LIT_DATA = {
- "updated": "6 Nov 2026, 21:40 (UTC+7)",
+ "updated": "7 Nov 2026, 12:51 (UTC+7)",
  "days": [
   {
    "date": "2026-10-10",
@@ -9693,8 +9693,9 @@ window.LIT_DATA = {
       },
       {
        "k": "sub",
-       "en": "Preface: The glory of Jerusalem, our mother",
-       "vi": "Preface: The glory of Jerusalem, our mother"
+       "en": "The glory of Jerusalem, our mother",
+       "vi": "The glory of Jerusalem, our mother",
+       "small": true
       },
       {
        "k": "v",
@@ -11966,8 +11967,9 @@ window.LIT_DATA = {
       },
       {
        "k": "sub",
-       "en": "Preface I of Holy Men and Women: The glory of the Saints",
-       "vi": "Preface I of Holy Men and Women: The glory of the Saints"
+       "en": "Holy Men and Women I · The glory of the Saints",
+       "vi": "Holy Men and Women I · The glory of the Saints",
+       "small": true
       },
       {
        "k": "v",
@@ -14206,8 +14208,9 @@ window.LIT_DATA = {
       },
       {
        "k": "sub",
-       "en": "Preface: The mystery of the Church, the Bride of Christ and the Temple of the Spirit",
-       "vi": "Preface: The mystery of the Church, the Bride of Christ and the Temple of the Spirit"
+       "en": "The mystery of the Church, the Bride of Christ and the Temple of the Spirit",
+       "vi": "The mystery of the Church, the Bride of Christ and the Temple of the Spirit",
+       "small": true
       },
       {
        "k": "v",
@@ -14216,7 +14219,8 @@ window.LIT_DATA = {
          "P",
          "It is truly right and just, our duty and our salvation,\nalways and everywhere to give you thanks,\nLord, holy Father, almighty and eternal God.\nFor in your benevolence you are pleased\nto dwell in this house of prayer\nin order to perfect us as the temple of the Holy Spirit,\nsupported by the perpetual help of your grace\nand resplendent with the glory of a life acceptable to you.\nYear by year you sanctify the Church, the Bride of Christ,\nforeshadowed in visible buildings,\nso that, rejoicing as the mother of countless children,\nshe may be given her place in your heavenly glory.\nAnd so, with all the Angels and Saints,\nwe praise you, as without end we acclaim:"
         ]
-       ]
+       ],
+       "proper": true
       },
       {
        "k": "h",
