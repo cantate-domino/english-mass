@@ -878,7 +878,7 @@ function block(b, it, day) {
           const top = d.getBoundingClientRect().top, y = scrollY;
           EPSEL = n; try { localStorage.setItem("lit-ep", String(n)); } catch (e) {}
           render(); window.scrollTo({ top: y, behavior: "instant" });
-          const nd = document.querySelector(".epsel"); if (nd) window.scrollTo({ top: scrollY + nd.getBoundingClientRect().top - top, behavior: "instant" });   // the switch stays under the finger
+          const nd = document.querySelector(".epsel:not(.pasel)"); if (nd) window.scrollTo({ top: scrollY + nd.getBoundingClientRect().top - top, behavior: "instant" });   // the switch stays under the finger
         };
         d.appendChild(bt);
       });
@@ -1301,7 +1301,20 @@ function select(id) {
   try { history.replaceState(null, "", "#" + id); } catch (e) {}
   render(); window.scrollTo({ top: 0 });
 }
-function setFs(d) { fs = Math.max(15, Math.min(28, fs + d)); try { localStorage.setItem("lit-fs", fs); } catch (e) {} document.documentElement.style.setProperty("--fs", fs + "px"); }
+function setFs(d) {
+  // keep the line being read where it is on the screen: note a line near the top of the view, change the size, scroll it back
+  const probeY = Math.min(innerHeight * 0.3, 260);
+  let a = null, before = 0;
+  if (scrollY > 40) {
+    const hit = document.elementFromPoint(innerWidth / 2, probeY) || document.elementFromPoint(40, probeY);
+    a = hit && hit.closest(".ln, .tx, .lect p, .lect, h3, h4, .subnote, .rubric, .card, .dlg, .ant");
+    if (a && !a.closest(".text")) a = null;
+    if (a) before = a.getBoundingClientRect().top;
+  }
+  fs = Math.max(15, Math.min(28, fs + d)); try { localStorage.setItem("lit-fs", fs); } catch (e) {}
+  document.documentElement.style.setProperty("--fs", fs + "px");
+  if (a && a.isConnected) window.scrollTo({ top: scrollY + a.getBoundingClientRect().top - before, behavior: "instant" });
+}
 document.getElementById("fs-up").onclick = () => setFs(1);
 document.getElementById("fs-down").onclick = () => setFs(-1);
 window.addEventListener("hashchange", () => { let h = location.hash.slice(1); if (/^\d{4}-\d\d-\d\d$/.test(h)) h = "d" + h.replace(/-/g, "") + "-mass"; if (isOpen(h) && h !== curId) { curId = h; render(); } });
