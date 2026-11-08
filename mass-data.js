@@ -1,7 +1,7 @@
 /* English Mass · St. Joseph Convent – ALL the content of both pages (index.html: Mass texts, songs.html: songs & practice).
    Edited with editor.html (or by hand). Structure: days -> items (celebrations) -> blocks. "updated" is shown on both pages. */
 window.LIT_DATA = {
- "updated": "7 Nov 2026, 12:51 (UTC+7)",
+ "updated": "8 Nov 2026, 21:17 (UTC+7)",
  "days": [
   {
    "date": "2026-10-10",
@@ -1467,7 +1467,47 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit.\n\nRemember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy.\n\nRemember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
+         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "Remember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be added:",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.,\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection.]"
+        ]
+       ],
+       "ep": 2,
+       "cont": false,
+       "opt": true
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "Remember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
         ]
        ],
        "ep": 2,
@@ -1501,7 +1541,29 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ.\n\nMay he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help.\n\nMay this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
+         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "May he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "May this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
         ]
        ],
        "ep": 3,
@@ -1523,6 +1585,24 @@ window.LIT_DATA = {
        ],
        "ep": 3,
        "cont": true
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be said in place of “To our departed brothers and sisters…”:",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection,\nwhen from the earth\nhe will raise up in the flesh those who have died,\nand transform our lowly body\nafter the pattern of his own glorious body.\nTo our departed brothers and sisters, too,\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory,\nwhen you will wipe away every tear from our eyes.\nFor seeing you, our God, as you are,\nwe shall be like you for all the ages\nand praise you without end,\nthrough Christ our Lord,\nthrough whom you bestow on the world all that is good.]"
+        ]
+       ],
+       "ep": 3,
+       "cont": false,
+       "opt": true
       },
       {
        "k": "sub",
@@ -3584,7 +3664,47 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit.\n\nRemember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy.\n\nRemember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
+         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "Remember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be added:",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.,\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection.]"
+        ]
+       ],
+       "ep": 2,
+       "cont": false,
+       "opt": true
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "Remember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
         ]
        ],
        "ep": 2,
@@ -3618,7 +3738,29 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ.\n\nMay he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help.\n\nMay this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
+         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "May he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "May this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
         ]
        ],
        "ep": 3,
@@ -3640,6 +3782,24 @@ window.LIT_DATA = {
        ],
        "ep": 3,
        "cont": true
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be said in place of “To our departed brothers and sisters…”:",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection,\nwhen from the earth\nhe will raise up in the flesh those who have died,\nand transform our lowly body\nafter the pattern of his own glorious body.\nTo our departed brothers and sisters, too,\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory,\nwhen you will wipe away every tear from our eyes.\nFor seeing you, our God, as you are,\nwe shall be like you for all the ages\nand praise you without end,\nthrough Christ our Lord,\nthrough whom you bestow on the world all that is good.]"
+        ]
+       ],
+       "ep": 3,
+       "cont": false,
+       "opt": true
       },
       {
        "k": "sub",
@@ -5701,7 +5861,47 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit.\n\nRemember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy.\n\nRemember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
+         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "Remember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be added:",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.,\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection.]"
+        ]
+       ],
+       "ep": 2,
+       "cont": false,
+       "opt": true
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "Remember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
         ]
        ],
        "ep": 2,
@@ -5735,7 +5935,29 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ.\n\nMay he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help.\n\nMay this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
+         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "May he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "May this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
         ]
        ],
        "ep": 3,
@@ -5757,6 +5979,24 @@ window.LIT_DATA = {
        ],
        "ep": 3,
        "cont": true
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be said in place of “To our departed brothers and sisters…”:",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection,\nwhen from the earth\nhe will raise up in the flesh those who have died,\nand transform our lowly body\nafter the pattern of his own glorious body.\nTo our departed brothers and sisters, too,\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory,\nwhen you will wipe away every tear from our eyes.\nFor seeing you, our God, as you are,\nwe shall be like you for all the ages\nand praise you without end,\nthrough Christ our Lord,\nthrough whom you bestow on the world all that is good.]"
+        ]
+       ],
+       "ep": 3,
+       "cont": false,
+       "opt": true
       },
       {
        "k": "sub",
@@ -7818,7 +8058,47 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit.\n\nRemember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy.\n\nRemember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
+         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "Remember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be added:",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.,\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection.]"
+        ]
+       ],
+       "ep": 2,
+       "cont": false,
+       "opt": true
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "Remember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
         ]
        ],
        "ep": 2,
@@ -7852,7 +8132,29 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ.\n\nMay he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help.\n\nMay this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
+         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "May he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "May this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
         ]
        ],
        "ep": 3,
@@ -7874,6 +8176,24 @@ window.LIT_DATA = {
        ],
        "ep": 3,
        "cont": true
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be said in place of “To our departed brothers and sisters…”:",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection,\nwhen from the earth\nhe will raise up in the flesh those who have died,\nand transform our lowly body\nafter the pattern of his own glorious body.\nTo our departed brothers and sisters, too,\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory,\nwhen you will wipe away every tear from our eyes.\nFor seeing you, our God, as you are,\nwe shall be like you for all the ages\nand praise you without end,\nthrough Christ our Lord,\nthrough whom you bestow on the world all that is good.]"
+        ]
+       ],
+       "ep": 3,
+       "cont": false,
+       "opt": true
       },
       {
        "k": "sub",
@@ -10204,7 +10524,47 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit.\n\nRemember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy.\n\nRemember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
+         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "Remember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be added:",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.,\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection.]"
+        ]
+       ],
+       "ep": 2,
+       "cont": false,
+       "opt": true
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "Remember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
         ]
        ],
        "ep": 2,
@@ -10238,7 +10598,29 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ.\n\nMay he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help.\n\nMay this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
+         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "May he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "May this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
         ]
        ],
        "ep": 3,
@@ -10260,6 +10642,24 @@ window.LIT_DATA = {
        ],
        "ep": 3,
        "cont": true
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be said in place of “To our departed brothers and sisters…”:",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection,\nwhen from the earth\nhe will raise up in the flesh those who have died,\nand transform our lowly body\nafter the pattern of his own glorious body.\nTo our departed brothers and sisters, too,\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory,\nwhen you will wipe away every tear from our eyes.\nFor seeing you, our God, as you are,\nwe shall be like you for all the ages\nand praise you without end,\nthrough Christ our Lord,\nthrough whom you bestow on the world all that is good.]"
+        ]
+       ],
+       "ep": 3,
+       "cont": false,
+       "opt": true
       },
       {
        "k": "sub",
@@ -12456,7 +12856,47 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit.\n\nRemember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy.\n\nRemember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
+         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "Remember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be added:",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.,\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection.]"
+        ]
+       ],
+       "ep": 2,
+       "cont": false,
+       "opt": true
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "Remember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
         ]
        ],
        "ep": 2,
@@ -12490,7 +12930,29 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ.\n\nMay he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help.\n\nMay this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
+         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "May he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "May this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
         ]
        ],
        "ep": 3,
@@ -12512,6 +12974,24 @@ window.LIT_DATA = {
        ],
        "ep": 3,
        "cont": true
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be said in place of “To our departed brothers and sisters…”:",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection,\nwhen from the earth\nhe will raise up in the flesh those who have died,\nand transform our lowly body\nafter the pattern of his own glorious body.\nTo our departed brothers and sisters, too,\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory,\nwhen you will wipe away every tear from our eyes.\nFor seeing you, our God, as you are,\nwe shall be like you for all the ages\nand praise you without end,\nthrough Christ our Lord,\nthrough whom you bestow on the world all that is good.]"
+        ]
+       ],
+       "ep": 3,
+       "cont": false,
+       "opt": true
       },
       {
        "k": "sub",
@@ -14697,7 +15177,47 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit.\n\nRemember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy.\n\nRemember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
+         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "Remember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be added:",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.,\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection.]"
+        ]
+       ],
+       "ep": 2,
+       "cont": false,
+       "opt": true
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "Remember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
         ]
        ],
        "ep": 2,
@@ -14731,7 +15251,29 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ.\n\nMay he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help.\n\nMay this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
+         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "May he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "May this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
         ]
        ],
        "ep": 3,
@@ -14753,6 +15295,24 @@ window.LIT_DATA = {
        ],
        "ep": 3,
        "cont": true
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be said in place of “To our departed brothers and sisters…”:",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection,\nwhen from the earth\nhe will raise up in the flesh those who have died,\nand transform our lowly body\nafter the pattern of his own glorious body.\nTo our departed brothers and sisters, too,\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory,\nwhen you will wipe away every tear from our eyes.\nFor seeing you, our God, as you are,\nwe shall be like you for all the ages\nand praise you without end,\nthrough Christ our Lord,\nthrough whom you bestow on the world all that is good.]"
+        ]
+       ],
+       "ep": 3,
+       "cont": false,
+       "opt": true
       },
       {
        "k": "sub",
@@ -16874,7 +17434,47 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit.\n\nRemember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy.\n\nRemember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
+         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "Remember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be added:",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.,\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection.]"
+        ]
+       ],
+       "ep": 2,
+       "cont": false,
+       "opt": true
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "Remember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
         ]
        ],
        "ep": 2,
@@ -16908,7 +17508,29 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ.\n\nMay he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help.\n\nMay this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
+         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "May he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "May this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
         ]
        ],
        "ep": 3,
@@ -16930,6 +17552,24 @@ window.LIT_DATA = {
        ],
        "ep": 3,
        "cont": true
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be said in place of “To our departed brothers and sisters…”:",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection,\nwhen from the earth\nhe will raise up in the flesh those who have died,\nand transform our lowly body\nafter the pattern of his own glorious body.\nTo our departed brothers and sisters, too,\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory,\nwhen you will wipe away every tear from our eyes.\nFor seeing you, our God, as you are,\nwe shall be like you for all the ages\nand praise you without end,\nthrough Christ our Lord,\nthrough whom you bestow on the world all that is good.]"
+        ]
+       ],
+       "ep": 3,
+       "cont": false,
+       "opt": true
       },
       {
        "k": "sub",
@@ -19064,7 +19704,47 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit.\n\nRemember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy.\n\nRemember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
+         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "Remember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be added:",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.,\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection.]"
+        ]
+       ],
+       "ep": 2,
+       "cont": false,
+       "opt": true
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "Remember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
         ]
        ],
        "ep": 2,
@@ -19098,7 +19778,29 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ.\n\nMay he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help.\n\nMay this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
+         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "May he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "May this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
         ]
        ],
        "ep": 3,
@@ -19120,6 +19822,24 @@ window.LIT_DATA = {
        ],
        "ep": 3,
        "cont": true
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be said in place of “To our departed brothers and sisters…”:",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection,\nwhen from the earth\nhe will raise up in the flesh those who have died,\nand transform our lowly body\nafter the pattern of his own glorious body.\nTo our departed brothers and sisters, too,\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory,\nwhen you will wipe away every tear from our eyes.\nFor seeing you, our God, as you are,\nwe shall be like you for all the ages\nand praise you without end,\nthrough Christ our Lord,\nthrough whom you bestow on the world all that is good.]"
+        ]
+       ],
+       "ep": 3,
+       "cont": false,
+       "opt": true
       },
       {
        "k": "sub",
@@ -21253,7 +21973,47 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit.\n\nRemember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy.\n\nRemember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
+         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "Remember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be added:",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.,\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection.]"
+        ]
+       ],
+       "ep": 2,
+       "cont": false,
+       "opt": true
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "Remember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
         ]
        ],
        "ep": 2,
@@ -21287,7 +22047,29 @@ window.LIT_DATA = {
        "lines": [
         [
          "P",
-         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ.\n\nMay he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help.\n\nMay this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
+         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "May he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "May this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
         ]
        ],
        "ep": 3,
@@ -21309,6 +22091,24 @@ window.LIT_DATA = {
        ],
        "ep": 3,
        "cont": true
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be said in place of “To our departed brothers and sisters…”:",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection,\nwhen from the earth\nhe will raise up in the flesh those who have died,\nand transform our lowly body\nafter the pattern of his own glorious body.\nTo our departed brothers and sisters, too,\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory,\nwhen you will wipe away every tear from our eyes.\nFor seeing you, our God, as you are,\nwe shall be like you for all the ages\nand praise you without end,\nthrough Christ our Lord,\nthrough whom you bestow on the world all that is good.]"
+        ]
+       ],
+       "ep": 3,
+       "cont": false,
+       "opt": true
       },
       {
        "k": "sub",

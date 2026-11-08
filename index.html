@@ -154,6 +154,9 @@ details.roles summary { padding: 8px 12px; font-weight: 600; font-size: 0.86rem;
 .rubric { color: var(--rubric); font-style: italic; font-size: 0.86em; margin: 0.5em 0; }
 /* Mass: by default only what is said aloud is shown; red rubrics, quiet prayers and "Or:" options come back with the toggle */
 .text.lean .rub-x { display: none; }
+.text .same-who .who { display: none; }
+.dlg.opt .tx { font-style: italic; color: var(--ink-2); }   /* optional text in [brackets], e.g. Masses for the Dead in EP II/III */
+.text.lean .dlg.flow { margin-top: -0.4em; }   /* one speaker, one paragraph: no gap where a hidden rubric used to be */
 .dlg { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.2em; margin: 0.55em 0; }
 .dlg .m { color: var(--rubric); font-weight: 600; text-align: left; font-size: 0.95em; }
 /* Role labels, printed-missal style: small capitals in a thin coloured outline, no filled background.
@@ -164,6 +167,7 @@ details.roles summary { padding: 8px 12px; font-weight: 600; font-size: 0.86rem;
   display: inline-block; line-height: 1.25; padding: 0 0.4em 0.08em; margin-right: 0.5em; vertical-align: 0.06em; border: 1px solid currentColor; border-radius: 3px; background: none; white-space: nowrap; color: var(--ink-3); }
 :is(.dlg, .pf) .who.r-P { color: var(--priest); }
 :is(.dlg, .pf) .who.r-D { color: var(--priest); border-style: dashed; }
+:is(.dlg, .pf) .who.r-C1, :is(.dlg, .pf) .who.r-C2 { color: var(--priest); }   /* concelebrants 1 and 2 (intercessions of EP II/III) */
 :is(.dlg, .pf) .who.r-A, .bk .who { color: var(--all); }
 :is(.dlg, .pf) .who.r-L { color: var(--reader); }
 /* Hours: the presider in red like the priest; the label may be wider than the column and grows to the left */
@@ -342,7 +346,9 @@ details.music picture { display: block; }
 .epsel button[aria-pressed="true"] { background: var(--cel-sel); border-color: var(--cel-sel); color: var(--cel-sel-ink); }
 .dlg .rbx { color: var(--rubric); font-weight: 400; }
 .dlg .rbx.it { font-style: italic; font-weight: 400; }
-.dlg .ln.verba { font-variant-caps: all-small-caps; font-size: 1.1em; letter-spacing: 0.025em; }
+.dlg .ln.verba { font-variant-caps: all-small-caps; font-size: 1.1em; letter-spacing: 0.025em; line-height: 1.36; }
+.dlg .ln.verba .ph, .dlg .ln.verba .phl { vertical-align: top; }   /* inline-blocks on the baseline added a gap under every line of the words of the Lord */
+.dlg .ln.verba + .ln.verba { margin-top: 0; }
 .dlg.ep-t .ln { padding-left: 1em; text-indent: -1em; }   /* a line too long for a phone continues indented, so it never looks like a new line of the Missal */
 .dlg .tx.slot .src { font-family: var(--f-ui); font-style: normal; font-size: 0.62em; color: var(--ink-3); }
 .mlink { display: inline-block; justify-self: start; margin-top: 0.35em; font-family: var(--f-ui); font-size: 0.7em; font-weight: 600; text-decoration: none; color: var(--ink); border: 1px solid var(--gold); border-radius: 999px; padding: 3px 12px; background: var(--sheet); }
@@ -522,14 +528,14 @@ LIT_DAYS.forEach(d => {
 const UI = {
   en: { title: "English Mass", sub: "", vnMark: "VN", presider: "Presider", presiderHours: "Presider", roles: "Ministries", rolesMore: "Show all ministries", rolesLess: "Show presider only", rolesLessHours: "Show presider only", contents: "Contents",
     readings: { first: "First Reading", psalm: "Responsorial Psalm", second: "Second Reading", gospel: "Gospel" }, reader: "Reader", sungBy: "Sung by",
-    full: "Full text ↗", inBook: "English text: booklet or iBreviary.", missal: "Roman Missal", music: "♪ Sheet music ↗", sheet: "♪ Sheet music", sheetAlt: "Sheet music", sheetFull: "♪ Full score (4 parts)", hymnPlay: "Listen & sing along", hymnPause: "Pause", hymnResume: "Resume", hymnIntro: "Organ introduction", hymnStanza: "Stanza", trShow: "Show translation", trHide: "Hide translation", trAll: "Translations", end: { EN: ["The word of the Lord.", "Thanks be to God."], VN: ["Đó là Lời Chúa.", "Tạ ơn Chúa."] }, src: "English text: USCCB Daily Bible Readings", pending: "Text not yet provided by the Liturgy Committee.", wordEnd: ["The word of the Lord.", "Thanks be to God."], marks: { P: "Priest", D: "Deacon", A: "All", V: "℣", R: "℟", L: "Reader" },
+    full: "Full text ↗", inBook: "English text: booklet or iBreviary.", missal: "Roman Missal", music: "♪ Sheet music ↗", sheet: "♪ Sheet music", sheetAlt: "Sheet music", sheetFull: "♪ Full score (4 parts)", hymnPlay: "Listen & sing along", hymnPause: "Pause", hymnResume: "Resume", hymnIntro: "Organ introduction", hymnStanza: "Stanza", trShow: "Show translation", trHide: "Hide translation", trAll: "Translations", end: { EN: ["The word of the Lord.", "Thanks be to God."], VN: ["Đó là Lời Chúa.", "Tạ ơn Chúa."] }, src: "English text: USCCB Daily Bible Readings", pending: "Text not yet provided by the Liturgy Committee.", wordEnd: ["The word of the Lord.", "Thanks be to God."], marks: { P: "Priest", C1: "Conc. 1", C2: "Conc. 2", D: "Deacon", A: "All", V: "℣", R: "℟", L: "Reader" },
     latin: "Latin", draft: "Draft · for approval by the Liturgy Committee", pfSource: "Prayed in English", hymnNo: "No.", colors: { green: "Liturgical colour: green", red: "Liturgical colour: red" },
     vnDay: "Prepared by the Dominican Family of Vietnam",
     note: "Times are Vietnam time (UTC+7). Copyrighted liturgical texts (Roman Missal, Lectionary, psalms, hymns) are in the printed booklet or the iBreviary app; this page gives the order of celebration, responses, Latin texts and ministries.",
     back: "Songs & practice", frameNote: "Detailed booklet prepared by the delegation in charge of the day." },
   vi: { title: "Holy Mass & Liturgy of the Hours", sub: "APOP Provincials and Regents · Máctinô, Biên Hòa", vnMark: "VN", presider: "Chủ tế", presiderHours: "Chủ sự", roles: "Phận vụ", rolesMore: "Xem tất cả phận vụ", rolesLess: "Chỉ xem chủ tế", rolesLessHours: "Chỉ xem chủ sự", contents: "Mục lục",
     readings: { first: "Bài đọc 1", psalm: "Đáp ca", second: "Bài đọc 2", gospel: "Tin Mừng" }, reader: "Người đọc", sungBy: "Người hát",
-    full: "Bản văn đầy đủ ↗", inBook: "Bản văn tiếng Anh: xem sách hoặc iBreviary.", missal: "Sách lễ Rôma", music: "♪ Bản nhạc ↗", sheet: "♪ Bản nhạc", sheetAlt: "Bản nhạc", sheetFull: "♪ Bản 4 bè", hymnPlay: "Nghe và hát theo", hymnPause: "Tạm dừng", hymnResume: "Nghe tiếp", hymnIntro: "Dạo đàn", hymnStanza: "Khổ", trShow: "Hiện bản dịch", trHide: "Ẩn bản dịch", trAll: "Bản dịch", end: { EN: ["The word of the Lord.", "Thanks be to God."], VN: ["Đó là Lời Chúa.", "Tạ ơn Chúa."] }, src: "Bản văn theo tài liệu Ban Phụng vụ.", pending: "Ban Phụng vụ chưa gửi bản văn.", wordEnd: ["The word of the Lord.", "Thanks be to God."], marks: { P: "Linh mục", D: "Phó tế", A: "Cộng đoàn", V: "℣", R: "℟", L: "Đọc viên" },
+    full: "Bản văn đầy đủ ↗", inBook: "Bản văn tiếng Anh: xem sách hoặc iBreviary.", missal: "Sách lễ Rôma", music: "♪ Bản nhạc ↗", sheet: "♪ Bản nhạc", sheetAlt: "Bản nhạc", sheetFull: "♪ Bản 4 bè", hymnPlay: "Nghe và hát theo", hymnPause: "Tạm dừng", hymnResume: "Nghe tiếp", hymnIntro: "Dạo đàn", hymnStanza: "Khổ", trShow: "Hiện bản dịch", trHide: "Ẩn bản dịch", trAll: "Bản dịch", end: { EN: ["The word of the Lord.", "Thanks be to God."], VN: ["Đó là Lời Chúa.", "Tạ ơn Chúa."] }, src: "Bản văn theo tài liệu Ban Phụng vụ.", pending: "Ban Phụng vụ chưa gửi bản văn.", wordEnd: ["The word of the Lord.", "Thanks be to God."], marks: { P: "Linh mục", C1: "Đồng tế 1", C2: "Đồng tế 2", D: "Phó tế", A: "Cộng đoàn", V: "℣", R: "℟", L: "Đọc viên" },
     latin: "Latinh", draft: "Bản nháp · chờ Ban Phụng vụ duyệt", pfSource: "Đọc bằng tiếng Anh · bản của Ban Phụng vụ; tiếng Việt để tham khảo", hymnNo: "Số", colors: { green: "Màu phụng vụ: xanh", red: "Màu phụng vụ: đỏ" },
     vnDay: "Gia đình Đa Minh Việt Nam phụ trách",
     note: "Giờ Việt Nam (UTC+7). Bản văn có bản quyền (Sách lễ Rôma, Sách Bài đọc, Thánh vịnh, bài hát) có trong sách in hoặc ứng dụng iBreviary; trang này trình bày trình tự cử hành, lời đáp, bản văn Latinh và phận vụ.",
@@ -809,6 +815,26 @@ function render() {
     }
   });
   s.appendChild(text);
+  /* the same speaker twice in a row (e.g. PRIEST "Let us pray." then PRIEST the prayer, once the rubric between them is hidden):
+     show the label only on the first (anh Khải 08/11); a block with no label (cont) carries on the speaker before it.
+     In the lean view such a block also follows on without a paragraph gap, except around the words of the Lord. */
+  if (it.kind === "mass") {
+    const lean = text.classList.contains("lean");
+    let prev = null, prevEl = null;
+    for (const c of text.children) {
+      if (lean && c.classList.contains("rub-x")) continue;
+      if (!c.classList.contains("dlg")) { prev = null; prevEl = null; continue; }
+      c.querySelectorAll(":scope > .tx").forEach((tx, k) => {
+        const w = tx.querySelector(".who"), role = w ? [...w.classList].find(x => x.startsWith("r-")) : tx.querySelector(".rm") ? "rm" : prev;
+        const same = !!prev && role === prev && role !== "rm";
+        if (w && same && !c.classList.contains("opt")) tx.classList.add("same-who");
+        if (k === 0 && same && lean && prevEl && !c.querySelector(".verba") && !prevEl.querySelector(".verba") && !c.classList.contains("proper") && !prevEl.classList.contains("proper") && !c.classList.contains("opt") && !prevEl.classList.contains("opt")) c.classList.add("flow");
+        prev = role;
+      });
+      if (c.classList.contains("opt")) prev = null;   // after optional [bracketed] text, the next block keeps its label
+      prevEl = c;
+    }
+  }
   /* justify only running prose; keep sense-lines, poetry and psalms ragged-right */
   text.querySelectorAll(".dlg .tx, .lect .pri, .lect .tr, .bk p, .pf li, .rubric").forEach(e => {
     if (e.classList.contains("slot") || e.querySelector("br, .l1, .l2, .v") || /\n/.test(e.textContent.trim())) e.classList.add("ragged");
@@ -821,7 +847,7 @@ function block(b, it, day) {
   switch (b.k) {
     case "h": { const h = el("h3", MAJOR.includes(b.id) && it.kind === "mass" ? "major" : "", T(b)); h.id = "s-" + it.id + "-" + b.id; return h; }
     case "r": return el("p", "rubric", T(b));
-    case "v": { const g = dialog(b.lines); if (b.proper) properize(g); if (b.cont) g.querySelectorAll(".who").forEach(e => e.remove()); if (b.ep) { g.classList.add("ep-t"); epMarks(g); } return g; }
+    case "v": { const g = dialog(b.lines); if (b.proper) properize(g); if (b.opt) g.classList.add("opt"); if (b.cont) g.querySelectorAll(".who").forEach(e => e.remove()); if (b.ep) { g.classList.add("ep-t"); epMarks(g); } return g; }
     case "pasel": {   // Penitential Act 1 | 2 | 3 — remembered like the Eucharistic Prayer
       const d = el("div", "epsel pasel"); d.setAttribute("role", "group"); d.setAttribute("aria-label", "Penitential Act");
       d.appendChild(el("span", "lb", "Form"));
@@ -1030,7 +1056,7 @@ const CANTOR_DUTIES = {
 function properize(g) { g.classList.add("proper"); return g; }
 
 function usccb(date) { const [y, m, d] = date.split("-"); return "https://bible.usccb.org/bible/readings/" + m + d + y.slice(2) + ".cfm"; }
-const SHEET = {"sheets/all-the-earth-ipa.png":[1353,789],"sheets/all-the-earth.png":[1353,607],"sheets/all-the-ends-of-the-earth-ipa.png":[1352,1697],"sheets/all-the-ends-of-the-earth.png":[1352,1481],"sheets/christians-let-us-love-ipa.png":[1350,1307],"sheets/christians-let-us-love.png":[1350,995],"sheets/for-the-departed-souls-ipa.png":[1353,1260],"sheets/for-the-departed-souls.png":[1353,1000],"sheets/greetings-to-jerusalem-ipa.png":[1351,1324],"sheets/greetings-to-jerusalem.png":[1351,1180],"sheets/hail-holy-queen-ipa.png":[1351,864],"sheets/hail-holy-queen.png":[1351,696],"sheets/here-i-am-lord-ipa.png":[1349,1667],"sheets/here-i-am-lord.png":[1349,1331],"sheets/heritage-amen-narrow.png":[608,496],"sheets/heritage-amen.png":[1100,296],"sheets/heritage-glory-to-god-narrow.png":[776,2681],"sheets/heritage-glory-to-god.png":[1072,1368],"sheets/heritage-holy-narrow.png":[684,905],"sheets/heritage-holy.png":[1100,504],"sheets/heritage-lamb-of-god-narrow.png":[608,780],"sheets/heritage-lamb-of-god.png":[1100,476],"sheets/heritage-lord-have-mercy-narrow.png":[594,597],"sheets/heritage-lord-have-mercy.png":[1060,318],"sheets/heritage-we-proclaim-your-death-narrow.png":[739,701],"sheets/heritage-we-proclaim-your-death.png":[1100,431],"sheets/i-go-my-merry-way-ipa.png":[1353,1189],"sheets/i-go-my-merry-way-v4-ipa.png":[1353,1189],"sheets/i-go-my-merry-way.png":[1353,949],"sheets/let-heaven-rejoice-ipa.png":[1351,1468],"sheets/let-heaven-rejoice.png":[1351,1228],"sheets/marys-song-ipa.png":[1353,970],"sheets/marys-song.png":[1353,730],"sheets/seed-scattered-and-sown-ipa.png":[1353,1060],"sheets/seed-scattered-and-sown.png":[1353,868],"sheets/shine-jesus-shine-ipa.png":[1352,1658],"sheets/shine-jesus-shine.png":[1352,1346],"sheets/sing-halleluia-narrow.png":[737,968],"sheets/sing-halleluia.png":[1100,458],"sheets/sing-of-mary-pure-and-lowly-ipa.png":[1350,1326],"sheets/sing-of-mary-pure-and-lowly.png":[1350,1014],"sheets/we-offer-our-lives-ipa.png":[1353,706],"sheets/we-offer-our-lives.png":[1353,586],"sheets/when-i-survey-the-wondrous-cross-ipa.png":[1353,779],"sheets/when-i-survey-the-wondrous-cross.png":[1353,587]};   // [width, height] of each sheet image (built from sheets/)   // sheet-music images in music/sheets/<key>.png (cut from the Liturgy Committee's PDFs), shown in place
+const SHEET = {"sheets/all-the-earth-ipa.png":[1353,789],"sheets/all-the-earth.png":[1353,607],"sheets/all-the-ends-of-the-earth-ipa.png":[1352,1697],"sheets/all-the-ends-of-the-earth.png":[1352,1481],"sheets/christians-let-us-love-ipa.png":[1350,1307],"sheets/christians-let-us-love.png":[1350,995],"sheets/for-the-departed-souls-ipa.png":[1353,1260],"sheets/for-the-departed-souls.png":[1353,1000],"sheets/greetings-to-jerusalem-ipa.png":[1351,1324],"sheets/greetings-to-jerusalem.png":[1351,1180],"sheets/hail-holy-queen-ipa.png":[1351,864],"sheets/hail-holy-queen.png":[1351,696],"sheets/here-i-am-lord-ipa.png":[1349,1667],"sheets/here-i-am-lord.png":[1349,1331],"sheets/heritage-amen-narrow.png":[608,496],"sheets/heritage-amen.png":[1100,296],"sheets/heritage-glory-to-god-narrow.png":[776,2681],"sheets/heritage-glory-to-god.png":[1072,1368],"sheets/heritage-holy-narrow.png":[684,905],"sheets/heritage-holy.png":[1100,504],"sheets/heritage-lamb-of-god-narrow.png":[608,780],"sheets/heritage-lamb-of-god.png":[1100,476],"sheets/heritage-lord-have-mercy-narrow.png":[594,597],"sheets/heritage-lord-have-mercy.png":[1060,318],"sheets/heritage-we-proclaim-your-death-narrow.png":[739,701],"sheets/heritage-we-proclaim-your-death.png":[1100,431],"sheets/i-go-my-merry-way-ipa.png":[1353,1189],"sheets/i-go-my-merry-way-v4-ipa.png":[1353,1189],"sheets/i-go-my-merry-way.png":[1353,949],"sheets/let-heaven-rejoice-ipa.png":[1351,1468],"sheets/let-heaven-rejoice.png":[1351,1228],"sheets/marys-song-ipa.png":[1353,970],"sheets/marys-song.png":[1353,730],"sheets/seed-scattered-and-sown-ipa.png":[1353,1060],"sheets/seed-scattered-and-sown.png":[1353,868],"sheets/shine-jesus-shine-ipa.png":[1352,1658],"sheets/shine-jesus-shine.png":[1352,1346],"sheets/sing-halleluia-narrow.png":[737,968],"sheets/sing-halleluia.png":[1100,458],"sheets/sing-of-mary-pure-and-lowly-ipa.png":[1350,1326],"sheets/sing-of-mary-pure-and-lowly.png":[1350,1014],"sheets/simple-gifts-ipa.png":[1353,952],"sheets/simple-gifts.png":[1353,754],"sheets/we-offer-our-lives-ipa.png":[1353,706],"sheets/we-offer-our-lives.png":[1353,586],"sheets/when-i-survey-the-wondrous-cross-ipa.png":[1353,779],"sheets/when-i-survey-the-wondrous-cross.png":[1353,587]};   // [width, height] of each sheet image (built from sheets/)   // sheet-music images in music/sheets/<key>.png (cut from the Liturgy Committee's PDFs), shown in place
 const sheetOpen = {};
 /* ---------- Hymn player (see HYMN_AUDIO): one recording at a time; the state survives re-renders;
    leaving the Hour stops it. ---------- */
