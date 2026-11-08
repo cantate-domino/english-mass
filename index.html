@@ -156,7 +156,8 @@ details.roles summary { padding: 8px 12px; font-weight: 600; font-size: 0.86rem;
 .text.lean .rub-x { display: none; }
 .text .same-who .who { display: none; }
 .dlg.opt .tx { font-style: italic; color: var(--ink-2); }   /* optional text in [brackets], e.g. Masses for the Dead in EP II/III */
-.text.lean .dlg.flow { margin-top: -0.4em; }   /* one speaker, one paragraph: no gap where a hidden rubric used to be */
+.text.lean .dlg.flow { margin-top: -0.55em; }   /* cancels the 0.55em block margin exactly: the lines run on evenly */
+.text.lean .dlg.ep-t .ln-gap { display: none; }   /* Eucharistic Prayer: no blank line inside the words of the Lord, every line evenly spaced (anh Khải 08/11) */   /* one speaker, one paragraph: no gap where a hidden rubric used to be */
 .dlg { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.2em; margin: 0.55em 0; }
 .dlg .m { color: var(--rubric); font-weight: 600; text-align: left; font-size: 0.95em; }
 /* Role labels, printed-missal style: small capitals in a thin coloured outline, no filled background.
@@ -346,8 +347,9 @@ details.music picture { display: block; }
 .epsel button[aria-pressed="true"] { background: var(--cel-sel); border-color: var(--cel-sel); color: var(--cel-sel-ink); }
 .dlg .rbx { color: var(--rubric); font-weight: 400; }
 .dlg .rbx.it { font-style: italic; font-weight: 400; }
-.dlg .ln.verba { font-variant-caps: all-small-caps; font-size: 1.1em; letter-spacing: 0.025em; line-height: 1.36; }
-.dlg .ln.verba .ph, .dlg .ln.verba .phl { vertical-align: top; }   /* inline-blocks on the baseline added a gap under every line of the words of the Lord */
+.dlg .ln.verba { font-variant-caps: all-small-caps; font-size: 1.1em; font-weight: 700; letter-spacing: 0.025em; line-height: calc(1.5em / 1.1); }
+.dlg .ln.verba .ph { display: inline; white-space: nowrap; }   /* words of the Lord: plain inline phrases (inline-blocks shifted the capitals up or down in the line) */
+.dlg .ln.verba .phl { display: inline; }
 .dlg .ln.verba + .ln.verba { margin-top: 0; }
 .dlg.ep-t .ln { padding-left: 1em; text-indent: -1em; }   /* a line too long for a phone continues indented, so it never looks like a new line of the Missal */
 .dlg .tx.slot .src { font-family: var(--f-ui); font-style: normal; font-size: 0.62em; color: var(--ink-3); }
@@ -828,7 +830,7 @@ function render() {
         const w = tx.querySelector(".who"), role = w ? [...w.classList].find(x => x.startsWith("r-")) : tx.querySelector(".rm") ? "rm" : prev;
         const same = !!prev && role === prev && role !== "rm";
         if (w && same && !c.classList.contains("opt")) tx.classList.add("same-who");
-        if (k === 0 && same && lean && prevEl && !c.querySelector(".verba") && !prevEl.querySelector(".verba") && !c.classList.contains("proper") && !prevEl.classList.contains("proper") && !c.classList.contains("opt") && !prevEl.classList.contains("opt")) c.classList.add("flow");
+        if (k === 0 && same && lean && prevEl && !c.classList.contains("proper") && !prevEl.classList.contains("proper") && !c.classList.contains("opt") && !prevEl.classList.contains("opt")) c.classList.add("flow");
         prev = role;
       });
       if (c.classList.contains("opt")) prev = null;   // after optional [bracketed] text, the next block keeps its label

@@ -1,7 +1,7 @@
 /* English Mass · St. Joseph Convent – ALL the content of both pages (index.html: Mass texts, songs.html: songs & practice).
    Edited with editor.html (or by hand). Structure: days -> items (celebrations) -> blocks. "updated" is shown on both pages. */
 window.LIT_DATA = {
- "updated": "8 Nov 2026, 21:17 (UTC+7)",
+ "updated": "8 Nov 2026, 21:36 (UTC+7)",
  "days": [
   {
    "date": "2026-10-10",
