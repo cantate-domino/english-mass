@@ -155,6 +155,7 @@ details.roles summary { padding: 8px 12px; font-weight: 600; font-size: 0.86rem;
 /* Mass: by default only what is said aloud is shown; red rubrics, quiet prayers and "Or:" options come back with the toggle */
 .text.lean .rub-x { display: none; }
 .text .same-who .who { display: none; }
+.text.live .prac { display: none; }   /* Mass in progress: no "Listen & practise" */
 .dlg.opt .tx { font-style: italic; color: var(--ink-2); }   /* optional text in [brackets], e.g. Masses for the Dead in EP II/III */
 .text.lean .dlg.flow { margin-top: -0.55em; }   /* cancels the 0.55em block margin exactly: the lines run on evenly */
 .dlg .ln.verba + .ln-gap { display: none; }   /* no blank line inside the words of the Lord (anh Khải 08/11) */
@@ -594,6 +595,10 @@ const RUB_QUIET = /quietly|low voice|If, however|If appropriate, he also|private
 const RUB_REPLY = /repl(y|ies)|acclaim|continues?:|continue:|adds once|The people:|conclude the prayer/i;
 try { const f = +localStorage.getItem("lit-fs"); if (f >= 15 && f <= 28) fs = f; } catch (e) {}
 
+const MASS_TIME = "05:00";   // usual start of the English Mass (anh Khải 10/11); a Mass with its own "time" (HH:MM) uses that
+let LIVE = null;
+function isLive() { if (!LIVE) return false; const n = new Date(Date.now() + 7 * 36e5).toISOString().slice(0, 16); return n >= LIVE[0] && n < LIVE[1]; }
+setInterval(() => { const t = document.querySelector(".text"); if (t) t.classList.toggle("live", isLive()); }, 30000);
 function pickDefault(now) {
   // A Mass stays the one shown until 12:00 noon (Vietnam time) on its own day; then the next Mass (same rule as songs.html).
   const n = new Date(now + 7 * 36e5).toISOString().slice(0, 16);
@@ -798,8 +803,12 @@ function render() {
   buildSecbar(it, heads);
 
   const text = el("div", "text");
-  if (it.kind === "mass" && !showRub) text.classList.add("lean");   // the switch sits in the header tools
-  let lastRub = "", lastShown = true;
+  if (it.kind === "mass" && !showRub) text.classList.add("lean");
+  // During the Mass (from its time, default 05:00, until the page moves on at 12:00 noon, Vietnam time) the
+  // "Listen & practise" buttons are hidden; "Sheet music" stays (anh Khải 10/11)
+  LIVE = it.kind === "mass" ? [day.date + "T" + (/^\d\d:\d\d$/.test(it.time || "") ? it.time : MASS_TIME), day.date + "T12:00"] : null;
+  if (isLive()) text.classList.add("live");   // the switch sits in the header tools
+  let lastRub = "", lastShown = true; let commAnt = false, commSeen = false;
   it.blocks.forEach((b, i) => {
     if (b.ep && b.ep !== EPSEL) return;   // only the chosen Eucharistic Prayer
     if (!paOk(b)) return;   // only the chosen form of the Penitential Act
@@ -807,8 +816,10 @@ function render() {
     if (it.kind !== "mass" || !n.classList) return;
     // Entrance / Communion Antiphons are not used (hymns are sung instead): hidden with their headings (anh Khải 15/10);
     // but always shown at a recited Mass (keep: true, 30–31 Oct, anh Khải 29/10)
-    if (b.k === "ant") { if (!b.keep) n.classList.add("rub-x"); return; }
-    if (b.k === "sub") { let j = i + 1; while (it.blocks[j] && it.blocks[j].k === "r") j++; if (it.blocks[j] && it.blocks[j].k === "ant" && !it.blocks[j].keep) n.classList.add("rub-x"); }
+    // Communion Antiphon: always shown, said when there is no Communion song (anh Khải 10/11) — the first one; "Or:" alternatives only with Rubrics
+    if (b.k === "ant") { if (!b.keep && !(commAnt && !commSeen)) n.classList.add("rub-x"); if (commAnt) commSeen = true; return; }
+    if (b.k === "sub") { commAnt = /^communion antiphon$/i.test((b.en || "").trim()); commSeen = false; if (!commAnt) { let j = i + 1; while (it.blocks[j] && it.blocks[j].k === "r") j++; if (it.blocks[j] && it.blocks[j].k === "ant" && !it.blocks[j].keep) n.classList.add("rub-x"); } }
+    if (b.k === "h") { commAnt = false; }
     if (b.k === "h" || b.k === "sub") { lastRub = ""; lastShown = true; }
     else if (b.k === "r") { lastRub = b.en || ""; if (!RUB_KEEP.test(lastRub) && !b.keep) n.classList.add("rub-x"); }
     else if (b.k === "v") {   // quiet prayers, "Or:" alternatives and the answers that belong to them
