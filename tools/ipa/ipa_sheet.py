@@ -1,4 +1,5 @@
 """python tools/ipa/ipa_sheet.py sheets/<song>.png sheets/<song>-ipa.png spec_<name>  (needs pytesseract + tesseract)
+Optional HL={verse:[y,...]} in a spec writes <song>-v<verse>-ipa.png with that verse highlighted.
 ipa_sheet.py SRC OUT SPEC_MODULE — writes Oxford (BrE) IPA + linking marks under each lyric line.
 SPEC: LINES=[(y_approx, "hyphen-ated lyric text"), ...]; IPA from oxford.py OX dict (strong forms)."""
 import sys, re, importlib, difflib, pytesseract
@@ -74,7 +75,7 @@ for y, text in S.LINES:
     for w in text.split():
         syls = [norm(s) for s in w.split('-') if norm(s)]
         if not syls: continue
-        words.append((w, syls, bool(re.search(r'[,.;:!?)]$', w))))
+        words.append((w, syls, bool(re.search(r'[,.;:!?)"”]$', w))))
     flat = [s for _, ss, _ in words for s in ss]
     toks = band_tokens(y)
     pos = align(flat, toks)
@@ -133,5 +134,15 @@ for p in plan:
         if ends_cons(ipas[i]) and starts_vowel(ipas[i + 1]):
             x = (box[i][1] + box[i + 1][0]) / 2
             d.text((x - 7, p['base'] - 10), '‿', font=FL, fill=BLUE)
+# optional: copies with verses highlighted, SPEC.HL = {verse_no: [y_approx of its lyric lines]}
+for vn, ys in getattr(S, 'HL', {}).items():
+    hl = new.copy(); ov = Image.new('RGB', hl.size, 'white'); od = ImageDraw.Draw(ov)
+    for yy in ys:
+        p = min(plan, key=lambda q: abs(q['y'] - yy))
+        shift = p['base'] - p['cut']; x0 = min(a for a, b in p['spans']) - 12; x1 = max(b for a, b in p['spans']) + 12
+        od.rounded_rectangle((x0, p['y'] + shift - 6, x1, p['base'] + G - 1), radius=8, fill=(255, 236, 160))
+    from PIL import ImageChops
+    hl = ImageChops.multiply(hl, ov)
+    o2 = out.replace('-ipa.png', f'-v{vn}-ipa.png'); hl.save(o2, optimize=True); print('highlight', o2)
 new.save(out, optimize=True)
 print(out, new.size, 'MISSING:', sorted(missing))

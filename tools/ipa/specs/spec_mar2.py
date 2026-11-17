@@ -1,0 +1,10 @@
+LINES=[(229,"Ma-ra-na-tha, we long for your peace. Ma-ra-na-tha, we long for your"),
+ (378,"mer-cy. Ma-ra-na-tha, we long for your com-ing, O God."),
+ (533,"In your im-age you have fash-ioned us, in the gar-den you made us;"),
+ (565,"In our weak-ness we have turned from you, turned from light to the dark-ness,"),
+ (600,"In your love you have sent your Son, your sal-va-tion for ev-'ry-one;"),
+ (631,"We a-wait your day of glo-ry, Christ Je-sus, re-turn for us."),
+ (781,"you have giv-en us your breath of life, voice to praise your name, voice to praise your name."),
+ (818,"ev-er long-ing for sal-va-tion, O Lord of light, O Lord of light."),
+ (853,"Word in-car-nate, God's com-pas-sion, hope for hu-man-kind, hope for hu-man-kind."),
+ (884,"Gen-tle King, Just De-liv-er-er, you will bring us home, you will bring us home.")]
