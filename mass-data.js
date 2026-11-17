@@ -1,7 +1,7 @@
 /* English Mass · St. Joseph Convent – ALL the content of both pages (index.html: Mass texts, songs.html: songs & practice).
    Edited with editor.html (or by hand). Structure: days -> items (celebrations) -> blocks. "updated" is shown on both pages. */
 window.LIT_DATA = {
- "updated": "10 Nov 2026, 08:26 (UTC+7)",
+ "updated": "17 Nov 2026, 10:11 (UTC+7)",
  "days": [
   {
    "date": "2026-10-10",
@@ -18213,12 +18213,17 @@ window.LIT_DATA = {
        "k": "song",
        "partEn": "Entrance Chant",
        "partVi": "Ca Nhập lễ",
-       "title": "",
-       "by": "",
-       "no": "",
-       "pdf": null,
+       "title": "Let Heaven Rejoice",
+       "by": "Bob Dufford, S.J.",
+       "no": "ICLA No. 139",
+       "pdf": {
+        "sheet": "sheets/let-heaven-rejoice-ipa.png"
+       },
        "lyrics": "",
-       "part": "entrance"
+       "part": "entrance",
+       "youtube": "https://youtu.be/drn4GIEV4v8",
+       "start": 7,
+       "num": 139
       },
       {
        "k": "sub",
@@ -18919,12 +18924,16 @@ window.LIT_DATA = {
        "k": "song",
        "partEn": "Offertory Chant",
        "partVi": "Ca Dâng lễ",
-       "title": "",
-       "by": "",
-       "no": "",
-       "pdf": null,
+       "title": "Blest Are You, Lord",
+       "by": "Aniceto Nazareth",
+       "no": "ICLA No. 147",
+       "pdf": {
+        "sheet": "sheets/blest-are-you-lord-ipa.png"
+       },
        "lyrics": "",
-       "part": "offertory"
+       "part": "offertory",
+       "youtube": "https://youtu.be/F51p9nc3w2A",
+       "num": 147
       },
       {
        "k": "r",
@@ -20445,12 +20454,17 @@ window.LIT_DATA = {
        "k": "song",
        "partEn": "Recessional",
        "partVi": "Kết lễ",
-       "title": "",
+       "title": "Immaculate Mother",
        "by": "",
-       "no": "",
-       "pdf": null,
+       "no": "ICLA No. 214",
+       "pdf": {
+        "sheet": "sheets/immaculate-mother-ipa.png"
+       },
        "lyrics": "",
-       "part": "recessional"
+       "part": "recessional",
+       "youtube": "https://youtu.be/hzdSVefon3M",
+       "start": 11,
+       "num": 214
       }
      ]
     }
@@ -20483,12 +20497,16 @@ window.LIT_DATA = {
        "k": "song",
        "partEn": "Entrance Chant",
        "partVi": "Ca Nhập lễ",
-       "title": "",
-       "by": "",
-       "no": "",
-       "pdf": null,
+       "title": "All the Ends of the Earth",
+       "by": "Bob Dufford, S.J.",
+       "no": "ICLA No. 127",
+       "pdf": {
+        "sheet": "sheets/all-the-ends-of-the-earth-ipa.png"
+       },
        "lyrics": "",
-       "part": "entrance"
+       "part": "entrance",
+       "youtube": "https://youtu.be/WURSnRG-bkQ",
+       "num": 127
       },
       {
        "k": "sub",
@@ -21188,12 +21206,17 @@ window.LIT_DATA = {
        "k": "song",
        "partEn": "Offertory Chant",
        "partVi": "Ca Dâng lễ",
-       "title": "",
-       "by": "",
-       "no": "",
-       "pdf": null,
+       "title": "Take Our Bread",
+       "by": "Joseph Wise",
+       "no": "ICLA No. 148",
+       "pdf": {
+        "sheet": "sheets/take-our-bread-ipa.png"
+       },
        "lyrics": "",
-       "part": "offertory"
+       "part": "offertory",
+       "youtube": "https://youtu.be/dwCfLoxUcyM",
+       "start": 11,
+       "num": 148
       },
       {
        "k": "r",
@@ -22714,12 +22737,2239 @@ window.LIT_DATA = {
        "k": "song",
        "partEn": "Recessional",
        "partVi": "Kết lễ",
-       "title": "",
+       "title": "Hail, Holy Queen",
        "by": "",
-       "no": "",
-       "pdf": null,
+       "no": "ICLA No. 216",
+       "pdf": {
+        "sheet": "sheets/hail-holy-queen-ipa.png"
+       },
        "lyrics": "",
-       "part": "recessional"
+       "part": "recessional",
+       "youtube": "https://youtu.be/pSImGYMPNSU",
+       "start": 15,
+       "num": 216
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "date": "2026-12-05",
+   "title_en": "Saturday of the First Week of Advent",
+   "note_en": "",
+   "color": "violet",
+   "items": [
+    {
+     "kind": "mass",
+     "t": "00:00",
+     "time": "",
+     "en": "Holy Mass",
+     "blocks": [
+      {
+       "k": "h",
+       "en": "The Introductory Rites",
+       "vi": "Nghi thức Đầu lễ",
+       "id": "intro"
+      },
+      {
+       "k": "r",
+       "en": "When the people are gathered, the Priest approaches the altar with the ministers while the Entrance Chant is sung.",
+       "vi": ""
+      },
+      {
+       "k": "song",
+       "partEn": "Entrance Chant",
+       "partVi": "Ca Nhập lễ",
+       "title": "Lift Up Your Head",
+       "by": "Truro",
+       "no": "ICLA No. 65",
+       "pdf": {
+        "sheet": "sheets/lift-up-your-head-ipa.png"
+       },
+       "lyrics": "",
+       "part": "entrance",
+       "youtube": "https://youtu.be/Iy2JyS0F-F0",
+       "start": 15,
+       "num": 65
+      },
+      {
+       "k": "sub",
+       "en": "Entrance Antiphon",
+       "vi": "Ca Nhập lễ"
+      },
+      {
+       "k": "ant",
+       "text": "To be added.",
+       "cite": "",
+       "proper": true,
+       "keep": false
+      },
+      {
+       "k": "r",
+       "en": "When he has arrived at the altar, after making a profound bow with the ministers, the Priest venerates the altar with a kiss and, if appropriate, incenses the cross and the altar. Then, with the ministers, he goes to the chair.",
+       "vi": ""
+      },
+      {
+       "k": "r",
+       "en": "When the Entrance Chant is concluded, the Priest and the faithful, standing, sign themselves with the Sign of the Cross, while the Priest, facing the people, says:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "In the name of the Father, and of the Son, and of the Holy Spirit."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The people reply:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "Amen."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "Then the Priest, extending his hands, greets the people, saying:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "The Lord be with you."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The people reply:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "And with your spirit."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The Priest, or a Deacon, or another minister, may very briefly introduce the faithful to the Mass of the day.",
+       "vi": ""
+      },
+      {
+       "k": "h",
+       "en": "Penitential Act",
+       "vi": "Nghi thức Sám hối",
+       "id": "penitential"
+      },
+      {
+       "k": "pasel"
+      },
+      {
+       "k": "r",
+       "en": "Then follows the Penitential Act, to which the Priest invites the faithful, saying:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Brethren (brothers and sisters), let us acknowledge our sins,\nand so prepare ourselves to celebrate the sacred mysteries."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "A brief pause for silence follows.",
+       "vi": ""
+      },
+      {
+       "k": "r",
+       "en": "Then all recite together the formula of general confession:",
+       "vi": "",
+       "pa": [
+        1
+       ]
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "A",
+         "I confess to almighty God\nand to you, my brothers and sisters,\nthat I have greatly sinned,\nin my thoughts and in my words,\nin what I have done and in what I have failed to do,"
+        ]
+       ],
+       "pa": [
+        1
+       ]
+      },
+      {
+       "k": "r",
+       "en": "And, striking their breast, they say:",
+       "vi": "",
+       "pa": [
+        1
+       ]
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "A",
+         "through my fault, through my fault,\nthrough my most grievous fault;"
+        ]
+       ],
+       "pa": [
+        1
+       ]
+      },
+      {
+       "k": "r",
+       "en": "Then they continue:",
+       "vi": "",
+       "pa": [
+        1
+       ]
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "A",
+         "therefore I ask blessed Mary ever-Virgin,\nall the Angels and Saints,\nand you, my brothers and sisters,\nto pray for me to the Lord our God."
+        ]
+       ],
+       "pa": [
+        1
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The Priest then says:",
+       "vi": "",
+       "pa": [
+        2
+       ]
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Have mercy on us, O Lord."
+        ]
+       ],
+       "pa": [
+        2
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The people reply:",
+       "vi": "",
+       "pa": [
+        2
+       ]
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "For we have sinned against you."
+        ]
+       ],
+       "pa": [
+        2
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The Priest:",
+       "vi": "",
+       "pa": [
+        2
+       ]
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Show us, O Lord, your mercy."
+        ]
+       ],
+       "pa": [
+        2
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The people:",
+       "vi": "",
+       "pa": [
+        2
+       ]
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "And grant us your salvation."
+        ]
+       ],
+       "pa": [
+        2
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The Priest, or a Deacon or another minister, then says the following or other invocations with Kyrie, eleison (Lord, have mercy):",
+       "vi": "",
+       "pa": [
+        3
+       ]
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "You were sent to heal the contrite of heart:\nLord, have mercy."
+        ],
+        [
+         "R",
+         "Lord, have mercy."
+        ],
+        [
+         "P",
+         "You came to call sinners:\nChrist, have mercy."
+        ],
+        [
+         "R",
+         "Christ, have mercy."
+        ],
+        [
+         "P",
+         "You are seated at the right hand of the Father to intercede for us:\nLord, have mercy."
+        ],
+        [
+         "R",
+         "Lord, have mercy."
+        ]
+       ],
+       "pa": [
+        3
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The absolution by the Priest follows:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "May almighty God have mercy on us,\nforgive us our sins,\nand bring us to everlasting life."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The people reply:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "Amen."
+        ]
+       ]
+      },
+      {
+       "k": "h",
+       "en": "Kyrie",
+       "vi": "Kinh Thương xót",
+       "id": "kyrie",
+       "pa": [
+        1,
+        2
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The “Kyrie, eleison (Lord, have mercy)” invocations follow, unless they have just occurred in a formula of the Penitential Act.",
+       "vi": "",
+       "pa": [
+        1,
+        2
+       ]
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Lord, have mercy."
+        ],
+        [
+         "R",
+         "Lord, have mercy."
+        ],
+        [
+         "P",
+         "Christ, have mercy."
+        ],
+        [
+         "R",
+         "Christ, have mercy."
+        ],
+        [
+         "P",
+         "Lord, have mercy."
+        ],
+        [
+         "R",
+         "Lord, have mercy."
+        ]
+       ],
+       "pa": [
+        1,
+        2
+       ]
+      },
+      {
+       "k": "h",
+       "en": "Collect",
+       "vi": "Lời nguyện Nhập lễ",
+       "id": "collect"
+      },
+      {
+       "k": "r",
+       "en": "The Priest, with hands joined, says:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Let us pray."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "And all pray in silence with the Priest for a while.",
+       "vi": ""
+      },
+      {
+       "k": "r",
+       "en": "Then the Priest, with hands extended, says the Collect prayer, at the end of which the people acclaim:",
+       "vi": ""
+      },
+      {
+       "k": "slot",
+       "who": "P",
+       "en": "Collect of the day",
+       "vi": "Lời nguyện Nhập lễ trong ngày"
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "Amen."
+        ]
+       ]
+      },
+      {
+       "k": "h",
+       "en": "The Liturgy of the Word",
+       "vi": "Phụng vụ Lời Chúa",
+       "id": "word"
+      },
+      {
+       "k": "r",
+       "en": "Then the reader goes to the ambo and reads the First Reading, while all sit and listen.",
+       "vi": ""
+      },
+      {
+       "k": "tbaread",
+       "kind": "first",
+       "cite": "Isaiah 30:19-21, 23-26"
+      },
+      {
+       "k": "r",
+       "en": "The psalmist or cantor sings or says the Psalm, with the people making the response.",
+       "vi": ""
+      },
+      {
+       "k": "tbaread",
+       "kind": "psalm",
+       "cite": "Psalm 147:1-2, 3-4, 5-6"
+      },
+      {
+       "k": "r",
+       "en": "There follows the “Alleluia” or another chant laid down by the rubrics, as the liturgical time requires.",
+       "vi": ""
+      },
+      {
+       "k": "alh",
+       "cite": "Isaiah 33:22"
+      },
+      {
+       "k": "alv",
+       "text": "The LORD is our Judge, our Lawgiver, our King;\nhe it is who will save us.",
+       "sung": false
+      },
+      {
+       "k": "r",
+       "en": "Meanwhile, if incense is used, the Priest puts some into the thurible. After this, the Deacon who is to proclaim the Gospel, bowing profoundly before the Priest, asks for the blessing, saying in a low voice:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "D",
+         "Your blessing, Father."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The Priest says in a low voice:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "May the Lord be in your heart and on your lips,\nthat you may proclaim his Gospel worthily and well,\nin the name of the Father, and of the Son, ✠ and of the Holy Spirit."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The Deacon signs himself with the Sign of the Cross and replies:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "D",
+         "Amen."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "If, however, a Deacon is not present, the Priest, bowing before the altar, says quietly:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Cleanse my heart and my lips, almighty God,\nthat I may worthily proclaim your holy Gospel."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The Deacon, or the Priest, then proceeds to the ambo, accompanied, if appropriate, by ministers with incense and candles. There he says:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "D",
+         "The Lord be with you."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The people reply:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "And with your spirit."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The Deacon, or the Priest:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "D",
+         "A reading from the holy Gospel according to Luke."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "and, at the same time, he makes the Sign of the Cross on the book and on his forehead, lips, and breast.",
+       "vi": ""
+      },
+      {
+       "k": "r",
+       "en": "The people acclaim:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "Glory to you, O Lord."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "Then the Deacon, or the Priest, incenses the book, if incense is used, and proclaims the Gospel.",
+       "vi": ""
+      },
+      {
+       "k": "tbaread",
+       "kind": "gospel",
+       "cite": "Matthew 9:35–10:1, 5a, 6-8"
+      },
+      {
+       "k": "r",
+       "en": "At the end of the Gospel, the Deacon, or the Priest, acclaims:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "D",
+         "The Gospel of the Lord."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "All reply:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "Praise to you, Lord Jesus Christ."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "Then he kisses the book, saying quietly:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "D",
+         "Through the words of the Gospel\nmay our sins be wiped away."
+        ]
+       ]
+      },
+      {
+       "k": "h",
+       "en": "Homily",
+       "vi": "Bài giảng",
+       "id": "homily"
+      },
+      {
+       "k": "r",
+       "en": "Then follows the Homily, which is to be preached by a Priest or Deacon on all Sundays and Holydays of Obligation; on other days, it is recommended.",
+       "vi": ""
+      },
+      {
+       "k": "h",
+       "en": "The Liturgy of the Eucharist",
+       "vi": "Phụng vụ Thánh Thể",
+       "id": "eucharist"
+      },
+      {
+       "k": "r",
+       "en": "When all this has been done, the Offertory Chant begins. Meanwhile, the ministers place the corporal, the purificator, the chalice, the pall, and the Missal on the altar.",
+       "vi": ""
+      },
+      {
+       "k": "r",
+       "en": "It is desirable that the faithful express their participation by making an offering, bringing forward bread and wine for the celebration of the Eucharist and perhaps other gifts to relieve the needs of the Church and of the poor.",
+       "vi": ""
+      },
+      {
+       "k": "song",
+       "partEn": "Offertory Chant",
+       "partVi": "Ca Dâng lễ",
+       "part": "offertory",
+       "title": "Simple Gifts",
+       "by": "Paul P. Page",
+       "no": "ICLA No. 150",
+       "pdf": {
+        "sheet": "sheets/simple-gifts-ipa.png"
+       },
+       "lyrics": "",
+       "youtube": "https://youtu.be/XnMPE1G16vE",
+       "num": 150
+      },
+      {
+       "k": "r",
+       "en": "The Priest, standing at the altar, takes the paten with the bread and holds it slightly raised above the altar with both hands, saying in a low voice:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Blessed are you, Lord God of all creation,\nfor through your goodness we have received\nthe bread we offer you:\nfruit of the earth and work of human hands,\nit will become for us the bread of life."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "Then he places the paten with the bread on the corporal.",
+       "vi": ""
+      },
+      {
+       "k": "r",
+       "en": "If, however, the Offertory Chant is not sung, the Priest may speak these words aloud; at the end, the people may acclaim:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "Blessed be God for ever."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The Deacon, or the Priest, pours wine and a little water into the chalice, saying quietly:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "D",
+         "By the mystery of this water and wine\nmay we come to share in the divinity of Christ\nwho humbled himself to share in our humanity."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The Priest then takes the chalice and holds it slightly raised above the altar with both hands, saying in a low voice:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Blessed are you, Lord God of all creation,\nfor through your goodness we have received\nthe wine we offer you:\nfruit of the vine and work of human hands,\nit will become our spiritual drink."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "Then he places the chalice on the corporal.",
+       "vi": ""
+      },
+      {
+       "k": "r",
+       "en": "If, however, the Offertory Chant is not sung, the Priest may speak these words aloud; at the end, the people may acclaim:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "Blessed be God for ever."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "After this, the Priest, bowing profoundly, says quietly:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "With humble spirit and contrite heart\nmay we be accepted by you, O Lord,\nand may our sacrifice in your sight this day\nbe pleasing to you, Lord God."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "If appropriate, he also incenses the offerings, the cross, and the altar. A Deacon or other minister then incenses the Priest and the people.",
+       "vi": ""
+      },
+      {
+       "k": "r",
+       "en": "Then the Priest, standing at the side of the altar, washes his hands, saying quietly:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Wash me, O Lord, from my iniquity\nand cleanse me from my sin."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "Standing at the middle of the altar, facing the people, extending and then joining his hands, he says:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Pray, brethren (brothers and sisters),\nthat my sacrifice and yours\nmay be acceptable to God,\nthe almighty Father."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The people rise and reply:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "May the Lord accept the sacrifice at your hands\nfor the praise and glory of his name,\nfor our good\nand the good of all his holy Church."
+        ]
+       ]
+      },
+      {
+       "k": "sub",
+       "en": "Prayer over the Offerings",
+       "vi": "Lời nguyện Tiến lễ"
+      },
+      {
+       "k": "r",
+       "en": "Then the Priest, with hands extended, says the Prayer over the Offerings, at the end of which the people acclaim:",
+       "vi": ""
+      },
+      {
+       "k": "slot",
+       "who": "P",
+       "en": "Prayer over the Offerings of the day",
+       "vi": "Lời nguyện Tiến lễ trong ngày"
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "Amen."
+        ]
+       ]
+      },
+      {
+       "k": "h",
+       "en": "The Eucharistic Prayer",
+       "vi": "Kinh Nguyện Thánh Thể",
+       "id": "ep"
+      },
+      {
+       "k": "epsel"
+      },
+      {
+       "k": "r",
+       "en": "Then the Priest begins the Eucharistic Prayer.",
+       "vi": ""
+      },
+      {
+       "k": "r",
+       "en": "Extending his hands, he says:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "The Lord be with you."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The people reply:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "And with your spirit."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The Priest, raising his hands, continues:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Lift up your hearts."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The people:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "We lift them up to the Lord."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The Priest, with hands extended, adds:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Let us give thanks to the Lord our God."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The people:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "It is right and just."
+        ]
+       ]
+      },
+      {
+       "k": "lat",
+       "title": "Sursum corda",
+       "text": "℣ Dominus vobiscum. ℟ Et cum spiritu tuo.\n℣ Sursum corda. ℟ Habemus ad Dominum.\n℣ Gratias agamus Domino Deo nostro. ℟ Dignum et iustum est."
+      },
+      {
+       "k": "sub",
+       "en": "Preface",
+       "vi": "Kinh Tiền tụng"
+      },
+      {
+       "k": "r",
+       "en": "The Priest, with hands extended, continues the Preface.",
+       "vi": ""
+      },
+      {
+       "k": "r",
+       "en": "Although it is provided with its own Preface, this Eucharistic Prayer may also be used with other Prefaces, especially those that present an overall view of the mystery of salvation, such as the Common Prefaces.",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "It is truly right and just, our duty and salvation,\nalways and everywhere to give you thanks, Father most holy,\nthrough your beloved Son, Jesus Christ,\nyour Word through whom you made all things,\nwhom you sent as our Savior and Redeemer,\nincarnate by the Holy Spirit and born of the Virgin.\nFulfilling your will and gaining for you a holy people,\nhe stretched out his hands as he endured his Passion,\nso as to break the bonds of death and manifest the resurrection.\nAnd so, with the Angels and all the Saints\nwe declare your glory,\nas with one voice we acclaim:"
+        ]
+       ],
+       "ep": 2
+      },
+      {
+       "k": "slot",
+       "who": "P",
+       "en": "Preface",
+       "vi": "Kinh Tiền tụng",
+       "ep": 3
+      },
+      {
+       "k": "h",
+       "en": "Sanctus",
+       "vi": "Kinh Thánh Thánh Thánh",
+       "id": "sanctus"
+      },
+      {
+       "k": "r",
+       "en": "At the end of the Preface he joins his hands and concludes the Preface with the people, singing or saying aloud:",
+       "vi": ""
+      },
+      {
+       "k": "r",
+       "en": "All kneel after the Sanctus.",
+       "vi": "Mọi người quỳ sau kinh Thánh Thánh Thánh."
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "A",
+         "Holy, Holy, Holy Lord God of hosts.\nHeaven and earth are full of your glory.\nHosanna in the highest.\nBlessed is he who comes in the name of the Lord.\nHosanna in the highest."
+        ]
+       ]
+      },
+      {
+       "k": "lat",
+       "title": "Sanctus",
+       "text": "Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth. Pleni sunt caeli et terra gloria tua. Hosanna in excelsis.\nBenedictus qui venit in nomine Domini. Hosanna in excelsis."
+      },
+      {
+       "k": "h",
+       "en": "Eucharistic Prayer II",
+       "vi": "Kinh nguyện Thánh Thể II",
+       "id": "ep2",
+       "ep": 2
+      },
+      {
+       "k": "r",
+       "en": "The Priest, with hands extended, says:",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "You are indeed Holy, O Lord,\nthe fount of all holiness."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "r",
+       "en": "He joins his hands and, holding them extended over the offerings, says:",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Make holy, therefore, these gifts, we pray,\nby sending down your Spirit upon them like the dewfall,"
+        ]
+       ],
+       "ep": 2,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "He joins his hands and makes the Sign of the Cross once over the bread and the chalice together, saying:",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "so that they may become for us\nthe Body and ✠ Blood of our Lord Jesus Christ."
+        ]
+       ],
+       "ep": 2,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "He joins his hands.",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "r",
+       "en": "In the formulas that follow, the words of the Lord should be pronounced clearly and distinctly, as the nature of these words requires.",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "At the time he was betrayed\nand entered willingly into his Passion,"
+        ]
+       ],
+       "ep": 2,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "He takes the bread and, holding it slightly raised above the altar, continues:",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "he took bread and, giving thanks, broke it,\nand gave it to his disciples, saying:"
+        ]
+       ],
+       "ep": 2,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "He bows slightly.",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "TAKE THIS, ALL OF YOU, AND EAT OF IT,\n\nFOR THIS IS MY BODY,\nWHICH WILL BE GIVEN UP FOR YOU."
+        ]
+       ],
+       "ep": 2,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "He shows the consecrated host to the people, places it again on the paten, and genuflects in adoration.",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "r",
+       "en": "After this, he continues:",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "In a similar way, when supper was ended,"
+        ]
+       ],
+       "ep": 2,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "He takes the chalice and, holding it slightly raised above the altar, continues:",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "he took the chalice\nand, once more giving thanks,\nhe gave it to his disciples, saying:"
+        ]
+       ],
+       "ep": 2,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "He bows slightly.",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "TAKE THIS, ALL OF YOU, AND DRINK FROM IT,\n\nFOR THIS IS THE CHALICE OF MY BLOOD,\nTHE BLOOD OF THE NEW AND ETERNAL COVENANT,\nWHICH WILL BE POURED OUT FOR YOU AND FOR MANY\nFOR THE FORGIVENESS OF SINS.\n\nDO THIS IN MEMORY OF ME."
+        ]
+       ],
+       "ep": 2,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "He shows the chalice to the people, places it on the corporal, and genuflects in adoration.",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "h",
+       "en": "Eucharistic Prayer III",
+       "vi": "Kinh nguyện Thánh Thể III",
+       "id": "ep3",
+       "ep": 3
+      },
+      {
+       "k": "r",
+       "en": "The Priest, with hands extended, says:",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "You are indeed Holy, O Lord,\nand all you have created rightly gives you praise,\nfor through your Son our Lord Jesus Christ,\nby the power and working of the Holy Spirit,\nyou give life to all things and make them holy,\nand you never cease to gather a people to yourself,\nso that from the rising of the sun to its setting\na pure sacrifice may be offered to your name."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "r",
+       "en": "He joins his hands and, holding them extended over the offerings, says:",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Therefore, O Lord, we humbly implore you:\nby the same Spirit graciously make holy\nthese gifts we have brought to you for consecration,"
+        ]
+       ],
+       "ep": 3,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "He joins his hands and makes the Sign of the Cross once over the bread and chalice together, saying:",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "that they may become the Body and ✠ Blood\nof your Son our Lord Jesus Christ,"
+        ]
+       ],
+       "ep": 3,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "He joins his hands.",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "at whose command we celebrate these mysteries."
+        ]
+       ],
+       "ep": 3,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "In the formulas that follow, the words of the Lord should be pronounced clearly and distinctly, as the nature of these words requires.",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "For on the night he was betrayed"
+        ]
+       ],
+       "ep": 3,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "He takes the bread and, holding it slightly raised above the altar, continues:",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "he himself took bread,\nand, giving you thanks, he said the blessing,\nbroke the bread and gave it to his disciples, saying:"
+        ]
+       ],
+       "ep": 3,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "He bows slightly.",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "TAKE THIS, ALL OF YOU, AND EAT OF IT,\n\nFOR THIS IS MY BODY,\nWHICH WILL BE GIVEN UP FOR YOU."
+        ]
+       ],
+       "ep": 3,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "He shows the consecrated host to the people, places it again on the paten, and genuflects in adoration.",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "r",
+       "en": "After this, he continues:",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "In a similar way, when supper was ended,"
+        ]
+       ],
+       "ep": 3,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "He takes the chalice and, holding it slightly raised above the altar, continues:",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "he took the chalice,\nand, giving you thanks, he said the blessing,\nand gave the chalice to his disciples, saying:"
+        ]
+       ],
+       "ep": 3,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "He bows slightly.",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "TAKE THIS, ALL OF YOU, AND DRINK FROM IT,\n\nFOR THIS IS THE CHALICE OF MY BLOOD,\nTHE BLOOD OF THE NEW AND ETERNAL COVENANT,\nWHICH WILL BE POURED OUT FOR YOU AND FOR MANY\nFOR THE FORGIVENESS OF SINS.\n\nDO THIS IN MEMORY OF ME."
+        ]
+       ],
+       "ep": 3,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "He shows the chalice to the people, places it on the corporal, and genuflects in adoration.",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "h",
+       "en": "Mystery of Faith",
+       "vi": "Mầu nhiệm Đức tin",
+       "id": "mysterium"
+      },
+      {
+       "k": "r",
+       "en": "Then he says:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "The mystery of faith."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "And the people continue, acclaiming:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "A",
+         "We proclaim your Death, O Lord,\nand profess your Resurrection\nuntil you come again."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "Or:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "A",
+         "When we eat this Bread and drink this Cup,\nwe proclaim your Death, O Lord,\nuntil you come again."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "Or:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "A",
+         "Save us, Savior of the world,\nfor by your Cross and Resurrection\nyou have set us free."
+        ]
+       ]
+      },
+      {
+       "k": "lat",
+       "title": "Mortem tuam",
+       "text": "Mortem tuam annuntiamus, Domine, et tuam resurrectionem confitemur, donec venias."
+      },
+      {
+       "k": "r",
+       "en": "Then the Priest, with hands extended, says:",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Therefore, as we celebrate\nthe memorial of his Death and Resurrection,\nwe offer you, Lord,\nthe Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence and minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "Remember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nand all the clergy."
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be added:",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.,\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection.]"
+        ]
+       ],
+       "ep": 2,
+       "cont": false,
+       "opt": true
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "Remember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles,\nand all the Saints who have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life,\nand may praise and glorify you"
+        ]
+       ],
+       "ep": 2,
+       "cont": false
+      },
+      {
+       "k": "r",
+       "en": "He joins his hands.",
+       "vi": "",
+       "ep": 2
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "through your Son, Jesus Christ."
+        ]
+       ],
+       "ep": 2,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "Then the Priest, with hands extended, says:",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Therefore, O Lord,\nas we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray,\nupon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we,\nwho are nourished by the Body and Blood of your Son and filled with his Holy Spirit,\nmay become one body, one spirit in Christ."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C1",
+         "May he make of us\nan eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint)\nand with all the Saints,\non whose constant intercession in your presence\nwe rely for unfailing help."
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "May this Sacrifice of our reconciliation,\nwe pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity\nyour pilgrim Church on earth,\nwith your servant Leo our Pope\nand Joseph our Bishop,\nJoseph and John Baptist his Auxiliary Bishops,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children\nscattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory"
+        ]
+       ],
+       "ep": 3,
+       "cont": false
+      },
+      {
+       "k": "r",
+       "en": "He joins his hands.",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "through Christ our Lord,\nthrough whom you bestow on the world all that is good."
+        ]
+       ],
+       "ep": 3,
+       "cont": true
+      },
+      {
+       "k": "r",
+       "en": "In Masses for the Dead, the following may be said in place of “To our departed brothers and sisters…”:",
+       "vi": "",
+       "ep": 3
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "C2",
+         "[Remember your servant N.\nwhom you have called (today)\nfrom this world to yourself.\nGrant that he (she) who was united with your Son\nin a death like his,\nmay also be one with him in his Resurrection,\nwhen from the earth\nhe will raise up in the flesh those who have died,\nand transform our lowly body\nafter the pattern of his own glorious body.\nTo our departed brothers and sisters, too,\nand to all who were pleasing to you\nat their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope to enjoy for ever\nthe fullness of your glory,\nwhen you will wipe away every tear from our eyes.\nFor seeing you, our God, as you are,\nwe shall be like you for all the ages\nand praise you without end,\nthrough Christ our Lord,\nthrough whom you bestow on the world all that is good.]"
+        ]
+       ],
+       "ep": 3,
+       "cont": false,
+       "opt": true
+      },
+      {
+       "k": "sub",
+       "en": "Concluding Doxology",
+       "vi": "Vinh tụng ca"
+      },
+      {
+       "k": "r",
+       "en": "He takes the chalice and the paten with the host and, raising both, he says:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Through him, and with him, and in him,\nO God, almighty Father,\nin the unity of the Holy Spirit,\nall glory and honor is yours,\nfor ever and ever."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The people acclaim:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "Amen."
+        ]
+       ]
+      },
+      {
+       "k": "h",
+       "en": "The Communion Rite",
+       "vi": "Nghi thức Hiệp lễ",
+       "id": "communion"
+      },
+      {
+       "k": "sub",
+       "en": "The Lord's Prayer",
+       "vi": "Kinh Lạy Cha"
+      },
+      {
+       "k": "r",
+       "en": "After the chalice and paten have been set down, the Priest, with hands joined, says:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "At the Savior's command\nand formed by divine teaching,\nwe dare to say:"
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "He extends his hands and, together with the people, continues:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "A",
+         "Our Father, who art in heaven, hallowed be thy name; thy kingdom come, thy will be done on earth as it is in heaven. Give us this day our daily bread, and forgive us our trespasses, as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "With hands extended, the Priest alone continues, saying:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Deliver us, Lord, we pray, from every evil,\ngraciously grant peace in our days,\nthat, by the help of your mercy,\nwe may be always free from sin\nand safe from all distress,\nas we await the blessed hope\nand the coming of our Savior, Jesus Christ."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "He joins his hands.",
+       "vi": ""
+      },
+      {
+       "k": "r",
+       "en": "The people conclude the prayer, acclaiming:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "For the kingdom,\nthe power and the glory are yours\nnow and for ever."
+        ]
+       ]
+      },
+      {
+       "k": "sub",
+       "en": "The Rite of Peace",
+       "vi": "Nghi thức Chúc bình an"
+      },
+      {
+       "k": "r",
+       "en": "Then the Priest, with hands extended, says aloud:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Lord Jesus Christ,\nwho said to your Apostles:\nPeace I leave you, my peace I give you,\nlook not on our sins,\nbut on the faith of your Church,\nand graciously grant her peace and unity\nin accordance with your will.\nWho live and reign for ever and ever."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The people reply:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "Amen."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The Priest, turned towards the people, extending and then joining his hands, adds:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "The peace of the Lord be with you always."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The people reply:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "And with your spirit."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "Then, if appropriate, the Deacon, or the Priest, adds:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "D",
+         "Let us offer each other the sign of peace."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "And all offer one another a sign, in keeping with local customs, that expresses peace, communion, and charity. The Priest gives the sign of peace to a Deacon or minister.",
+       "vi": ""
+      },
+      {
+       "k": "sub",
+       "en": "The Fraction of the Bread",
+       "vi": "Bẻ bánh"
+      },
+      {
+       "k": "r",
+       "en": "Then he takes the host, breaks it over the paten, and places a small piece in the chalice, saying quietly:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "May this mingling of the Body and Blood\nof our Lord Jesus Christ\nbring eternal life to us who receive it."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "Meanwhile the following is sung or said:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "A",
+         "Lamb of God, you take away the sins of the world,\nhave mercy on us.\nLamb of God, you take away the sins of the world,\nhave mercy on us.\nLamb of God, you take away the sins of the world,\ngrant us peace."
+        ]
+       ]
+      },
+      {
+       "k": "lat",
+       "title": "Agnus Dei",
+       "text": "Agnus Dei, qui tollis peccata mundi: miserere nobis.\nAgnus Dei, qui tollis peccata mundi: miserere nobis.\nAgnus Dei, qui tollis peccata mundi: dona nobis pacem."
+      },
+      {
+       "k": "r",
+       "en": "The invocation may even be repeated several times if the fraction is prolonged. Only the final time, however, is “grant us peace” said.",
+       "vi": ""
+      },
+      {
+       "k": "r",
+       "en": "Then the Priest, with hands joined, says quietly:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Lord Jesus Christ, Son of the living God,\nwho, by the will of the Father\nand the work of the Holy Spirit,\nthrough your Death gave life to the world,\nfree me by this, your most holy Body and Blood,\nfrom all my sins and from every evil;\nkeep me always faithful to your commandments,\nand never let me be parted from you."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "Or:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "May the receiving of your Body and Blood,\nLord Jesus Christ,\nnot bring me to judgment and condemnation,\nbut through your loving mercy\nbe for me protection in mind and body\nand a healing remedy."
+        ]
+       ]
+      },
+      {
+       "k": "sub",
+       "en": "Communion",
+       "vi": "Rước lễ"
+      },
+      {
+       "k": "r",
+       "en": "The Priest genuflects, takes the host and, holding it slightly raised above the paten or above the chalice, while facing the people, says aloud:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Behold the Lamb of God,\nbehold him who takes away the sins of the world.\nBlessed are those called to the supper of the Lamb."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "And together with the people he adds once:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "A",
+         "Lord, I am not worthy\nthat you should enter under my roof,\nbut only say the word\nand my soul shall be healed."
+        ]
+       ]
+      },
+      {
+       "k": "lat",
+       "title": "Domine, non sum dignus",
+       "text": "Domine, non sum dignus, ut intres sub tectum meum: sed tantum dic verbo, et sanabitur anima mea."
+      },
+      {
+       "k": "r",
+       "en": "The Priest, facing the altar, says quietly:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "May the Body of Christ\nkeep me safe for eternal life."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "And he reverently consumes the Body of Christ.",
+       "vi": ""
+      },
+      {
+       "k": "r",
+       "en": "Then he takes the chalice and says quietly:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "May the Blood of Christ\nkeep me safe for eternal life."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "And he reverently consumes the Blood of Christ.",
+       "vi": ""
+      },
+      {
+       "k": "r",
+       "en": "After this, he takes the paten or ciborium and approaches the communicants. The Priest raises a host slightly and shows it to each of the communicants, saying:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "The Body of Christ."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The communicant replies:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "Amen."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "And receives Holy Communion.",
+       "vi": ""
+      },
+      {
+       "k": "r",
+       "en": "While the Priest is receiving the Body of Christ, the Communion Chant begins.",
+       "vi": ""
+      },
+      {
+       "k": "sub",
+       "en": "Communion Antiphon",
+       "vi": "Ca Hiệp lễ"
+      },
+      {
+       "k": "ant",
+       "text": "To be added.",
+       "cite": "",
+       "proper": true,
+       "keep": false
+      },
+      {
+       "k": "r",
+       "en": "When the distribution of Communion is over, the Priest or a Deacon or an acolyte purifies the paten over the chalice and also the chalice itself.",
+       "vi": ""
+      },
+      {
+       "k": "r",
+       "en": "While he carries out the purification, the Priest says quietly:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "What has passed our lips as food, O Lord,\nmay we possess in purity of heart,\nthat what has been given to us in time\nmay be our healing for eternity."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "Then the Priest may return to the chair. If appropriate, a sacred silence may be observed for a while, or a psalm or other canticle of praise or a hymn may be sung.",
+       "vi": ""
+      },
+      {
+       "k": "sub",
+       "en": "Prayer after Communion",
+       "vi": "Lời nguyện Hiệp lễ"
+      },
+      {
+       "k": "r",
+       "en": "Then, standing at the altar or at the chair and facing the people, with hands joined, the Priest says:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "Let us pray."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "All pray in silence with the Priest for a while, unless silence has just been observed. Then the Priest, with hands extended, says the Prayer after Communion, at the end of which the people acclaim:",
+       "vi": ""
+      },
+      {
+       "k": "slot",
+       "who": "P",
+       "en": "Prayer after Communion of the day",
+       "vi": "Lời nguyện Hiệp lễ trong ngày"
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "Amen."
+        ]
+       ]
+      },
+      {
+       "k": "h",
+       "en": "The Concluding Rites",
+       "vi": "Nghi thức Kết lễ",
+       "id": "end"
+      },
+      {
+       "k": "r",
+       "en": "If they are necessary, any brief announcements to the people follow here.",
+       "vi": ""
+      },
+      {
+       "k": "r",
+       "en": "Then the dismissal takes place. The Priest, facing the people and extending his hands, says:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "The Lord be with you."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The people reply:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "And with your spirit."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The Priest blesses the people, saying:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "May almighty God bless you,\nthe Father, and the Son, ✠ and the Holy Spirit."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The people reply:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "Amen."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "Then the Deacon, or the Priest himself, with hands joined and facing the people, says:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "D",
+         "Go forth, the Mass is ended."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "Or:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "D",
+         "Go and announce the Gospel of the Lord."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "Or:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "D",
+         "Go in peace, glorifying the Lord by your life."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "Or:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "D",
+         "Go in peace."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "The people reply:",
+       "vi": ""
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "R",
+         "Thanks be to God."
+        ]
+       ]
+      },
+      {
+       "k": "r",
+       "en": "Then the Priest venerates the altar as usual with a kiss, as at the beginning. After making a profound bow with the ministers, he withdraws.",
+       "vi": ""
+      },
+      {
+       "k": "song",
+       "partEn": "Recessional",
+       "partVi": "Kết lễ",
+       "title": "Waiting in Silence",
+       "by": "Carey Landry",
+       "no": "ICLA No. 70",
+       "pdf": {
+        "sheet": "sheets/waiting-in-silence-ipa.png"
+       },
+       "lyrics": "",
+       "part": "recessional",
+       "youtube": "https://youtu.be/KAJPvU5ZOks",
+       "start": 12,
+       "num": 70
       }
      ]
     }

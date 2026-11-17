@@ -1,0 +1,10 @@
+LINES=[(230,"We are your peo-ple, we long for you, Lord."),
+ (266,"We are your peo-ple, we trust in your love."),
+ (300,"Wait-ing in si-lence, wait-ing in hope; We are your peo-ple, Lord, we seek your truth."),
+ (334,"We are your peo-ple, we long for new life."),
+ (371,"We are your peo-ple, our hearts thirst for you."),
+ (533,"God ev-er with us, Em-ma-nu-el, Come, Lord, Je-sus."),
+ (570,"O Sun of Jus-tice, true Prince of Peace, come with your jus-tice, Lord."),
+ (604,"Wis-dom In-car-nate, teach us your way; show us the path of life. MA-RA-NA-THA!"),
+ (639,"O Key of Da-vid, o-pen our hearts. Give us new vi-sion, Lord."),
+ (675,"Flow-er of Jes-se, bloom in our midst. Make us your gar-den, Lord.")]

@@ -533,14 +533,14 @@ const UI = {
   en: { title: "English Mass", sub: "", vnMark: "VN", presider: "Presider", presiderHours: "Presider", roles: "Ministries", rolesMore: "Show all ministries", rolesLess: "Show presider only", rolesLessHours: "Show presider only", contents: "Contents",
     readings: { first: "First Reading", psalm: "Responsorial Psalm", second: "Second Reading", gospel: "Gospel" }, reader: "Reader", sungBy: "Sung by",
     full: "Full text ↗", inBook: "English text: booklet or iBreviary.", missal: "Roman Missal", music: "♪ Sheet music ↗", sheet: "♪ Sheet music", sheetAlt: "Sheet music", sheetFull: "♪ Full score (4 parts)", hymnPlay: "Listen & sing along", hymnPause: "Pause", hymnResume: "Resume", hymnIntro: "Organ introduction", hymnStanza: "Stanza", trShow: "Show translation", trHide: "Hide translation", trAll: "Translations", end: { EN: ["The word of the Lord.", "Thanks be to God."], VN: ["Đó là Lời Chúa.", "Tạ ơn Chúa."] }, src: "English text: USCCB Daily Bible Readings", pending: "Text not yet provided by the Liturgy Committee.", wordEnd: ["The word of the Lord.", "Thanks be to God."], marks: { P: "Priest", C1: "Conc. 1", C2: "Conc. 2", D: "Deacon", A: "All", V: "℣", R: "℟", L: "Reader" },
-    latin: "Latin", draft: "Draft · for approval by the Liturgy Committee", pfSource: "Prayed in English", hymnNo: "No.", colors: { green: "Liturgical colour: green", red: "Liturgical colour: red" },
+    latin: "Latin", draft: "Draft · for approval by the Liturgy Committee", pfSource: "Prayed in English", hymnNo: "No.", colors: { green: "Liturgical colour: green", red: "Liturgical colour: red", violet: "Liturgical colour: violet" },
     vnDay: "Prepared by the Dominican Family of Vietnam",
     note: "Times are Vietnam time (UTC+7). Copyrighted liturgical texts (Roman Missal, Lectionary, psalms, hymns) are in the printed booklet or the iBreviary app; this page gives the order of celebration, responses, Latin texts and ministries.",
     back: "Songs & practice", frameNote: "Detailed booklet prepared by the delegation in charge of the day." },
   vi: { title: "Holy Mass & Liturgy of the Hours", sub: "APOP Provincials and Regents · Máctinô, Biên Hòa", vnMark: "VN", presider: "Chủ tế", presiderHours: "Chủ sự", roles: "Phận vụ", rolesMore: "Xem tất cả phận vụ", rolesLess: "Chỉ xem chủ tế", rolesLessHours: "Chỉ xem chủ sự", contents: "Mục lục",
     readings: { first: "Bài đọc 1", psalm: "Đáp ca", second: "Bài đọc 2", gospel: "Tin Mừng" }, reader: "Người đọc", sungBy: "Người hát",
     full: "Bản văn đầy đủ ↗", inBook: "Bản văn tiếng Anh: xem sách hoặc iBreviary.", missal: "Sách lễ Rôma", music: "♪ Bản nhạc ↗", sheet: "♪ Bản nhạc", sheetAlt: "Bản nhạc", sheetFull: "♪ Bản 4 bè", hymnPlay: "Nghe và hát theo", hymnPause: "Tạm dừng", hymnResume: "Nghe tiếp", hymnIntro: "Dạo đàn", hymnStanza: "Khổ", trShow: "Hiện bản dịch", trHide: "Ẩn bản dịch", trAll: "Bản dịch", end: { EN: ["The word of the Lord.", "Thanks be to God."], VN: ["Đó là Lời Chúa.", "Tạ ơn Chúa."] }, src: "Bản văn theo tài liệu Ban Phụng vụ.", pending: "Ban Phụng vụ chưa gửi bản văn.", wordEnd: ["The word of the Lord.", "Thanks be to God."], marks: { P: "Linh mục", C1: "Đồng tế 1", C2: "Đồng tế 2", D: "Phó tế", A: "Cộng đoàn", V: "℣", R: "℟", L: "Đọc viên" },
-    latin: "Latinh", draft: "Bản nháp · chờ Ban Phụng vụ duyệt", pfSource: "Đọc bằng tiếng Anh · bản của Ban Phụng vụ; tiếng Việt để tham khảo", hymnNo: "Số", colors: { green: "Màu phụng vụ: xanh", red: "Màu phụng vụ: đỏ" },
+    latin: "Latinh", draft: "Bản nháp · chờ Ban Phụng vụ duyệt", pfSource: "Đọc bằng tiếng Anh · bản của Ban Phụng vụ; tiếng Việt để tham khảo", hymnNo: "Số", colors: { green: "Màu phụng vụ: xanh", red: "Màu phụng vụ: đỏ", violet: "Màu phụng vụ: tím" },
     vnDay: "Gia đình Đa Minh Việt Nam phụ trách",
     note: "Giờ Việt Nam (UTC+7). Bản văn có bản quyền (Sách lễ Rôma, Sách Bài đọc, Thánh vịnh, bài hát) có trong sách in hoặc ứng dụng iBreviary; trang này trình bày trình tự cử hành, lời đáp, bản văn Latinh và phận vụ.",
     back: "Lịch trình Đại hội", frameNote: "Sách chi tiết do phái đoàn phụ trách ngày chuẩn bị." }
@@ -731,7 +731,7 @@ function render() {
   renderBar();
   const it = ALL.find(i => i.id === curId); const day = LIT_DAYS[it.di];
   const dl = document.getElementById("dayline"); dl.textContent = "";
-  const sw = el("span", "swatch"); sw.style.background = day.color === "red" ? "var(--red-lit)" : day.color === "white" ? "var(--sheet)" : "var(--green)"; if (day.color === "white") sw.style.boxShadow = "inset 0 0 0 1.5px var(--gold)"; dl.appendChild(sw);
+  const sw = el("span", "swatch"); sw.style.background = ({ red: "var(--red-lit)", white: "var(--sheet)", violet: "#6b3d8f", rose: "#d98ca8", black: "#222" })[day.color] || "var(--green)"; if (day.color === "white") sw.style.boxShadow = "inset 0 0 0 1.5px var(--gold)"; dl.appendChild(sw);
   dl.appendChild(el("b", null, T(day, "title")));
   if (T(day, "note")) dl.appendChild(el("span", null, "· " + T(day, "note")));
 
