@@ -50,7 +50,7 @@ h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,6vw,44px);line-
   box-shadow:0 1px 2px rgba(60,40,20,.12),0 3px 8px rgba(60,40,20,.10);transition:background .15s,color .15s,box-shadow .15s}
 .daypick button:hover{border-color:var(--red)}
 /* past Masses: sunken, still clickable */
-.daypick button.past{font-weight:400;color:var(--ink-3);border-color:transparent;
+.daypick button.past{font-weight:400;color:var(--ink-3);border-color:color-mix(in srgb,var(--line) 70%,transparent);
   background:color-mix(in srgb,var(--bg) 92%,#000);box-shadow:inset 0 1px 3px rgba(0,0,0,.12)}
 /* the Mass being viewed */
 .daypick button.on{background:var(--red);border-color:var(--red);color:#fff;font-weight:600;box-shadow:0 2px 10px color-mix(in srgb,var(--red) 40%,transparent)}
@@ -72,7 +72,7 @@ nav.jump a.on b{color:#fff}
 
 /* song cards */
 main{padding:0 0 8px}
-.song{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);margin:0 0 22px;padding:18px 16px;scroll-margin-top:calc(var(--navh) + 76px)}
+.song{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);margin:0 0 22px;padding:18px 16px;scroll-margin-top:calc(var(--headh, 124px) + 10px)}
 .song-head{display:flex;gap:14px;align-items:center;margin-bottom:14px}
 .no{flex:0 0 auto;min-width:52px;height:52px;border-radius:50%;border:1.5px solid var(--red);color:var(--red);display:grid;place-items:center;font-family:var(--serif);font-size:22px;font-weight:600}
 .titles{flex:1;min-width:0}
@@ -150,14 +150,14 @@ body.has-bar .totop{bottom:96px}
 /* week blocks and ribbons */
 :root{ --navh:47px; --slate:#3d4a5c; --next-card:#f4f2ec; --wk1:#3d4a5c; --wk2:#2f5d50; --wk3:#5b3a5e; --wk4:#7a5a1f; --past:#6b665c; }
 @media (prefers-color-scheme: dark){ :root{ --slate:#5a6f8c; --next-card:#1f1c18; --wk1:#5a6f8c; --wk2:#4a8573; --wk3:#86608a; --wk4:#a07d3c; --past:#7d786d; } .wk.this .ribbon{background:#8c1a1f} }
-.wk{margin:0 0 8px;scroll-margin-top:var(--navh)}
+.wk{margin:0 0 8px;scroll-margin-top:0}
 .ribbon{position:sticky;top:var(--navh);z-index:15;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;
   margin:0 -16px 16px;padding:9px 16px;color:#fff;background:var(--red);box-shadow:0 2px 8px rgba(0,0,0,.12)}
 .ribbon .rl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
 .ribbon .rd{font-family:var(--serif);font-size:19px}
 .ribbon .rf{font-family:var(--serif);font-style:italic;font-size:15px;opacity:.9;flex-basis:100%;line-height:1.25}
 .ribbon .rs{font-size:11px;font-weight:600;letter-spacing:.04em;background:rgba(255,255,255,.2);border-radius:999px;padding:2px 9px;margin-left:auto;align-self:center}
-.wk.later{margin-top:34px;scroll-margin-top:var(--navh)}
+.wk.later{margin-top:34px;scroll-margin-top:0}
 .wk.later .ribbon{background:var(--wk)}
 .wk.later .song{background:var(--next-card);border-left:4px solid var(--wk)}
 .wk.later .part{color:var(--wk)}
@@ -168,6 +168,12 @@ nav.jump[data-wk="3"] a[data-w="3"],nav.jump[data-wk="4"] a[data-w="4"],nav.jump
 nav.jump a.later b{color:var(--wk)}
 nav.jump a.later.on{background:var(--wk);border-color:var(--wk);color:#fff}
 nav.jump a.later.on b{color:#fff}
+/* each Mass has a sticky head: the date ribbon on top, its song buttons right below (anh Khải 17/11) */
+.wkhead{position:sticky;top:0;z-index:20;margin:0 -16px 16px}
+.wkhead .ribbon{position:static;margin:0}
+.wkhead nav.jump{position:static}
+.wkhead nav.jump .wrap{max-width:none}
+.wkhead nav.jump a[data-w]{display:inline-block}
 
 /* link to the Mass texts page (index.html): header and each ribbon */
 .tolink{margin:8px 0 0}
@@ -397,11 +403,9 @@ window.WEEKS = (function () {
     const nL = later.length;
     const pre = i => i===0 ? "" : "w"+i+"-";
     const pills = (x, p, i) => partsOf(x).map(([k,l,sh,m])=>{ const s = itemOf(x,k,m)||{};
-      return '<a href="#'+p+k+'" data-k="'+p+k+'" data-w="'+i+'" class="'+[i?'later':'', m?'ms':''].join(' ').trim()+'"'+(i?' style="--wk:var(--wk'+Math.min(i,4)+')"':'')+'>'+(sh||l)+(s.no?'<b>'+s.no+'</b>':'')+'</a>'; }).join("");
-    // jump bar: this week + upcoming weeks only
-    $("jumpIn").innerHTML = all.slice(0,nL+1).map((x,i)=>pills(x, pre(i), i)).join("");
-    $("jump").dataset.wk = "0";
-    $("jump").hidden = false;
+      return '<a href="#'+p+k+'" data-k="'+p+k+'" data-w="'+i+'" class="'+[i?'later':'', m?'ms':''].join(' ').trim()+'">'+(sh||l)+(s.no?'<b>'+s.no+'</b>':'')+'</a>'; }).join("");
+    // song buttons now sit under each Mass's ribbon (sticky head); the old global bar stays hidden
+    $("jump").hidden = true;
     const wd = iso => { const [y,m,d] = iso.split("-").map(Number); return new Date(Date.UTC(y,m-1,d)).toLocaleDateString("en-GB",{weekday:"long",timeZone:"UTC"}); };
     const label = i => { const n = wd(all[i].date); return i===0 ? "This "+n : (i===1 && nL ? "Next "+n : n); };
     const days = iso => Math.round((Date.parse(iso+"T00:00:00Z") - Date.parse(todayVN()+"T00:00:00Z"))/864e5);
@@ -411,7 +415,7 @@ window.WEEKS = (function () {
       const isPast = i>nL;
       const col = isPast ? 'var(--past)' : 'var(--wk'+Math.min(i,4)+')';
       return '<div class="wk '+(i?'later':'this')+(isPast?' past':'')+'" id="'+(i?'week-'+i:'this-week')+'" data-w="'+i+'" data-date="'+x.date+'"'+(i?' style="--wk:'+col+'"':'')+'>'+
-        ribbon(label(i), x, sub(i))+cards(x, pre(i))+'</div>';
+        '<div class="wkhead">'+ribbon(label(i), x, sub(i))+'<nav class="jump" aria-label="Songs"><div class="wrap">'+pills(x, pre(i), i)+'</div></nav></div>'+cards(x, pre(i))+'</div>';
     }).join("");
 
     document.querySelectorAll(".playbtn").forEach(b=>b.onclick=()=>onPlayBtn(b));
@@ -516,7 +520,7 @@ window.WEEKS = (function () {
   $("bSeek").oninput = ()=>{ seeking = true; $("bCur").textContent = fmt(+$("bSeek").value); };
   $("bSeek").onchange = ()=>{ if (player && ready) player.seekTo(+$("bSeek").value, true); seeking = false; };
 
-  function setNavH(){ const n=$("jump"); if(n && !n.hidden) document.documentElement.style.setProperty("--navh", n.getBoundingClientRect().height+"px"); }
+  function setNavH(){ const hs=[...document.querySelectorAll(".wkhead")]; if(hs.length) document.documentElement.style.setProperty("--headh", Math.max(...hs.map(h=>h.getBoundingClientRect().height))+"px"); }
   window.addEventListener("resize", setNavH);
   /* ---------- jump bar highlight ---------- */
   let obs;
@@ -524,9 +528,9 @@ window.WEEKS = (function () {
     if (obs) obs.disconnect();
     if (!("IntersectionObserver" in window)) return;
     obs = new IntersectionObserver(es=>es.forEach(e=>{
-      if(e.isIntersecting) { const k = e.target.id, m = k.match(/^w(\d+)-/); $("jump").dataset.wk = m ? m[1] : "0";
-        const wk = e.target.closest(".wk"); if (wk) setDayOn(wk.dataset.date); document.querySelectorAll("#jumpIn a").forEach(a=>a.classList.toggle("on",a.dataset.k===k));
-        const on = document.querySelector('#jumpIn a.on'), bx = $("jumpIn");
+      if(e.isIntersecting) { const k = e.target.id;
+        const wk = e.target.closest(".wk"); if (wk) setDayOn(wk.dataset.date); document.querySelectorAll(".wkhead nav.jump a").forEach(a=>a.classList.toggle("on",a.dataset.k===k));
+        const on = document.querySelector('.wkhead nav.jump a.on'), bx = on && on.parentElement;
         if (on && bx.scrollWidth > bx.clientWidth){ const l = on.offsetLeft - bx.offsetLeft, r = l + on.offsetWidth;
           if (l < bx.scrollLeft + 8) bx.scrollTo({left:l-24, behavior:"smooth"}); else if (r > bx.scrollLeft + bx.clientWidth - 8) bx.scrollTo({left:r-bx.clientWidth+24, behavior:"smooth"}); } }
     }),{rootMargin:"-45% 0px -50% 0px"});
