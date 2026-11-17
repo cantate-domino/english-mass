@@ -1,7 +1,7 @@
 /* English Mass · St. Joseph Convent – ALL the content of both pages (index.html: Mass texts, songs.html: songs & practice).
    Edited with editor.html (or by hand). Structure: days -> items (celebrations) -> blocks. "updated" is shown on both pages. */
 window.LIT_DATA = {
- "updated": "17 Nov 2026, 10:31 (UTC+7)",
+ "updated": "17 Nov 2026, 10:54 (UTC+7)",
  "days": [
   {
    "date": "2026-10-10",
@@ -23215,9 +23215,23 @@ window.LIT_DATA = {
        "vi": ""
       },
       {
-       "k": "tbaread",
+       "k": "lect",
        "kind": "first",
-       "cite": "Isaiah 30:19-21, 23-26"
+       "cite": "Isaiah 30:19-21, 23-26",
+       "lang": "EN",
+       "incipit_en": "A reading from the Book of the Prophet Isaiah",
+       "chunks": [
+        [
+         "",
+         "Thus says the Lord GOD,\nthe Holy One of Israel:\nO people of Zion, who dwell in Jerusalem,\nno more will you weep;\nHe will be gracious to you when you cry out,\nas soon as he hears he will answer you.\nThe Lord will give you the bread you need\nand the water for which you thirst.\nNo longer will your Teacher hide himself,\nbut with your own eyes you shall see your Teacher,\nWhile from behind, a voice shall sound in your ears:\n“This is the way; walk in it,”\nwhen you would turn to the right or to the left.",
+         ""
+        ],
+        [
+         "",
+         "He will give rain for the seed\nthat you sow in the ground,\nAnd the wheat that the soil produces\nwill be rich and abundant.\nOn that day your flock will be given pasture\nand the lamb will graze in spacious meadows;\nThe oxen and the asses that till the ground\nwill eat silage tossed to them\nwith shovel and pitchfork.\nUpon every high mountain and lofty hill\nthere will be streams of running water.\nOn the day of the great slaughter,\nwhen the towers fall,\nThe light of the moon will be like that of the sun\nand the light of the sun will be seven times greater\nlike the light of seven days.\nOn the day the LORD binds up the wounds of his people,\nhe will heal the bruises left by his blows.",
+         ""
+        ]
+       ]
       },
       {
        "k": "r",
@@ -23225,9 +23239,28 @@ window.LIT_DATA = {
        "vi": ""
       },
       {
-       "k": "tbaread",
+       "k": "lect",
        "kind": "psalm",
-       "cite": "Psalm 147:1-2, 3-4, 5-6"
+       "cite": "Psalm 147:1-2, 3-4, 5-6",
+       "lang": "EN",
+       "refrain_en": "Blessed are all who wait for the Lord.",
+       "chunks": [
+        [
+         "",
+         "Praise the LORD, for he is good;\nsing praise to our God, for he is gracious;\nit is fitting to praise him.\nThe LORD rebuilds Jerusalem;\nthe dispersed of Israel he gathers.",
+         ""
+        ],
+        [
+         "",
+         "He heals the brokenhearted\nand binds up their wounds.\nHe tells the number of the stars;\nhe calls each by name.",
+         ""
+        ],
+        [
+         "",
+         "Great is our LORD and mighty in power:\nto his wisdom there is no limit.\nThe LORD sustains the lowly;\nthe wicked he casts to the ground.",
+         ""
+        ]
+       ]
       },
       {
        "k": "r",
@@ -23366,9 +23399,28 @@ window.LIT_DATA = {
        "vi": ""
       },
       {
-       "k": "tbaread",
+       "k": "lect",
+       "evangelist": "Matthew",
        "kind": "gospel",
-       "cite": "Matthew 9:35–10:1, 5a, 6-8"
+       "cite": "Matthew 9:35–10:1, 5a, 6-8",
+       "lang": "EN",
+       "chunks": [
+        [
+         "",
+         "Jesus went around to all the towns and villages,\nteaching in their synagogues,\nproclaiming the Gospel of the Kingdom,\nand curing every disease and illness.\nAt the sight of the crowds, his heart was moved with pity for them\nbecause they were troubled and abandoned,\nlike sheep without a shepherd.\nThen he said to his disciples,\n“The harvest is abundant but the laborers are few;\nso ask the master of the harvest\nto send out laborers for his harvest.”",
+         ""
+        ],
+        [
+         "",
+         "Then he summoned his Twelve disciples\nand gave them authority over unclean spirits to drive them out\nand to cure every disease and every illness.",
+         ""
+        ],
+        [
+         "",
+         "Jesus sent out these Twelve after instructing them thus,\n“Go to the lost sheep of the house of Israel.\nAs you go, make this proclamation: ‘The Kingdom of heaven is at hand.’\nCure the sick, raise the dead,\ncleanse lepers, drive out demons.\nWithout cost you have received; without cost you are to give.”",
+         ""
+        ]
+       ]
       },
       {
        "k": "r",
@@ -25437,9 +25489,18 @@ window.LIT_DATA = {
        "vi": ""
       },
       {
-       "k": "tbaread",
+       "k": "lect",
        "kind": "first",
-       "cite": "Sirach 48:1-4, 9-11"
+       "cite": "Sirach 48:1-4, 9-11",
+       "lang": "EN",
+       "incipit_en": "A reading from the Book of Sirach",
+       "chunks": [
+        [
+         "",
+         "In those days,\nlike a fire there appeared the prophet Elijah\nwhose words were as a flaming furnace.\nTheir staff of bread he shattered,\nin his zeal he reduced them to straits;\nBy the Lord’s word he shut up the heavens\nand three times brought down fire.\nHow awesome are you, Elijah, in your wondrous deeds!\nWhose glory is equal to yours?\nYou were taken aloft in a whirlwind of fire,\nin a chariot with fiery horses.\nYou were destined, it is written, in time to come\nto put an end to wrath before the day of the LORD,\nTo turn back the hearts of fathers toward their sons,\nand to re-establish the tribes of Jacob.\nBlessed is he who shall have seen you\nand who falls asleep in your friendship.",
+         ""
+        ]
+       ]
       },
       {
        "k": "r",
@@ -25447,9 +25508,28 @@ window.LIT_DATA = {
        "vi": ""
       },
       {
-       "k": "tbaread",
+       "k": "lect",
        "kind": "psalm",
-       "cite": "Psalm 80:2ac and 3b, 15-16, 18-19"
+       "cite": "Psalm 80:2ac and 3b, 15-16, 18-19",
+       "lang": "EN",
+       "refrain_en": "Lord, make us turn to you; let us see your face and we shall be saved.",
+       "chunks": [
+        [
+         "",
+         "O shepherd of Israel, hearken,\nFrom your throne upon the cherubim, shine forth.\nRouse your power.",
+         ""
+        ],
+        [
+         "",
+         "Once again, O LORD of hosts,\nlook down from heaven, and see;\nTake care of this vine,\nand protect what your right hand has planted\nthe son of man whom you yourself made strong.",
+         ""
+        ],
+        [
+         "",
+         "May your help be with the man of your right hand,\nwith the son of man whom you yourself made strong.\nThen we will no more withdraw from you;\ngive us new life, and we will call upon your name.",
+         ""
+        ]
+       ]
       },
       {
        "k": "r",
@@ -25588,9 +25668,18 @@ window.LIT_DATA = {
        "vi": ""
       },
       {
-       "k": "tbaread",
+       "k": "lect",
+       "evangelist": "Matthew",
        "kind": "gospel",
-       "cite": "Matthew 17:9a, 10-13"
+       "cite": "Matthew 17:9a, 10-13",
+       "lang": "EN",
+       "chunks": [
+        [
+         "",
+         "As they were coming down from the mountain,\nthe disciples asked Jesus,\n“Why do the scribes say that Elijah must come first?”\nHe said in reply, “Elijah will indeed come and restore all things;\nbut I tell you that Elijah has already come,\nand they did not recognize him but did to him whatever they pleased.\nSo also will the Son of Man suffer at their hands.”\nThen the disciples understood\nthat he was speaking to them of John the Baptist.",
+         ""
+        ]
+       ]
       },
       {
        "k": "r",
@@ -27661,9 +27750,28 @@ window.LIT_DATA = {
        "vi": ""
       },
       {
-       "k": "tbaread",
+       "k": "lect",
        "kind": "first",
-       "cite": "Judges 13:2-7, 24-25a"
+       "cite": "Judges 13:2-7, 24-25a",
+       "lang": "EN",
+       "incipit_en": "A reading from the Book of Judges",
+       "chunks": [
+        [
+         "",
+         "There was a certain man from Zorah, of the clan of the Danites,\nwhose name was Manoah.\nHis wife was barren and had borne no children.\nAn angel of the LORD appeared to the woman and said to her,\n“Though you are barren and have had no children,\nyet you will conceive and bear a son.\nNow, then, be careful to take no wine or strong drink\nand to eat nothing unclean.\nAs for the son you will conceive and bear,\nno razor shall touch his head,\nfor this boy is to be consecrated to God from the womb.\nIt is he who will begin the deliverance of Israel\nfrom the power of the Philistines.”",
+         ""
+        ],
+        [
+         "",
+         "The woman went and told her husband,\n“A man of God came to me;\nhe had the appearance of an angel of God, terrible indeed.\nI did not ask him where he came from, nor did he tell me his name.\nBut he said to me,\n‘You will be with child and will bear a son.\nSo take neither wine nor strong drink, and eat nothing unclean.\nFor the boy shall be consecrated to God from the womb,\nuntil the day of his death.’”",
+         ""
+        ],
+        [
+         "",
+         "The woman bore a son and named him Samson.\nThe boy grew up and the LORD blessed him;\nthe Spirit of the LORD stirred him.",
+         ""
+        ]
+       ]
       },
       {
        "k": "r",
@@ -27671,9 +27779,28 @@ window.LIT_DATA = {
        "vi": ""
       },
       {
-       "k": "tbaread",
+       "k": "lect",
        "kind": "psalm",
-       "cite": "Psalm 71:3-4a, 5-6ab, 16-17"
+       "cite": "Psalm 71:3-4a, 5-6ab, 16-17",
+       "lang": "EN",
+       "refrain_en": "My mouth shall be filled with your praise, and I will sing your glory!",
+       "chunks": [
+        [
+         "",
+         "Be my rock of refuge,\na stronghold to give me safety,\nfor you are my rock and my fortress.\nO my God, rescue me from the hand of the wicked.",
+         ""
+        ],
+        [
+         "",
+         "For you are my hope, O LORD;\nmy trust, O God, from my youth.\nOn you I depend from birth;\nfrom my mother’s womb you are my strength.",
+         ""
+        ],
+        [
+         "",
+         "I will treat of the mighty works of the LORD;\nO God, I will tell of your singular justice.\nO God, you have taught me from my youth,\nand till the present I proclaim your wondrous deeds.",
+         ""
+        ]
+       ]
       },
       {
        "k": "r",
@@ -27812,9 +27939,43 @@ window.LIT_DATA = {
        "vi": ""
       },
       {
-       "k": "tbaread",
+       "k": "lect",
+       "evangelist": "Luke",
        "kind": "gospel",
-       "cite": "Luke 1:5-25"
+       "cite": "Luke 1:5-25",
+       "lang": "EN",
+       "chunks": [
+        [
+         "",
+         "In the days of Herod, King of Judea,\nthere was a priest named Zechariah\nof the priestly division of Abijah;\nhis wife was from the daughters of Aaron,\nand her name was Elizabeth.\nBoth were righteous in the eyes of God,\nobserving all the commandments\nand ordinances of the Lord blamelessly.\nBut they had no child, because Elizabeth was barren\nand both were advanced in years.",
+         ""
+        ],
+        [
+         "",
+         "Once when he was serving as priest\nin his division’s turn before God,\naccording to the practice of the priestly service,\nhe was chosen by lot\nto enter the sanctuary of the Lord to burn incense.\nThen, when the whole assembly of the people was praying outside\nat the hour of the incense offering,\nthe angel of the Lord appeared to him,\nstanding at the right of the altar of incense.\nZechariah was troubled by what he saw, and fear came upon him.",
+         ""
+        ],
+        [
+         "",
+         "But the angel said to him, “Do not be afraid, Zechariah,\nbecause your prayer has been heard.\nYour wife Elizabeth will bear you a son,\nand you shall name him John.\nAnd you will have joy and gladness,\nand many will rejoice at his birth,\nfor he will be great in the sight of the Lord.\nHe will drink neither wine nor strong drink.\nHe will be filled with the Holy Spirit even from his mother’s womb,\nand he will turn many of the children of Israel\nto the Lord their God.\nHe will go before him in the spirit and power of Elijah\nto turn the hearts of fathers toward children\nand the disobedient to the understanding of the righteous,\nto prepare a people fit for the Lord.”",
+         ""
+        ],
+        [
+         "",
+         "Then Zechariah said to the angel,\n“How shall I know this?\nFor I am an old man, and my wife is advanced in years.”\nAnd the angel said to him in reply,\n“I am Gabriel, who stand before God.\nI was sent to speak to you and to announce to you this good news.\nBut now you will be speechless and unable to talk\nuntil the day these things take place,\nbecause you did not believe my words,\nwhich will be fulfilled at their proper time.”\nMeanwhile the people were waiting for Zechariah\nand were amazed that he stayed so long in the sanctuary.\nBut when he came out, he was unable to speak to them,\nand they realized that he had seen a vision in the sanctuary.\nHe was gesturing to them but remained mute.",
+         ""
+        ],
+        [
+         "",
+         "Then, when his days of ministry were completed, he went home.",
+         ""
+        ],
+        [
+         "",
+         "After this time his wife Elizabeth conceived,\nand she went into seclusion for five months, saying,\n“So has the Lord done for me at a time when he has seen fit\nto take away my disgrace before others.”",
+         ""
+        ]
+       ]
       },
       {
        "k": "r",
