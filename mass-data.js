@@ -1,7 +1,7 @@
 /* English Mass · St. Joseph Convent – ALL the content of both pages (index.html: Mass texts, songs.html: songs & practice).
    Edited with editor.html (or by hand). Structure: days -> items (celebrations) -> blocks. "updated" is shown on both pages. */
 window.LIT_DATA = {
- "updated": "18 Nov 2026, 08:09 (UTC+7)",
+ "updated": "18 Nov 2026, 08:31 (UTC+7)",
  "days": [
   {
    "date": "2026-10-10",
@@ -863,9 +863,6 @@ window.LIT_DATA = {
        "id": "ep"
       },
       {
-       "k": "epsel"
-      },
-      {
        "k": "r",
        "en": "Then the Priest begins the Eucharistic Prayer.",
        "vi": ""
@@ -1021,6 +1018,9 @@ window.LIT_DATA = {
        "k": "lat",
        "title": "Sanctus",
        "text": "Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth. Pleni sunt caeli et terra gloria tua. Hosanna in excelsis.\nBenedictus qui venit in nomine Domini. Hosanna in excelsis."
+      },
+      {
+       "k": "epsel"
       },
       {
        "k": "h",
@@ -3061,9 +3061,6 @@ window.LIT_DATA = {
        "id": "ep"
       },
       {
-       "k": "epsel"
-      },
-      {
        "k": "r",
        "en": "Then the Priest begins the Eucharistic Prayer.",
        "vi": ""
@@ -3219,6 +3216,9 @@ window.LIT_DATA = {
        "k": "lat",
        "title": "Sanctus",
        "text": "Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth. Pleni sunt caeli et terra gloria tua. Hosanna in excelsis.\nBenedictus qui venit in nomine Domini. Hosanna in excelsis."
+      },
+      {
+       "k": "epsel"
       },
       {
        "k": "h",
@@ -5259,9 +5259,6 @@ window.LIT_DATA = {
        "id": "ep"
       },
       {
-       "k": "epsel"
-      },
-      {
        "k": "r",
        "en": "Then the Priest begins the Eucharistic Prayer.",
        "vi": ""
@@ -5417,6 +5414,9 @@ window.LIT_DATA = {
        "k": "lat",
        "title": "Sanctus",
        "text": "Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth. Pleni sunt caeli et terra gloria tua. Hosanna in excelsis.\nBenedictus qui venit in nomine Domini. Hosanna in excelsis."
+      },
+      {
+       "k": "epsel"
       },
       {
        "k": "h",
@@ -7457,9 +7457,6 @@ window.LIT_DATA = {
        "id": "ep"
       },
       {
-       "k": "epsel"
-      },
-      {
        "k": "r",
        "en": "Then the Priest begins the Eucharistic Prayer.",
        "vi": ""
@@ -7615,6 +7612,9 @@ window.LIT_DATA = {
        "k": "lat",
        "title": "Sanctus",
        "text": "Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth. Pleni sunt caeli et terra gloria tua. Hosanna in excelsis.\nBenedictus qui venit in nomine Domini. Hosanna in excelsis."
+      },
+      {
+       "k": "epsel"
       },
       {
        "k": "h",
@@ -9909,9 +9909,6 @@ window.LIT_DATA = {
        "id": "ep"
       },
       {
-       "k": "epsel"
-      },
-      {
        "k": "r",
        "en": "Then the Priest begins the Eucharistic Prayer.",
        "vi": ""
@@ -10071,6 +10068,9 @@ window.LIT_DATA = {
        "k": "lat",
        "title": "Sanctus",
        "text": "Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth. Pleni sunt caeli et terra gloria tua. Hosanna in excelsis.\nBenedictus qui venit in nomine Domini. Hosanna in excelsis."
+      },
+      {
+       "k": "epsel"
       },
       {
        "k": "h",
@@ -12263,9 +12263,6 @@ window.LIT_DATA = {
        "id": "ep"
       },
       {
-       "k": "epsel"
-      },
-      {
        "k": "r",
        "en": "Then the Priest begins the Eucharistic Prayer.",
        "vi": ""
@@ -12414,6 +12411,9 @@ window.LIT_DATA = {
        "k": "lat",
        "title": "Sanctus",
        "text": "Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth. Pleni sunt caeli et terra gloria tua. Hosanna in excelsis.\nBenedictus qui venit in nomine Domini. Hosanna in excelsis."
+      },
+      {
+       "k": "epsel"
       },
       {
        "k": "h",
@@ -14585,9 +14585,6 @@ window.LIT_DATA = {
        "id": "ep"
       },
       {
-       "k": "epsel"
-      },
-      {
        "k": "r",
        "en": "Then the Priest begins the Eucharistic Prayer.",
        "vi": ""
@@ -14736,6 +14733,9 @@ window.LIT_DATA = {
        "k": "lat",
        "title": "Sanctus",
        "text": "Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth. Pleni sunt caeli et terra gloria tua. Hosanna in excelsis.\nBenedictus qui venit in nomine Domini. Hosanna in excelsis."
+      },
+      {
+       "k": "epsel"
       },
       {
        "k": "h",
@@ -16835,9 +16835,6 @@ window.LIT_DATA = {
        "id": "ep"
       },
       {
-       "k": "epsel"
-      },
-      {
        "k": "r",
        "en": "Then the Priest begins the Eucharistic Prayer.",
        "vi": ""
@@ -16993,6 +16990,9 @@ window.LIT_DATA = {
        "k": "lat",
        "title": "Sanctus",
        "text": "Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth. Pleni sunt caeli et terra gloria tua. Hosanna in excelsis.\nBenedictus qui venit in nomine Domini. Hosanna in excelsis."
+      },
+      {
+       "k": "epsel"
       },
       {
        "k": "h",
@@ -19115,9 +19115,6 @@ window.LIT_DATA = {
        "id": "ep"
       },
       {
-       "k": "epsel"
-      },
-      {
        "k": "r",
        "en": "Then the Priest begins the Eucharistic Prayer.",
        "vi": ""
@@ -19273,6 +19270,9 @@ window.LIT_DATA = {
        "k": "lat",
        "title": "Sanctus",
        "text": "Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth. Pleni sunt caeli et terra gloria tua. Hosanna in excelsis.\nBenedictus qui venit in nomine Domini. Hosanna in excelsis."
+      },
+      {
+       "k": "epsel"
       },
       {
        "k": "h",
@@ -21400,9 +21400,6 @@ window.LIT_DATA = {
        "id": "ep"
       },
       {
-       "k": "epsel"
-      },
-      {
        "k": "r",
        "en": "Then the Priest begins the Eucharistic Prayer.",
        "vi": ""
@@ -21558,6 +21555,9 @@ window.LIT_DATA = {
        "k": "lat",
        "title": "Sanctus",
        "text": "Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth. Pleni sunt caeli et terra gloria tua. Hosanna in excelsis.\nBenedictus qui venit in nomine Domini. Hosanna in excelsis."
+      },
+      {
+       "k": "epsel"
       },
       {
        "k": "h",
@@ -23690,9 +23690,6 @@ window.LIT_DATA = {
        "id": "ep"
       },
       {
-       "k": "epsel"
-      },
-      {
        "k": "r",
        "en": "Then the Priest begins the Eucharistic Prayer.",
        "vi": ""
@@ -23841,6 +23838,9 @@ window.LIT_DATA = {
        "k": "lat",
        "title": "Sanctus",
        "text": "Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth. Pleni sunt caeli et terra gloria tua. Hosanna in excelsis.\nBenedictus qui venit in nomine Domini. Hosanna in excelsis."
+      },
+      {
+       "k": "epsel"
       },
       {
        "k": "h",
@@ -25946,9 +25946,6 @@ window.LIT_DATA = {
        "id": "ep"
       },
       {
-       "k": "epsel"
-      },
-      {
        "k": "r",
        "en": "Then the Priest begins the Eucharistic Prayer.",
        "vi": ""
@@ -26097,6 +26094,9 @@ window.LIT_DATA = {
        "k": "lat",
        "title": "Sanctus",
        "text": "Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth. Pleni sunt caeli et terra gloria tua. Hosanna in excelsis.\nBenedictus qui venit in nomine Domini. Hosanna in excelsis."
+      },
+      {
+       "k": "epsel"
       },
       {
        "k": "h",
@@ -28238,9 +28238,6 @@ window.LIT_DATA = {
        "id": "ep"
       },
       {
-       "k": "epsel"
-      },
-      {
        "k": "r",
        "en": "Then the Priest begins the Eucharistic Prayer.",
        "vi": ""
@@ -28389,6 +28386,9 @@ window.LIT_DATA = {
        "k": "lat",
        "title": "Sanctus",
        "text": "Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth. Pleni sunt caeli et terra gloria tua. Hosanna in excelsis.\nBenedictus qui venit in nomine Domini. Hosanna in excelsis."
+      },
+      {
+       "k": "epsel"
       },
       {
        "k": "h",
