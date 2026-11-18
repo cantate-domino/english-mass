@@ -55,6 +55,8 @@ h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,6vw,44px);line-
 /* the Mass being viewed */
 .daypick button.on{background:var(--red);border-color:var(--red);color:#fff;font-weight:600;box-shadow:0 2px 10px color-mix(in srgb,var(--red) 40%,transparent)}
 .daypick button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+/* phone: older past Masses are left out of the row (still shown while being viewed) */
+@media (max-width:699px){ .daypick button.hm:not(.on){display:none} }
 .banner{margin:14px auto 0;max-width:560px;font-size:14px;background:var(--red-soft);color:var(--ink);border-radius:10px;padding:8px 12px}
 .note{margin:12px auto 0;max-width:640px;color:var(--ink-2);font-size:15px}
 
@@ -271,7 +273,7 @@ window.WEEKS = (function () {
       }
     });
     if (!any && !d.songsPage) return;
-    const w = { date: d.date, feast: d.title_en || "", note: d.songNote || "", songs };
+    const w = { date: d.date, feast: d.title_en || "", note: d.songNote || "", songs, notHeld: !!d.notHeld };
     if (Object.keys(mass).length) w.mass = Object.assign({ name: (it.setting || {}).name || "", composer: (it.setting || {}).composer || "" }, mass);
     out.push(w);
   }));
@@ -393,9 +395,11 @@ window.WEEKS = (function () {
     const all = [w].concat(later, past);
     if (WEEKS.length>1){
       // one button per Mass, oldest first: past = sunken, upcoming = raised, the Mass being viewed = highlighted
+      const keep2 = WEEKS.filter(x=>x.date<w.date && !x.notHeld).map(x=>x.date).sort().reverse().slice(0,2);
       const short = iso => { const [y,m,d] = iso.split("-").map(Number); return new Date(Date.UTC(y,m-1,d)).toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short",timeZone:"UTC"}).replace(",",""); };
       $("pick").innerHTML = '<div class="daypick" role="group" aria-label="Choose a Mass">'+
-        WEEKS.slice().sort((a,b)=>a.date.localeCompare(b.date)).map(x=>'<button type="button" data-date="'+x.date+'" title="'+esc(fmtDate(x.date))+'" class="'+(x.date<w.date?'past':'')+'">'+short(x.date)+'</button>').join("")+'</div>';
+        // computer: every Mass; phone: only the 2 latest past Masses that were really celebrated (not "notHeld") + all upcoming
+        WEEKS.slice().sort((a,b)=>a.date.localeCompare(b.date)).map(x=>'<button type="button" data-date="'+x.date+'" title="'+esc(fmtDate(x.date))+'" class="'+(x.date<w.date?'past':'')+(x.date<w.date && !keep2.includes(x.date)?' hm':'')+'">'+short(x.date)+'</button>').join("")+'</div>';
       document.querySelectorAll(".daypick button").forEach(b=>b.onclick=()=>{ history.replaceState(null,"","#"+b.dataset.date); jumpTo(b.dataset.date); });
       setDayOn(date);
     } else $("pick").innerHTML = "";

@@ -477,8 +477,9 @@ function renderMain() {
       fld("Bậc lễ / ghi chú", d, "note_en", "text", { ph: "Feast · Memorial · Optional memorial: …", optional: true }),
       fld("Màu phụng vụ", d, "color", "select", { options: COLORS, def: "green", after: () => renderDays(), structural: true }),
       "title_vi" in d ? fld("Tên ngày lễ (tiếng Việt)", d, "title_vi", "text", { wide: true }) : null,
-      SITE.songsOnly ? fld("Chỉ hiện ở trang tập hát (ẩn ở trang bản văn)", d, "songsOnly", "checkbox", { optional: true, wide: true, after: () => renderDays() }) : null),
-    otherFields(d, ["date", "title_en", "title_vi", "note_en", "color", "songsOnly", "items"]));
+      SITE.songsOnly ? fld("Chỉ hiện ở trang tập hát (ẩn ở trang bản văn)", d, "songsOnly", "checkbox", { optional: true, wide: true, after: () => renderDays() }) : null,
+      SITE.songsOnly ? fld("Không có lễ thật (trên điện thoại, nút ngày chỉ hiện 2 lễ đã qua gần nhất có lễ thật)", d, "notHeld", "checkbox", { optional: true, wide: true }) : null),
+    otherFields(d, ["date", "title_en", "title_vi", "note_en", "color", "songsOnly", "notHeld", "items"]));
   m.append(dayCard);
   // items
   d.items = d.items || [];

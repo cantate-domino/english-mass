@@ -1,7 +1,7 @@
 /* English Mass · St. Joseph Convent – ALL the content of both pages (index.html: Mass texts, songs.html: songs & practice).
    Edited with editor.html (or by hand). Structure: days -> items (celebrations) -> blocks. "updated" is shown on both pages. */
 window.LIT_DATA = {
- "updated": "18 Nov 2026, 07:47 (UTC+7)",
+ "updated": "18 Nov 2026, 08:09 (UTC+7)",
  "days": [
   {
    "date": "2026-10-10",
@@ -2197,7 +2197,8 @@ window.LIT_DATA = {
       }
      ]
     }
-   ]
+   ],
+   "notHeld": true
   },
   {
    "date": "2026-10-17",
@@ -4394,7 +4395,8 @@ window.LIT_DATA = {
       }
      ]
     }
-   ]
+   ],
+   "notHeld": true
   },
   {
    "date": "2026-10-24",
@@ -6591,7 +6593,8 @@ window.LIT_DATA = {
       }
      ]
     }
-   ]
+   ],
+   "notHeld": true
   },
   {
    "date": "2026-10-31",
@@ -8788,7 +8791,8 @@ window.LIT_DATA = {
       }
      ]
     }
-   ]
+   ],
+   "notHeld": true
   },
   {
    "date": "2026-11-01",
@@ -13599,7 +13603,8 @@ window.LIT_DATA = {
       }
      ]
     }
-   ]
+   ],
+   "notHeld": true
   },
   {
    "date": "2026-11-09",
@@ -18184,7 +18189,8 @@ window.LIT_DATA = {
       }
      ]
     }
-   ]
+   ],
+   "notHeld": true
   },
   {
    "date": "2026-11-21",
@@ -20501,12 +20507,14 @@ window.LIT_DATA = {
        "by": "Bob Dufford, S.J.",
        "no": "ICLA No. 127",
        "pdf": {
-        "sheet": "sheets/all-the-ends-of-the-earth-ipa.png"
+        "sheet": "sheets/all-the-ends-of-the-earth-v2-ipa.png",
+        "verses": "Sing verse 2"
        },
        "lyrics": "",
        "part": "entrance",
        "youtube": "https://youtu.be/WURSnRG-bkQ",
-       "num": 127
+       "num": 127,
+       "start": 37
       },
       {
        "k": "sub",
@@ -22741,7 +22749,8 @@ window.LIT_DATA = {
        "by": "",
        "no": "ICLA No. 230",
        "pdf": {
-        "sheet": "sheets/for-the-departed-souls-ipa.png"
+        "sheet": "sheets/for-the-departed-souls-v13-ipa.png",
+        "verses": "Sing verses 1 and 3"
        },
        "lyrics": "",
        "part": "recessional",
@@ -22799,8 +22808,8 @@ window.LIT_DATA = {
       },
       {
        "k": "ant",
-       "text": "To be added.",
-       "cite": "",
+       "text": "Come and show us your face, O Lord,\nwho are seated upon the Cherubim, and we will be saved.",
+       "cite": "Cf. Ps 80 (79): 4, 2",
        "proper": true,
        "keep": false
       },
@@ -23192,7 +23201,8 @@ window.LIT_DATA = {
        "k": "slot",
        "who": "P",
        "en": "Collect of the day",
-       "vi": "Lời nguyện Nhập lễ trong ngày"
+       "vi": "Lời nguyện Nhập lễ trong ngày",
+       "full": "O God, who sent your Only Begotten Son into this world\nto free the human race from its ancient enslavement,\nbestow on those who devoutly await him\nthe grace of your compassion from on high,\nthat we may attain the prize of true freedom.\nThrough our Lord Jesus Christ, your Son,\nwho lives and reigns with you\nin the unity of the Holy Spirit,\none God, for ever and ever."
       },
       {
        "k": "v",
@@ -23661,7 +23671,8 @@ window.LIT_DATA = {
        "k": "slot",
        "who": "P",
        "en": "Prayer over the Offerings of the day",
-       "vi": "Lời nguyện Tiến lễ trong ngày"
+       "vi": "Lời nguyện Tiến lễ trong ngày",
+       "full": "May the sacrifice of our worship, Lord, we pray,\nbe offered to you unceasingly,\nto complete what was begun in sacred mystery\nand powerfully accomplish for us your saving work.\nThrough Christ our Lord."
       },
       {
        "k": "v",
@@ -23786,27 +23797,20 @@ window.LIT_DATA = {
        "vi": ""
       },
       {
-       "k": "r",
-       "en": "Although it is provided with its own Preface, this Eucharistic Prayer may also be used with other Prefaces, especially those that present an overall view of the mystery of salvation, such as the Common Prefaces.",
-       "vi": "",
-       "ep": 2
+       "k": "sub",
+       "en": "Preface I of Advent · The two comings of Christ",
+       "vi": "Preface I of Advent · The two comings of Christ",
+       "small": true
       },
       {
        "k": "v",
        "lines": [
         [
          "P",
-         "It is truly right and just, our duty and salvation,\nalways and everywhere to give you thanks, Father most holy,\nthrough your beloved Son, Jesus Christ,\nyour Word through whom you made all things,\nwhom you sent as our Savior and Redeemer,\nincarnate by the Holy Spirit and born of the Virgin.\nFulfilling your will and gaining for you a holy people,\nhe stretched out his hands as he endured his Passion,\nso as to break the bonds of death and manifest the resurrection.\nAnd so, with the Angels and all the Saints\nwe declare your glory,\nas with one voice we acclaim:"
+         "It is truly right and just, our duty and our salvation,\nalways and everywhere to give you thanks,\nLord, holy Father, almighty and eternal God,\nthrough Christ our Lord.\nFor he assumed at his first coming\nthe lowliness of human flesh,\nand so fulfilled the design you formed long ago,\nand opened for us the way to eternal salvation,\nthat, when he comes again in glory and majesty\nand all is at last made manifest,\nwe who watch for that day\nmay inherit the great promise\nin which now we dare to hope.\nAnd so, with Angels and Archangels,\nwith Thrones and Dominions,\nand with all the hosts and Powers of heaven,\nwe sing the hymn of your glory,\nas without end we acclaim:"
         ]
        ],
-       "ep": 2
-      },
-      {
-       "k": "slot",
-       "who": "P",
-       "en": "Preface",
-       "vi": "Kinh Tiền tụng",
-       "ep": 3
+       "proper": true
       },
       {
        "k": "h",
@@ -24797,8 +24801,8 @@ window.LIT_DATA = {
       },
       {
        "k": "ant",
-       "text": "To be added.",
-       "cite": "",
+       "text": "Behold, I am coming soon\nand my recompense is with me, says the Lord,\nto bestow a reward according to the deeds of each.",
+       "cite": "Cf. Rev 22: 12",
        "proper": true,
        "keep": false
       },
@@ -24854,7 +24858,8 @@ window.LIT_DATA = {
        "k": "slot",
        "who": "P",
        "en": "Prayer after Communion of the day",
-       "vi": "Lời nguyện Hiệp lễ trong ngày"
+       "vi": "Lời nguyện Hiệp lễ trong ngày",
+       "full": "We implore your mercy, Lord,\nthat this divine sustenance\nmay cleanse us of our faults\nand prepare us for the coming feasts.\nThrough Christ our Lord."
       },
       {
        "k": "v",
@@ -25073,8 +25078,8 @@ window.LIT_DATA = {
       },
       {
        "k": "ant",
-       "text": "To be added.",
-       "cite": "",
+       "text": "Come and show us your face, O Lord,\nwho are seated upon the Cherubim, and we will be saved.",
+       "cite": "Cf. Ps 80 (79): 4, 2",
        "proper": true,
        "keep": false
       },
@@ -25466,7 +25471,8 @@ window.LIT_DATA = {
        "k": "slot",
        "who": "P",
        "en": "Collect of the day",
-       "vi": "Lời nguyện Nhập lễ trong ngày"
+       "vi": "Lời nguyện Nhập lễ trong ngày",
+       "full": "May the splendor of your glory dawn in our hearts,\nwe pray, almighty God,\nthat all shadows of the night may be scattered\nand we may be shown to be children of light\nby the advent of your Only Begotten Son.\nWho lives and reigns with you\nin the unity of the Holy Spirit,\none God, for ever and ever."
       },
       {
        "k": "v",
@@ -25921,7 +25927,8 @@ window.LIT_DATA = {
        "k": "slot",
        "who": "P",
        "en": "Prayer over the Offerings of the day",
-       "vi": "Lời nguyện Tiến lễ trong ngày"
+       "vi": "Lời nguyện Tiến lễ trong ngày",
+       "full": "May the sacrifice of our worship, Lord, we pray,\nbe offered to you unceasingly,\nto complete what was begun in sacred mystery\nand powerfully accomplish for us your saving work.\nThrough Christ our Lord."
       },
       {
        "k": "v",
@@ -26046,27 +26053,20 @@ window.LIT_DATA = {
        "vi": ""
       },
       {
-       "k": "r",
-       "en": "Although it is provided with its own Preface, this Eucharistic Prayer may also be used with other Prefaces, especially those that present an overall view of the mystery of salvation, such as the Common Prefaces.",
-       "vi": "",
-       "ep": 2
+       "k": "sub",
+       "en": "Preface I of Advent · The two comings of Christ",
+       "vi": "Preface I of Advent · The two comings of Christ",
+       "small": true
       },
       {
        "k": "v",
        "lines": [
         [
          "P",
-         "It is truly right and just, our duty and salvation,\nalways and everywhere to give you thanks, Father most holy,\nthrough your beloved Son, Jesus Christ,\nyour Word through whom you made all things,\nwhom you sent as our Savior and Redeemer,\nincarnate by the Holy Spirit and born of the Virgin.\nFulfilling your will and gaining for you a holy people,\nhe stretched out his hands as he endured his Passion,\nso as to break the bonds of death and manifest the resurrection.\nAnd so, with the Angels and all the Saints\nwe declare your glory,\nas with one voice we acclaim:"
+         "It is truly right and just, our duty and our salvation,\nalways and everywhere to give you thanks,\nLord, holy Father, almighty and eternal God,\nthrough Christ our Lord.\nFor he assumed at his first coming\nthe lowliness of human flesh,\nand so fulfilled the design you formed long ago,\nand opened for us the way to eternal salvation,\nthat, when he comes again in glory and majesty\nand all is at last made manifest,\nwe who watch for that day\nmay inherit the great promise\nin which now we dare to hope.\nAnd so, with Angels and Archangels,\nwith Thrones and Dominions,\nand with all the hosts and Powers of heaven,\nwe sing the hymn of your glory,\nas without end we acclaim:"
         ]
        ],
-       "ep": 2
-      },
-      {
-       "k": "slot",
-       "who": "P",
-       "en": "Preface",
-       "vi": "Kinh Tiền tụng",
-       "ep": 3
+       "proper": true
       },
       {
        "k": "h",
@@ -27057,8 +27057,8 @@ window.LIT_DATA = {
       },
       {
        "k": "ant",
-       "text": "To be added.",
-       "cite": "",
+       "text": "Behold, I am coming soon\nand my recompense is with me, says the Lord,\nto bestow a reward according to the deeds of each.",
+       "cite": "Cf. Rev 22: 12",
        "proper": true,
        "keep": false
       },
@@ -27114,7 +27114,8 @@ window.LIT_DATA = {
        "k": "slot",
        "who": "P",
        "en": "Prayer after Communion of the day",
-       "vi": "Lời nguyện Hiệp lễ trong ngày"
+       "vi": "Lời nguyện Hiệp lễ trong ngày",
+       "full": "We implore your mercy, Lord,\nthat this divine sustenance\nmay cleanse us of our faults\nand prepare us for the coming feasts.\nThrough Christ our Lord."
       },
       {
        "k": "v",
@@ -27334,8 +27335,8 @@ window.LIT_DATA = {
       },
       {
        "k": "ant",
-       "text": "To be added.",
-       "cite": "",
+       "text": "He who is to come will come and will not delay,\nand now there will be no fear within our land,\nfor he is our Savior.",
+       "cite": "Cf. Heb 10: 37",
        "proper": true,
        "keep": false
       },
@@ -27727,7 +27728,8 @@ window.LIT_DATA = {
        "k": "slot",
        "who": "P",
        "en": "Collect of the day",
-       "vi": "Lời nguyện Nhập lễ trong ngày"
+       "vi": "Lời nguyện Nhập lễ trong ngày",
+       "full": "O God, who through the child-bearing of the holy Virgin\ngraciously revealed the radiance of your glory\nto the world,\ngrant, we pray,\nthat we may venerate with integrity of faith\nthe mystery of so wondrous an Incarnation\nand always celebrate it with due reverence.\nThrough our Lord Jesus Christ, your Son,\nwho lives and reigns with you\nin the unity of the Holy Spirit,\none God, for ever and ever."
       },
       {
        "k": "v",
@@ -28217,7 +28219,8 @@ window.LIT_DATA = {
        "k": "slot",
        "who": "P",
        "en": "Prayer over the Offerings of the day",
-       "vi": "Lời nguyện Tiến lễ trong ngày"
+       "vi": "Lời nguyện Tiến lễ trong ngày",
+       "full": "Look with favor, we pray, O Lord,\non the offerings we lay upon your altars,\nthat what we bring despite our weakness\nmay be sanctified by your power.\nThrough Christ our Lord."
       },
       {
        "k": "v",
@@ -29346,8 +29349,8 @@ window.LIT_DATA = {
       },
       {
        "k": "ant",
-       "text": "To be added.",
-       "cite": "",
+       "text": "The Dawn from on high will visit us,\nguiding our feet in the way of peace.",
+       "cite": "Lk 1: 78-79",
        "proper": true,
        "keep": false
       },
@@ -29403,7 +29406,8 @@ window.LIT_DATA = {
        "k": "slot",
        "who": "P",
        "en": "Prayer after Communion of the day",
-       "vi": "Lời nguyện Hiệp lễ trong ngày"
+       "vi": "Lời nguyện Hiệp lễ trong ngày",
+       "full": "As we give thanks, almighty God,\nfor these gifts you have bestowed,\ngraciously arouse in us, we pray,\nthe desire for those yet to come,\nthat we may welcome the Nativity of our Savior\nand honor it with minds made pure.\nThrough Christ our Lord."
       },
       {
        "k": "v",

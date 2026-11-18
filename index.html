@@ -99,6 +99,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .chip.day[aria-pressed="true"] { background: var(--cel-sel); border: 1px solid var(--cel-sel); color: var(--cel-sel-ink); font-weight: 600;
   box-shadow: 0 2px 10px color-mix(in srgb, var(--cel-sel) 40%, transparent); }
 .chip.day[aria-pressed="true"] .vn { color: var(--cel-sel-ink); opacity: 1; }
+@media (max-width: 699px) { .chip.day.hm:not([aria-pressed="true"]) { display: none; } }
 .chip.day:disabled { opacity: 0.38; cursor: not-allowed; }
 .chip.cel { text-align: left; padding: 8px 10px; }
 .chip.cel b { display: block; font-variant-numeric: tabular-nums; font-size: 0.95rem; }
@@ -628,8 +629,10 @@ function renderBar() {
   const now = Date.now(); const cur = ALL.find(i => i.id === curId);
   const days = document.getElementById("days"); days.textContent = "";
   const nowDate = LIT_DAYS[ALL.find(i => i.id === pickDefault(now)).di].date;   // the Mass coming up (noon rule); earlier days are "past"
+  const keep2 = LIT_DAYS.filter(d => d.date < nowDate && !d.notHeld).map(d => d.date).reverse().slice(0, 2);
   LIT_DAYS.forEach((d, di) => {
-    const b = el("button", "chip day" + (d.date < nowDate ? " past" : "")); b.type = "button"; b.id = "day-" + d.date;
+    // computer: every day; phone: only the 2 latest past days that were really celebrated (not "notHeld") + all upcoming
+    const b = el("button", "chip day" + (d.date < nowDate ? " past" : "") + (d.date < nowDate && !keep2.includes(d.date) ? " hm" : "")); b.type = "button"; b.id = "day-" + d.date;
     b.setAttribute("aria-pressed", di === cur.di); b.textContent = d[lang];
     const mk = d.mark || (d.vn ? U().vnMark : ""); if (mk) b.appendChild(el("span", "vn", mk));
     if (d.off) { b.disabled = true; b.title = lang === "vi" ? "Không có" : "Not available"; days.appendChild(b); return; }
