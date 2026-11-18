@@ -1,7 +1,7 @@
 /* English Mass · St. Joseph Convent – ALL the content of both pages (index.html: Mass texts, songs.html: songs & practice).
    Edited with editor.html (or by hand). Structure: days -> items (celebrations) -> blocks. "updated" is shown on both pages. */
 window.LIT_DATA = {
- "updated": "17 Nov 2026, 11:11 (UTC+7)",
+ "updated": "18 Nov 2026, 07:47 (UTC+7)",
  "days": [
   {
    "date": "2026-10-10",
@@ -22737,17 +22737,17 @@ window.LIT_DATA = {
        "k": "song",
        "partEn": "Recessional",
        "partVi": "Kết lễ",
-       "title": "Hail, Holy Queen",
+       "title": "Pray for the Departed Souls",
        "by": "",
-       "no": "ICLA No. 216",
+       "no": "ICLA No. 230",
        "pdf": {
-        "sheet": "sheets/hail-holy-queen-ipa.png"
+        "sheet": "sheets/for-the-departed-souls-ipa.png"
        },
        "lyrics": "",
        "part": "recessional",
-       "youtube": "https://youtu.be/pSImGYMPNSU",
-       "start": 15,
-       "num": 216
+       "youtube": "https://youtu.be/Cu0sO8VOruc",
+       "start": 20,
+       "num": 230
       }
      ]
     }
