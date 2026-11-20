@@ -1,7 +1,7 @@
 /* English Mass · St. Joseph Convent – ALL the content of both pages (index.html: Mass texts, songs.html: songs & practice).
    Edited with editor.html (or by hand). Structure: days -> items (celebrations) -> blocks. "updated" is shown on both pages. */
 window.LIT_DATA = {
- "updated": "18 Nov 2026, 09:13 (UTC+7)",
+ "updated": "20 Nov 2026, 16:55 (UTC+7)",
  "days": [
   {
    "date": "2026-10-10",
@@ -18219,17 +18219,17 @@ window.LIT_DATA = {
        "k": "song",
        "partEn": "Entrance Chant",
        "partVi": "Ca Nhập lễ",
-       "title": "Let Heaven Rejoice",
-       "by": "Bob Dufford, S.J.",
-       "no": "ICLA No. 139",
+       "title": "Immaculate Mother",
+       "by": "",
+       "no": "ICLA No. 214",
        "pdf": {
-        "sheet": "sheets/let-heaven-rejoice-ipa.png"
+        "sheet": "sheets/immaculate-mother-ipa.png"
        },
        "lyrics": "",
        "part": "entrance",
-       "youtube": "https://youtu.be/drn4GIEV4v8",
-       "start": 7,
-       "num": 139
+       "youtube": "https://youtu.be/hzdSVefon3M",
+       "start": 11,
+       "num": 214
       },
       {
        "k": "sub",
@@ -18238,8 +18238,8 @@ window.LIT_DATA = {
       },
       {
        "k": "ant",
-       "text": "The Lord said: I think thoughts of peace and not of affliction.\nYou will call upon me, and I will answer you,\nand I will lead back your captives from every place.",
-       "cite": "Jer 29: 11, 12, 14",
+       "text": "Blessed are you, O Virgin Mary, by the Lord God Most High,\nabove all women on the earth;\nfor he has so exalted your name\nthat your praise shall be undying on our lips.",
+       "cite": "Cf. Jdt 13: 18-19",
        "proper": true,
        "keep": false
       },
@@ -19097,7 +19097,7 @@ window.LIT_DATA = {
        "who": "P",
        "en": "Prayer over the Offerings of the day",
        "vi": "Lời nguyện Tiến lễ trong ngày",
-       "full": "Grant, O Lord, we pray,\nthat what we offer in the sight of your majesty\nmay obtain for us the grace of being devoted to you\nand gain us the prize of everlasting happiness.\nThrough Christ our Lord."
+       "full": "We offer you the sacrifice of praise, O Lord,\nas we rejoice in commemorating\nthe Mother of your Son;\ngrant, we pray,\nthat through this most holy exchange\nwe may advance towards eternal redemption.\nThrough Christ our Lord."
       },
       {
        "k": "v",
@@ -19219,27 +19219,43 @@ window.LIT_DATA = {
        "vi": ""
       },
       {
-       "k": "r",
-       "en": "Although it is provided with its own Preface, this Eucharistic Prayer may also be used with other Prefaces, especially those that present an overall view of the mystery of salvation, such as the Common Prefaces.",
-       "vi": "",
-       "ep": 2
+       "k": "sub",
+       "en": "Preface I of the Blessed Virgin Mary · The Motherhood of the Blessed Virgin Mary",
+       "vi": "Preface I of the Blessed Virgin Mary · The Motherhood of the Blessed Virgin Mary",
+       "small": true
       },
       {
        "k": "v",
        "lines": [
         [
          "P",
-         "It is truly right and just, our duty and salvation,\nalways and everywhere to give you thanks, Father most holy,\nthrough your beloved Son, Jesus Christ,\nyour Word through whom you made all things,\nwhom you sent as our Savior and Redeemer,\nincarnate by the Holy Spirit and born of the Virgin.\nFulfilling your will and gaining for you a holy people,\nhe stretched out his hands as he endured his Passion,\nso as to break the bonds of death and manifest the resurrection.\nAnd so, with the Angels and all the Saints\nwe declare your glory,\nas with one voice we acclaim:"
+         "It is truly right and just, our duty and our salvation,\nalways and everywhere to give you thanks,\nLord, holy Father, almighty and eternal God,\nand to praise, bless, and glorify your name\non the feast day of the Blessed ever-Virgin Mary.\nFor by the overshadowing of the Holy Spirit\nshe conceived your Only Begotten Son,\nand without losing the glory of virginity,\nbrought forth into the world the eternal Light,\nJesus Christ our Lord.\nThrough him the Angels praise your majesty,\nDominions adore and Powers tremble before you.\nHeaven and the Virtues of heaven and the blessed Seraphim\nworship together with exultation.\nMay our voices, we pray, join with theirs\nin humble praise, as we acclaim:"
         ]
        ],
-       "ep": 2
+       "proper": true
       },
       {
-       "k": "slot",
-       "who": "P",
-       "en": "Preface",
-       "vi": "Kinh Tiền tụng",
-       "ep": 3
+       "k": "r",
+       "en": "Or:",
+       "vi": ""
+      },
+      {
+       "k": "sub",
+       "en": "Preface II of the Blessed Virgin Mary · The Church praises God with the words of Mary",
+       "vi": "Preface II of the Blessed Virgin Mary · The Church praises God with the words of Mary",
+       "small": true,
+       "rubOnly": true
+      },
+      {
+       "k": "v",
+       "lines": [
+        [
+         "P",
+         "It is truly right and just, our duty and our salvation,\nto praise your mighty deeds in the exaltation of all the Saints,\nand especially, as we celebrate the memory\nof the Blessed Virgin Mary,\nto proclaim your kindness as we echo her thankful hymn of praise.\nFor truly even to earth’s ends you have done great things\nand extended your abundant mercy from age to age:\nwhen you looked on the lowliness of your handmaid,\nyou gave us through her the author of our salvation,\nyour Son, Jesus Christ, our Lord.\nThrough him the host of Angels adores your majesty\nand rejoices in your presence for ever.\nMay our voices, we pray, join with theirs\nin one chorus of exultant praise, as we acclaim:"
+        ]
+       ],
+       "proper": true,
+       "rubOnly": true
       },
       {
        "k": "h",
@@ -20233,20 +20249,8 @@ window.LIT_DATA = {
       },
       {
        "k": "ant",
-       "text": "To be near God is my happiness,\nto place my hope in God the Lord.",
-       "cite": "Ps 73 (72): 28",
-       "proper": true,
-       "keep": false
-      },
-      {
-       "k": "r",
-       "en": "Or:",
-       "vi": ""
-      },
-      {
-       "k": "ant",
-       "text": "Amen, I say to you: Whatever you ask in prayer,\nbelieve that you will receive,\nand it shall be given to you, says the Lord.",
-       "cite": "Mk 11: 23-24",
+       "text": "All generations will call me blessed,\nfor God has looked on his lowly handmaid.",
+       "cite": "Cf. Lk 1: 48",
        "proper": true,
        "keep": false
       },
@@ -20303,7 +20307,7 @@ window.LIT_DATA = {
        "who": "P",
        "en": "Prayer after Communion of the day",
        "vi": "Lời nguyện Hiệp lễ trong ngày",
-       "full": "We have partaken of the gifts of this sacred mystery,\nhumbly imploring, O Lord,\nthat what your Son commanded us to do\nin memory of him\nmay bring us growth in charity.\nThrough Christ our Lord."
+       "full": "Renewed with this heavenly food,\nwe humbly implore you, Lord,\nthat, having received your Son, born of the tender Virgin,\nunder sacramental signs,\nwe may profess him in words\nand hold fast to him in deeds.\nWho lives and reigns for ever and ever."
       },
       {
        "k": "v",
@@ -20460,17 +20464,17 @@ window.LIT_DATA = {
        "k": "song",
        "partEn": "Recessional",
        "partVi": "Kết lễ",
-       "title": "Immaculate Mother",
+       "title": "Hail, Holy Queen",
        "by": "",
-       "no": "ICLA No. 214",
+       "no": "ICLA No. 216",
        "pdf": {
-        "sheet": "sheets/immaculate-mother-ipa.png"
+        "sheet": "sheets/hail-holy-queen-ipa.png"
        },
        "lyrics": "",
        "part": "recessional",
-       "youtube": "https://youtu.be/hzdSVefon3M",
-       "start": 11,
-       "num": 214
+       "youtube": "https://youtu.be/pSImGYMPNSU",
+       "start": 15,
+       "num": 216
       }
      ]
     }

@@ -842,6 +842,7 @@ function render() {
     if (!paOk(b)) return;   // only the chosen form of the Penitential Act
     const n = text.appendChild(block(b, it, day));
     if (it.kind !== "mass" || !n.classList) return;
+    if (b.rubOnly) n.classList.add("rub-x");   // an alternative the Missal offers ("Or: Preface II …"): shown only with Rubrics
     // Entrance / Communion Antiphons are not used (hymns are sung instead): hidden with their headings (anh Khải 15/10);
     // but always shown at a recited Mass (keep: true, 30–31 Oct, anh Khải 29/10)
     // Communion Antiphon: always shown, said when there is no Communion song (anh Khải 10/11) — the first one; "Or:" alternatives only with Rubrics
