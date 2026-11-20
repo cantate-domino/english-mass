@@ -611,6 +611,10 @@ let allRoles = false; // ministries: presider only unless expanded
 let EPSEL = 2; try { if (localStorage.getItem("lit-ep") === "3") EPSEL = 3; } catch (e) {}   // chosen Eucharistic Prayer (II default)
 let PASEL = 1; try { const v = +localStorage.getItem("lit-pa"); if (v === 2 || v === 3) PASEL = v; } catch (e) {}   // chosen form of the Penitential Act (1 default)
 const paOk = b => !b.pa || b.pa.includes(PASEL);
+// Preface chosen where the Missal offers more than one (e.g. "Preface I of the BVM, or II"): per Mass, the first by default
+const PFSEL = {}; const pfKey = it => "lit-pf-" + it.id;
+const pfOf = it => { if (!(it.id in PFSEL)) { let v = 1; try { v = +localStorage.getItem(pfKey(it)) || 1; } catch (e) {} PFSEL[it.id] = v; } return PFSEL[it.id]; };
+const pfOk = (b, it) => !b.pref || b.pref === pfOf(it);
 let showRub = false; try { showRub = localStorage.getItem("lit-rub") === "1"; } catch (e) {}
 // Mass rubrics kept in the lean view (postures, the homily note); quiet prayers and their answers are hidden
 const RUB_KEEP = /kneel|all bow|rise and|Homily by/i;
@@ -840,9 +844,10 @@ function render() {
   it.blocks.forEach((b, i) => {
     if (b.ep && b.ep !== EPSEL) return;   // only the chosen Eucharistic Prayer
     if (!paOk(b)) return;   // only the chosen form of the Penitential Act
+    if (!pfOk(b, it)) return;   // only the chosen Preface
     const n = text.appendChild(block(b, it, day));
     if (it.kind !== "mass" || !n.classList) return;
-    if (b.rubOnly) n.classList.add("rub-x");   // an alternative the Missal offers ("Or: Preface II …"): shown only with Rubrics
+    if (b.rubOnly) n.classList.add("rub-x");   // shown only with Rubrics
     // Entrance / Communion Antiphons are not used (hymns are sung instead): hidden with their headings (anh Khải 15/10);
     // but always shown at a recited Mass (keep: true, 30–31 Oct, anh Khải 29/10)
     // Communion Antiphon: always shown, said when there is no Communion song (anh Khải 10/11) — the first one; "Or:" alternatives only with Rubrics
@@ -922,6 +927,21 @@ function block(b, it, day) {
       });
       return d;
     }
+    case "pfsel": {   // Preface I | II, where the Missal gives a choice; the full title shows under the switch
+      const d = el("div", "epsel pfsel"); d.setAttribute("role", "group"); d.setAttribute("aria-label", "Preface");   // no label: the "Preface" heading sits just above
+      (b.opts || []).forEach(o => {
+        const bt = el("button", null, o.label); bt.type = "button"; bt.title = o.title || ""; bt.setAttribute("aria-pressed", pfOf(it) === o.n);
+        bt.onclick = () => {
+          if (pfOf(it) === o.n) return;
+          const top = d.getBoundingClientRect().top, y = scrollY;
+          PFSEL[it.id] = o.n; try { localStorage.setItem(pfKey(it), String(o.n)); } catch (e) {}
+          render(); window.scrollTo({ top: y, behavior: "instant" });
+          const nd = document.querySelector(".pfsel"); if (nd) window.scrollTo({ top: scrollY + nd.getBoundingClientRect().top - top, behavior: "instant" });
+        };
+        d.appendChild(bt);
+      });
+      return d;
+    }
     case "epsel": {   // Eucharistic Prayer II | III — the choice is remembered and applies to every Mass
       const d = el("div", "epsel"); d.setAttribute("role", "group"); d.setAttribute("aria-label", "Eucharistic Prayer");
       d.appendChild(el("span", "lb", "Eucharistic Prayer"));
@@ -933,7 +953,7 @@ function block(b, it, day) {
           const top = d.getBoundingClientRect().top, y = scrollY;
           EPSEL = n; try { localStorage.setItem("lit-ep", String(n)); } catch (e) {}
           render(); window.scrollTo({ top: y, behavior: "instant" });
-          const nd = document.querySelector(".epsel:not(.pasel)"); if (nd) window.scrollTo({ top: scrollY + nd.getBoundingClientRect().top - top, behavior: "instant" });   // the switch stays under the finger
+          const nd = document.querySelector(".epsel:not(.pasel):not(.pfsel)"); if (nd) window.scrollTo({ top: scrollY + nd.getBoundingClientRect().top - top, behavior: "instant" });   // the switch stays under the finger
         };
         d.appendChild(bt);
       });

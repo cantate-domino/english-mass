@@ -224,6 +224,7 @@ const K = {   // block kinds: name, short description, template for a new one
   book:    ["Ghi chú", "Dòng ghi chú nhỏ", () => ({ k: "book", en: "", vi: "" })],
   epsel:   ["Nút chọn KNTT II | III", "Đặt ở đầu Kinh nguyện Thánh Thể", () => ({ k: "epsel" })],
   pasel:   ["Nút chọn mẫu Sám hối", "Đặt ở đầu nghi thức Sám hối", () => ({ k: "pasel" })],
+  pfsel:   ["Nút chọn Tiền tụng I | II", "Khi sách lễ cho chọn tiền tụng; các khối tiền tụng ghi \"pref\": 1 hoặc 2 (sửa JSON)", () => ({ k: "pfsel", opts: [{ n: 1, label: "I", title: "" }, { n: 2, label: "II", title: "" }] })],
   tba:     ["Chưa có bản văn", "Dòng “Text to be added”", () => ({ k: "tba" })],
   ps:      ["Danh sách thánh vịnh", "", null], pf: ["Lời nguyện tín hữu", "", null], hymn: ["Thánh thi (có nhạc)", "", null],
   score:   ["Bản nhạc", "", null], scorefold: ["Bản nhạc (gập)", "", null], chant: ["Bình ca", "", null], read: ["Thẻ bài đọc", "", null]

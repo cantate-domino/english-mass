@@ -1,7 +1,7 @@
 /* English Mass · St. Joseph Convent – ALL the content of both pages (index.html: Mass texts, songs.html: songs & practice).
    Edited with editor.html (or by hand). Structure: days -> items (celebrations) -> blocks. "updated" is shown on both pages. */
 window.LIT_DATA = {
- "updated": "20 Nov 2026, 16:55 (UTC+7)",
+ "updated": "20 Nov 2026, 17:02 (UTC+7)",
  "days": [
   {
    "date": "2026-10-10",
@@ -19219,10 +19219,26 @@ window.LIT_DATA = {
        "vi": ""
       },
       {
+       "k": "pfsel",
+       "opts": [
+        {
+         "n": 1,
+         "label": "I",
+         "title": "Preface I of the Blessed Virgin Mary · The Motherhood of the Blessed Virgin Mary"
+        },
+        {
+         "n": 2,
+         "label": "II",
+         "title": "Preface II of the Blessed Virgin Mary · The Church praises God with the words of Mary"
+        }
+       ]
+      },
+      {
        "k": "sub",
        "en": "Preface I of the Blessed Virgin Mary · The Motherhood of the Blessed Virgin Mary",
        "vi": "Preface I of the Blessed Virgin Mary · The Motherhood of the Blessed Virgin Mary",
-       "small": true
+       "small": true,
+       "pref": 1
       },
       {
        "k": "v",
@@ -19232,19 +19248,15 @@ window.LIT_DATA = {
          "It is truly right and just, our duty and our salvation,\nalways and everywhere to give you thanks,\nLord, holy Father, almighty and eternal God,\nand to praise, bless, and glorify your name\non the feast day of the Blessed ever-Virgin Mary.\nFor by the overshadowing of the Holy Spirit\nshe conceived your Only Begotten Son,\nand without losing the glory of virginity,\nbrought forth into the world the eternal Light,\nJesus Christ our Lord.\nThrough him the Angels praise your majesty,\nDominions adore and Powers tremble before you.\nHeaven and the Virtues of heaven and the blessed Seraphim\nworship together with exultation.\nMay our voices, we pray, join with theirs\nin humble praise, as we acclaim:"
         ]
        ],
-       "proper": true
-      },
-      {
-       "k": "r",
-       "en": "Or:",
-       "vi": ""
+       "proper": true,
+       "pref": 1
       },
       {
        "k": "sub",
        "en": "Preface II of the Blessed Virgin Mary · The Church praises God with the words of Mary",
        "vi": "Preface II of the Blessed Virgin Mary · The Church praises God with the words of Mary",
        "small": true,
-       "rubOnly": true
+       "pref": 2
       },
       {
        "k": "v",
@@ -19255,7 +19267,7 @@ window.LIT_DATA = {
         ]
        ],
        "proper": true,
-       "rubOnly": true
+       "pref": 2
       },
       {
        "k": "h",
